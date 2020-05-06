@@ -19,7 +19,6 @@ declare var $: any;
 })
 export class VerUsuariosComponent implements OnInit {
 
-
   constructor( public _usuarioservice: UsuarioService,
                public http: HttpClient ) {
                 }
@@ -106,4 +105,27 @@ export class VerUsuariosComponent implements OnInit {
     doc.save('ListaDeUsuarios.pdf');
 
   }
+
+  buscarNombre() {
+    // Declaracion de variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById('NombreUsuarios');
+    filter = input.value.toUpperCase();
+    table = document.getElementById('tablausuarios');
+    tr = table.getElementsByTagName('tr');
+
+    // Loop de todos los rows y ocultar los que no concuerdan
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName('td')[1];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = '';
+        } else {
+          tr[i].style.display = 'none';
+        }
+      }
+    }
+  }
+
 }

@@ -9,11 +9,12 @@
                             <button (click)="exportexcel()" class="btn btn-outline-success mb-2"><i class="mdi mdi-file-excel" style="font-size: x-large;"></i> XLSX</button>
                             <button (click)="exportpdf()" class="btn btn-outline-danger ml-2 mb-2"> <i class="mdi mdi-file-pdf" style="font-size: x-large;"></i> PDF</button>
                             <button [routerLink]="['../crearusuario']" class="btn btn-outline-info ml-2 mb-2" title="Agregar"> <i class="mdi mdi-plus" style="font-size: x-large;"></i></button>
+                            <input class="mt-2" style="float: right;" type="text" id="NombreUsuarios" (keyup)="buscarNombre()" placeholder="Buscar por Nombre"><i style="float: right; font-size: xx-large;" class="mdi mdi-magnify mt-0"></i>
                         </a>
                         <table id="tablausuarios" class="table full-color-table full-info-table hover-table" cellspacing="0" width="100%">
                             <thead>
                                 <tr style="font-weight: bold;">
-                                    <th data-sortable="true">ID</th>
+                                    <th>ID</th>
                                     <th>Nombre</th>
                                     <th>Correo</th>
                                     <th>Puesto</th>
@@ -44,6 +45,4 @@
             </div>
         </div>
     </div>
-
-
 </body>

@@ -29,6 +29,7 @@ import { CrearUsuarioComponent } from './usuarios/crearusuario.component';
 import { VerUsuariosComponent } from './usuarios/verusuarios.component';
 import { EditarUsuarioComponent } from './usuarios/editarusuario.component';
 
+
 // Pipes
 import { PipesModule } from '../pipes/pipes.module';
 
