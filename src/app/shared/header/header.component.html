@@ -56,7 +56,10 @@
                 <!-- Profile -->
                 <!-- ============================================================== -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-account" style="font-size: x-large;"></i> </a>
+                    <a>
+                        <p-inputSwitch (click)="cambiarColor('')" [(ngModel)]="checked1" [ngModelOptions]="{standalone: true}"></p-inputSwitch>
+                    </a>
+                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-account" style="font-size: xx-large;"></i> </a>
                     <div class="dropdown-menu dropdown-menu-right animated fadeIn">
                         <ul class="dropdown-user">
                             <li>

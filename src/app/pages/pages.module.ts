@@ -28,6 +28,9 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { CrearUsuarioComponent } from './usuarios/crearusuario.component';
 import { VerUsuariosComponent } from './usuarios/verusuarios.component';
 import { EditarUsuarioComponent } from './usuarios/editarusuario.component';
+import { DataTablesModule } from 'angular-datatables';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {InputSwitchModule} from 'primeng/inputswitch';
 
 
 // Pipes
@@ -66,7 +69,10 @@ import { PipesModule } from '../pipes/pipes.module';
         ChartsModule,
         PipesModule,
         CommonModule,
-        TableModule
+        TableModule,
+        BrowserAnimationsModule,
+        DataTablesModule,
+        InputSwitchModule
     ]
 })
 export class PagesModule { }

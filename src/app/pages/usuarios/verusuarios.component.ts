@@ -6,10 +6,7 @@ import swal2 from 'sweetalert2';
 import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import * as jquery from 'jquery';
-const doc = new jsPDF();
-declare var JQuery: any;
-declare var $: any;
+declare var $;
 
 
 @Component({
@@ -20,33 +17,48 @@ declare var $: any;
 export class VerUsuariosComponent implements OnInit {
 
   constructor( public _usuarioservice: UsuarioService,
-               public http: HttpClient ) {
-                }
+               public http: HttpClient) { }
 
   token = localStorage.getItem('token');
   doc = new jsPDF();
   usuarios: any[] = [];
   usuario: string;
   cols: any[];
+  colspdf: any[];
   selectedFac: any[];
   router: Router;
   fileName = 'ListaDeUsuarios.xlsx';
-  a = false;
+  selectedColumns: any[];
+  exportColumns: any[];
 
   ngOnInit() {
 
-    this.cols = [
-      { field: 'id', header: 'ID' },
-      { field: 'nombre', header: 'Nombre' },
-      { field: 'correo', header: 'Correo' },
-      { field: 'puesto', header: 'Puesto' },
-      { field: 'genero', header: 'Genero' },
-      { field: 'estatus', header: 'Estatus' }
-  ];
+    this._usuarioservice.getUsuarios().subscribe(resp => {this.usuarios = resp; } );
 
-    this._usuarioservice.getUsuarios().subscribe( resp => {this.usuarios = resp; } );
+    this.cols = [
+
+      { field: 'id', header: 'ID' },
+      { field: 'name', header: 'Nombre' },
+      { field: 'email', header: 'Correo' },
+      { field: 'job', header: 'Puesto' },
+      { field: 'gender', header: 'Genero' },
+      { field: 'status', header: 'Estatus' },
+      { field: 'herramientas', header: 'Herramientas' }
+  ];
+    this.colspdf = [
+
+    { field: 'id', header: 'ID' },
+    { field: 'name', header: 'Nombre' },
+    { field: 'email', header: 'Correo' },
+    { field: 'job', header: 'Puesto' },
+    { field: 'gender', header: 'Genero' },
+    { field: 'status', header: 'Estatus' }
+];
+    this.selectedColumns = this.cols;
+    this.exportColumns = this.colspdf.map(col => ({title: col.header, dataKey: col.field}));
 
   }
+
 
   borraUsuario( user: any ) {
 
@@ -100,15 +112,23 @@ export class VerUsuariosComponent implements OnInit {
 
   exportpdf() {
 
-    doc.autoTable({ html: '#tablausuarios' });
+   // doc.autoTable({ html: document.getElementById('tablausuarios') });
+   // doc.save('ListaDeUsuarios.pdf');
 
-    doc.save('ListaDeUsuarios.pdf');
+   import('jspdf').then(jsPDF => {
+    import('jspdf-autotable').then(x => {
+        const doc = new jsPDF.default(0, 0);
+        doc.autoTable(this.exportColumns, this.usuarios);
+        doc.save('ListaUsuarios.pdf');
+    })
+})
 
   }
 
   buscarNombre() {
     // Declaracion de variables
-    var input, filter, table, tr, td, i, txtValue;
+    // tslint:disable-next-line: one-variable-per-declaration
+    let input, filter, table, tr, td, i, txtValue;
     input = document.getElementById('NombreUsuarios');
     filter = input.value.toUpperCase();
     table = document.getElementById('tablausuarios');

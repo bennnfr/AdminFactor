@@ -16,9 +16,29 @@ export class AccoutSettingsComponent implements OnInit {
   forma: FormGroup;
   idUsuario: string;
   resp: any;
+  checked1: boolean;
+  ajustes = {
+    temaUrl: 'assets/css/colors/default.css',
+    tema: 'default'
+  };
+  temaAc: string;
 
   constructor( public _ajustes: SettingsService,
-               public _usuarioService: UsuarioService ) { }
+               public _usuarioService: UsuarioService ) {
+
+                if ( localStorage.getItem('ajustes') ) {
+                  this.ajustes = JSON.parse( localStorage.getItem('ajustes') );
+                  console.log( this.ajustes.tema );
+                  if ( this.ajustes.tema === 'blue' ) {
+                    console.log('es false');
+                    this.checked1 = false;
+                  } else if ( this.ajustes.tema === 'blue-dark' ) {
+                    this.checked1 = true;
+                    console.log('es true');
+                  }
+                }
+
+               }
 
   ngOnInit() {
 
@@ -35,11 +55,27 @@ export class AccoutSettingsComponent implements OnInit {
     this.idUsuario = localStorage.getItem('id');
     this.colocarCheck();
     this._usuarioService.getUsuario( this.idUsuario ).subscribe( resp => this.resp = resp );
+
   }
 
-  cambiarColor( tema: string, link: any ) {
+  cambiarColor( tema: string) {  // , link: any ) {
 
-    this.aplicarCheck( link );
+    this.checked1 = !this.checked1;
+    if (this.checked1) {
+      tema = 'blue';
+      this.checked1 = false;
+      console.log('CHECANDO DARK!');
+    } else {
+      tema = 'blue-dark';
+      this.checked1 = true;
+      console.log('CHECANDO LIGHT!');
+    }
+
+   // console.log('caca');
+   // console.log(tema);
+   // console.log(link);
+
+    // this.aplicarCheck( link );
     this._ajustes.aplicarTema( tema );
 
   }
