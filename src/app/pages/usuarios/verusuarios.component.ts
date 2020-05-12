@@ -71,7 +71,7 @@ export class VerUsuariosComponent implements OnInit {
       allowOutsideClick: false
     }). then ( resp => {
       if ( resp.value) {
-
+ 
         this._usuarioservice.borrarUsuario( user ).subscribe( () => {
 
           swal2.fire({

@@ -9,7 +9,8 @@ export class SidebarService {
       icono: 'mdi mdi-file-document',
       submenu: [
       //  { titulo: 'Crear Usuario', url: '/crearusuario' },
-        { titulo : 'Usuarios', url: '/verusuarios' }
+        { titulo : 'Usuarios', url: '/verusuarios' },
+        { titulo : 'Privilegios Usuarios', url: '/privilegiosusuarios' }
       //  { titulo: 'Promesas', url: '/promesas' },
       //  { titulo: 'RxJs', url: '/rxjs' }
       ]

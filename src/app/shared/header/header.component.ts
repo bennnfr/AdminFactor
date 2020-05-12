@@ -24,13 +24,12 @@ export class HeaderComponent implements OnInit {
                public _ajustes: SettingsService) { 
                 if ( localStorage.getItem('ajustes') ) {
                   this.ajustes = JSON.parse( localStorage.getItem('ajustes') );
-                  console.log( this.ajustes.tema );
                   if ( this.ajustes.tema === 'blue' ) {
                     console.log('es false');
                     this.checked1 = false;
                   } else if ( this.ajustes.tema === 'blue-dark' ) {
                     this.checked1 = true;
-                    console.log('es true');
+
                   }
                 }
                }
@@ -46,11 +45,9 @@ export class HeaderComponent implements OnInit {
     if (this.checked1) {
       tema = 'blue';
       this.checked1 = false;
-      console.log('CHECANDO DARK!');
     } else {
       tema = 'blue-dark';
       this.checked1 = true;
-      console.log('CHECANDO LIGHT!');
     }
 
    // console.log('caca');

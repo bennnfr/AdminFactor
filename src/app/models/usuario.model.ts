@@ -38,3 +38,15 @@ export class Usuario3 {
     ) { }
 
 }
+
+export class Privilegio {
+
+    constructor(
+
+        public descripcion: string,
+        public key: string,
+        public valor: string,
+        public documentacion: string,
+    ) { }
+
+}

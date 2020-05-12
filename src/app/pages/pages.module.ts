@@ -23,7 +23,6 @@ import { CommonModule } from '@angular/common';
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.component';
 import { AccoutSettingsComponent } from './accout-settings/accout-settings.component';
-import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { CrearUsuarioComponent } from './usuarios/crearusuario.component';
 import { VerUsuariosComponent } from './usuarios/verusuarios.component';
@@ -35,6 +34,10 @@ import {InputSwitchModule} from 'primeng/inputswitch';
 
 // Pipes
 import { PipesModule } from '../pipes/pipes.module';
+import { PrivilegiosUsuariosComponent } from './privilegiosusuarios/privilegiosusuarios.component';
+import { PrivilegioUsuarioComponent } from './privilegiosusuarios/privilegiousuario.component';
+import { CrearPrivilegioComponent } from './privilegiosusuarios/crearprivilegio.component';
+import { ActualizaPrivilegioComponent } from './privilegiosusuarios/actualizaprivilegio.component';
 
 
 
@@ -50,11 +53,14 @@ import { PipesModule } from '../pipes/pipes.module';
         IncrementadorComponent,
         GraficoDonaComponent,
         AccoutSettingsComponent,
-        PromesasComponent,
         RxjsComponent,
         CrearUsuarioComponent,
         VerUsuariosComponent,
-        EditarUsuarioComponent
+        EditarUsuarioComponent,
+        PrivilegiosUsuariosComponent,
+        PrivilegioUsuarioComponent,
+        CrearPrivilegioComponent,
+        ActualizaPrivilegioComponent
     ],
     exports: [
         DashboardComponent,
