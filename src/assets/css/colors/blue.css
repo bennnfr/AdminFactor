@@ -181,5 +181,5 @@ a.link:focus {
 .card-no-border .left-sidebar,
 .card-no-border .sidebar-nav {
     background: #ffffff;
-    background-image: url('../../images/background/fondo_side_bar.png');
+    /*  background-image: url('../../images/background/fondo_side_bar.png'); */
 }

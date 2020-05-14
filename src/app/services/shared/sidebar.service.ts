@@ -10,7 +10,9 @@ export class SidebarService {
       submenu: [
       //  { titulo: 'Crear Usuario', url: '/crearusuario' },
         { titulo : 'Usuarios', url: '/verusuarios' },
-        { titulo : 'Privilegios Usuarios', url: '/privilegiosusuarios' }
+        { titulo : 'Privilegios Usuarios', url: '/privilegiosusuarios' },
+        { titulo : 'Roles', url: '/roles' },
+        { titulo : 'Parametros Generales', url: '/parametros'  }
       //  { titulo: 'Promesas', url: '/promesas' },
       //  { titulo: 'RxJs', url: '/rxjs' }
       ]

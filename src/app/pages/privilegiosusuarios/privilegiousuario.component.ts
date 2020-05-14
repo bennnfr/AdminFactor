@@ -32,10 +32,13 @@ export class PrivilegioUsuarioComponent implements OnInit {
   exportColumns: any[];
   privilegios: any[] = [];
   id: string;
+  nombrepriv: string;
 
   ngOnInit() {
 
     this.id = this.route.snapshot.paramMap.get('id');
+
+    this.nombrepriv = localStorage.getItem('usuarioPrivilegio');
 
     this._privilegiosusuarios.getPrivilegiosUsuario( this.id ).subscribe( resp => { this.privilegios = resp;} );
 

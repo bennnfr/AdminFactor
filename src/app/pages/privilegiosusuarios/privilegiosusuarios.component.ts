@@ -2,10 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService, PrivilegiosUsuariosService } from '../../services/service.index';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import swal2 from 'sweetalert2';
-import jsPDF from 'jspdf';
-import 'jspdf-autotable';
-declare var $;
 
 
 @Component({
@@ -20,15 +16,10 @@ export class PrivilegiosUsuariosComponent implements OnInit {
                public http: HttpClient) { }
 
   token = localStorage.getItem('token');
-  doc = new jsPDF();
   usuarios: any[] = [];
-  usuario: string;
   cols: any[];
   selectedFac: any[];
   router: Router;
-  fileName = 'ListaDeUsuarios.xlsx';
-  selectedColumns: any[];
-  exportColumns: any[];
 
   ngOnInit() {
 
@@ -42,6 +33,12 @@ export class PrivilegiosUsuariosComponent implements OnInit {
       { field: 'privilegios', header: 'Privilegios' }
 
   ];
+
+  }
+
+  guardanombrepriv( name: string ) {
+
+  localStorage.setItem( 'usuarioPrivilegio', name );
 
   }
 

@@ -98,6 +98,7 @@ export class UsuarioService {
         localStorage.removeItem('id');
         localStorage.removeItem('emailuser');
         localStorage.removeItem('expiratoken');
+        localStorage.removeItem('usuarioPrivilegio');
         this.router.navigate(['/login']);
         Swal.fire(
     'Terminó la sesion',

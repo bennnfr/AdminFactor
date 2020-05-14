@@ -8,6 +8,8 @@ import {
   SharedService,
   UsuarioService,
   PrivilegiosUsuariosService,
+  RolesService,
+  ParametrosGeneralesService,
   LoginGuardGuard
  } from './service.index';
 
@@ -23,6 +25,8 @@ import {
     SharedService,
     UsuarioService,
     PrivilegiosUsuariosService,
+    RolesService,
+    ParametrosGeneralesService,
     LoginGuardGuard
   ],
   declarations: []

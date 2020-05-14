@@ -2,7 +2,7 @@
 <!-- Main wrapper - style you can find in pages.scss -->
 <!-- ============================================================== -->
 
-<div class="col-12">
+<div class="col-12 animated fadeIn">
     <div class="card">
         <div class="card-body animated fadeIn">
             <form ngNativeValidate [formGroup]="forma" (ngSubmit)="registrarPrivilegio()" class="form-horizontal form-material" id="loginform" action="index.html">
@@ -34,7 +34,7 @@
                             <button class="btn btn-outline-info btn-lg btn-block text-uppercase" type="submit">Guardar</button>
                         </div>
                         <div class="col">
-                            <button class="btn btn-outline-info btn-lg btn-block text-uppercase" [routerLink]="['/privilegiousuario', id]">Regresar</button>
+                            <button class="btn btn-outline-info btn-lg btn-block text-uppercase" [routerLink]="['/privilegiosusuarios/privilegiousuario', id]">Regresar</button>
                         </div>
                     </div>
                 </div>

@@ -19,7 +19,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
 
 import { CommonModule } from '@angular/common';
-// temporal
+
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.component';
 import { AccoutSettingsComponent } from './accout-settings/accout-settings.component';
@@ -30,14 +30,21 @@ import { EditarUsuarioComponent } from './usuarios/editarusuario.component';
 import { DataTablesModule } from 'angular-datatables';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {InputSwitchModule} from 'primeng/inputswitch';
-
-
-// Pipes
 import { PipesModule } from '../pipes/pipes.module';
 import { PrivilegiosUsuariosComponent } from './privilegiosusuarios/privilegiosusuarios.component';
 import { PrivilegioUsuarioComponent } from './privilegiosusuarios/privilegiousuario.component';
 import { CrearPrivilegioComponent } from './privilegiosusuarios/crearprivilegio.component';
 import { ActualizaPrivilegioComponent } from './privilegiosusuarios/actualizaprivilegio.component';
+import { RolesComponent } from './roles/roles.component';
+import { CrearRolComponent } from './roles/crearrol.component';
+import { ActualizaRolComponent } from './roles/actualizarol.component';
+import { ParametrosComponent } from './parametrosgenerales/parametros.component';
+import { CreaParametroComponent } from './parametrosgenerales/creaparametro.component';
+import { ActualizaParametroComponent } from './parametrosgenerales/actualizaparametro.component';
+
+
+
+
 
 
 
@@ -60,7 +67,13 @@ import { ActualizaPrivilegioComponent } from './privilegiosusuarios/actualizapri
         PrivilegiosUsuariosComponent,
         PrivilegioUsuarioComponent,
         CrearPrivilegioComponent,
-        ActualizaPrivilegioComponent
+        ActualizaPrivilegioComponent,
+        RolesComponent,
+        CrearRolComponent,
+        ActualizaRolComponent,
+        ParametrosComponent,
+        CreaParametroComponent,
+        ActualizaParametroComponent
     ],
     exports: [
         DashboardComponent,

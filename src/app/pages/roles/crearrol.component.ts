@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UsuarioService, PrivilegiosUsuariosService } from '../../services/service.index';
+import { UsuarioService, PrivilegiosUsuariosService, RolesService } from '../../services/service.index';
 import { Privilegio, Usuario2 } from '../../models/usuario.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -8,55 +8,49 @@ import Swal from 'sweetalert2';
 declare function init_plugins();
 
 @Component({
-  selector: 'app-crearprivilegio',
-  templateUrl: './crearprivilegio.component.html',
+  selector: 'app-crearrol',
+  templateUrl: './crearrol.component.html',
   styles: []
 })
-export class CrearPrivilegioComponent implements OnInit {
+export class CrearRolComponent implements OnInit {
 
   forma: FormGroup;
-  id: string;
 
   constructor(
     public _usuarioService: UsuarioService,
     private route: ActivatedRoute,
     public _privilegiosusuarios: PrivilegiosUsuariosService,
+    public _rolService: RolesService,
     public router: Router
   ) { }
 
 
   ngOnInit() {
 
-      this.id = this.route.snapshot.paramMap.get('id');
 
       this.forma = new FormGroup({
         Descripcion: new FormControl( null , Validators.required ),
-        Key: new FormControl( null , Validators.required ),
-        Valor: new FormControl( null , Validators.required ),
-        Documentacion: new FormControl( null , Validators.required )
+        Name: new FormControl( null , Validators.required )
 
       } );
 
   }
 
 
-  registrarPrivilegio() {
+  registrarRol() {
 
-    const privilegio = new Privilegio(
-      this.forma.value.Descripcion,
-      this.forma.value.Key,
-      this.forma.value.Valor,
-      this.forma.value.Documentacion
-    );
+    const rolName =  this.forma.value.Name;
+    const rolDesc =  this.forma.value.Descripcion;
+
     // console.log(privilegio);
-    this._privilegiosusuarios.guardarPrivilegio( this.id, privilegio ).subscribe( resp => {this.router.navigate(['/privilegiosusuarios/privilegiousuario/', this.id]),
+    this._rolService.crearRol(rolName, rolDesc).subscribe( resp => {this.router.navigate(['/roles']),
     Swal.fire(
-      'Creacion de Privilegio',
+      'Creacion de Rol',
       'Exitosa',
       'success'
    ); }, (err) => {
                             Swal.fire(
-                              'Error al crear Privilegio',
+                              'Error al crear Rol',
                               'Error',
                               'error'
                            );

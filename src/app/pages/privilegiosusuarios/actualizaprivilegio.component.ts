@@ -69,7 +69,7 @@ export class ActualizaPrivilegioComponent implements OnInit {
     );
   //  console.log(privilegio);
 
-    this._privilegiosusuarios.actualizaPrivilegio( this.idu, this.idp, privilegio ).subscribe( resp => {this.router.navigate(['/privilegiousuario/', this.idu]),
+    this._privilegiosusuarios.actualizaPrivilegio( this.idu, this.idp, privilegio ).subscribe( resp => {this.router.navigate(['/privilegiosusuarios/privilegiousuario/', this.idu]),
     Swal.fire(
       'Modificacion de Privilegio',
       'Exitosa',
