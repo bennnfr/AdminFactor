@@ -10,7 +10,8 @@ import {
   PrivilegiosUsuariosService,
   RolesService,
   ParametrosGeneralesService,
-  LoginGuardGuard
+  LoginGuardGuard,
+  OptionsService
  } from './service.index';
 
 
@@ -27,7 +28,8 @@ import {
     PrivilegiosUsuariosService,
     RolesService,
     ParametrosGeneralesService,
-    LoginGuardGuard
+    LoginGuardGuard,
+    OptionsService
   ],
   declarations: []
 })

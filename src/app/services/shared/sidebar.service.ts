@@ -12,7 +12,8 @@ export class SidebarService {
         { titulo : 'Usuarios', url: '/verusuarios' },
         { titulo : 'Privilegios Usuarios', url: '/privilegiosusuarios' },
         { titulo : 'Roles', url: '/roles' },
-        { titulo : 'Parametros Generales', url: '/parametros'  }
+        { titulo : 'Parametros Generales', url: '/parametros'  },
+        { titulo : 'Opciones', url: '/options' }
       //  { titulo: 'Promesas', url: '/promesas' },
       //  { titulo: 'RxJs', url: '/rxjs' }
       ]

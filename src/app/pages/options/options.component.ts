@@ -1,47 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { ParametrosGeneralesService } from '../../services/service.index';
+import { OptionsService } from '../../services/service.index';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import swal2 from 'sweetalert2';
 
 @Component({
-  selector: 'app-parametros',
-  templateUrl: './parametros.component.html',
+  selector: 'app-options',
+  templateUrl: './options.component.html',
   styles: []
 })
-export class ParametrosComponent implements OnInit {
+export class OptionsComponent implements OnInit {
 
   constructor(
-               public _parametrosService: ParametrosGeneralesService,
+               public _optionsservice: OptionsService,
                public http: HttpClient ) { }
 
   token = localStorage.getItem('token');
-  parametros: any[] = [];
+  options: any[] = [];
   cols: any[];
   selectedFac: any[];
   router: Router;
 
   ngOnInit() {
 
-    this._parametrosService.getParametros().subscribe( resp => { this.parametros = resp; } );
+    this._optionsservice.getOptions().subscribe( resp => { this.options = resp; } );
 
     this.cols = [
 
       { field: 'id', header: 'ID' },
-      { field: 'table', header: 'Table' },
-      { field: 'id_table', header: 'Id_Table' },
-      { field: 'key', header: 'Key' },
+      { field: 'name', header: 'Nombre' },
       { field: 'description', header: 'Descripcion' },
-      { field: 'used_values', header: 'Used_Values' },
-      { field: 'value', header: 'Valor' },
-      { field: 'documentation', header: 'Documentacion' },
+      { field: 'group', header: 'Grupo' },
+      { field: 'url', header: 'URL' },
       { field: 'herramientas', header: 'Herramientas' }
 
   ];
 
   }
 
-  borraParametro( id: string ) {
+  borraOption( id: string ) {
 
     swal2.fire({
       title: 'Desea Eliminar el Parametro',
@@ -53,7 +50,7 @@ export class ParametrosComponent implements OnInit {
     }). then ( resp => {
       if ( resp.value) {
 
-        this._parametrosService.borrarParametro( id ).subscribe( () => {
+        this._optionsservice.borrarOption( id ).subscribe( () => {
 
           swal2.fire({
             title: 'El Parametro',

@@ -29,6 +29,10 @@ import { ActualizaRolComponent } from './roles/actualizarol.component';
 import { ParametrosComponent } from './parametrosgenerales/parametros.component';
 import { CreaParametroComponent } from './parametrosgenerales/creaparametro.component';
 import { ActualizaParametroComponent } from './parametrosgenerales/actualizaparametro.component';
+// Options
+import { OptionsComponent } from './options/options.component';
+import { CreaOptionComponent } from './options/creaoption.component';
+import { ActualizaOptionComponent } from './options/actualizaoption.component';
 
 
 
@@ -61,6 +65,10 @@ const pagesRoutes: Routes = [
             { path: 'parametros', component: ParametrosComponent, data: { titulo: 'Parametros Generales' } },
             { path: 'parametros/creaparametro', component: CreaParametroComponent, data: { titulo: 'Crear Parametro General' } },
             { path: 'parametros/actualizarparametro/:id', component: ActualizaParametroComponent, data: { titulo: 'Actualizar Parametro General' } },
+            // Options
+            { path: 'options', component: OptionsComponent, data: { titulo: 'Opciones' } },
+            { path: 'options/creaoption', component: CreaOptionComponent, data: { titulo: 'Crear Opcion' } },
+            { path: 'options/actualizaoption/:id', component: ActualizaOptionComponent, data: { titulo: 'Actualizar Opcion' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     }

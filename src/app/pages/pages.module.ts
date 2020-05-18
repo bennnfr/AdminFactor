@@ -41,15 +41,9 @@ import { ActualizaRolComponent } from './roles/actualizarol.component';
 import { ParametrosComponent } from './parametrosgenerales/parametros.component';
 import { CreaParametroComponent } from './parametrosgenerales/creaparametro.component';
 import { ActualizaParametroComponent } from './parametrosgenerales/actualizaparametro.component';
-
-
-
-
-
-
-
-
-
+import { OptionsComponent } from './options/options.component';
+import { CreaOptionComponent } from './options/creaoption.component';
+import { ActualizaOptionComponent } from './options/actualizaoption.component';
 
 @NgModule({
     declarations: [
@@ -73,7 +67,10 @@ import { ActualizaParametroComponent } from './parametrosgenerales/actualizapara
         ActualizaRolComponent,
         ParametrosComponent,
         CreaParametroComponent,
-        ActualizaParametroComponent
+        ActualizaParametroComponent,
+        OptionsComponent,
+        CreaOptionComponent,
+        ActualizaOptionComponent
     ],
     exports: [
         DashboardComponent,
