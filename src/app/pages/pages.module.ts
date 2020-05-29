@@ -19,7 +19,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
 
 import { CommonModule } from '@angular/common';
-
+import {PickListModule} from 'primeng/picklist';
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.component';
 import { AccoutSettingsComponent } from './accout-settings/accout-settings.component';
@@ -44,6 +44,11 @@ import { ActualizaParametroComponent } from './parametrosgenerales/actualizapara
 import { OptionsComponent } from './options/options.component';
 import { CreaOptionComponent } from './options/creaoption.component';
 import { ActualizaOptionComponent } from './options/actualizaoption.component';
+import { AsignaOptionsComponent } from './userOptions/asignaOptions.component';
+import { UsuariosOptionsComponent } from './userOptions/usuariosoptions.component';
+import { ListasComponent } from './listas/listas.component';
+import { CreaListaComponent } from './listas/crealista.component';
+
 
 @NgModule({
     declarations: [
@@ -70,7 +75,11 @@ import { ActualizaOptionComponent } from './options/actualizaoption.component';
         ActualizaParametroComponent,
         OptionsComponent,
         CreaOptionComponent,
-        ActualizaOptionComponent
+        ActualizaOptionComponent,
+        AsignaOptionsComponent,
+        UsuariosOptionsComponent,
+        ListasComponent,
+        CreaListaComponent
     ],
     exports: [
         DashboardComponent,
@@ -88,7 +97,8 @@ import { ActualizaOptionComponent } from './options/actualizaoption.component';
         TableModule,
         BrowserAnimationsModule,
         DataTablesModule,
-        InputSwitchModule
+        InputSwitchModule,
+        PickListModule
     ]
 })
 export class PagesModule { }

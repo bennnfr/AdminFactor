@@ -1,30 +1,25 @@
 import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { LoginGuardGuard } from '../services/service.index';
-
 // Generales
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
-
 // Usuarios
 import { CrearUsuarioComponent } from './usuarios/crearusuario.component';
 import { VerUsuariosComponent } from './usuarios/verusuarios.component';
 import { AccoutSettingsComponent } from './accout-settings/accout-settings.component';
 import { EditarUsuarioComponent } from './usuarios/editarusuario.component';
-
 // Privilegios Usuarios
 import { PrivilegiosUsuariosComponent } from './privilegiosusuarios/privilegiosusuarios.component';
 import { PrivilegioUsuarioComponent } from './privilegiosusuarios/privilegiousuario.component';
 import { CrearPrivilegioComponent } from './privilegiosusuarios/crearprivilegio.component';
 import { ActualizaPrivilegioComponent } from './privilegiosusuarios/actualizaprivilegio.component';
-
 // Roles
 import { RolesComponent } from './roles/roles.component';
 import { CrearRolComponent } from './roles/crearrol.component';
 import { ActualizaRolComponent } from './roles/actualizarol.component';
-
 // Parametros Generales
 import { ParametrosComponent } from './parametrosgenerales/parametros.component';
 import { CreaParametroComponent } from './parametrosgenerales/creaparametro.component';
@@ -33,6 +28,12 @@ import { ActualizaParametroComponent } from './parametrosgenerales/actualizapara
 import { OptionsComponent } from './options/options.component';
 import { CreaOptionComponent } from './options/creaoption.component';
 import { ActualizaOptionComponent } from './options/actualizaoption.component';
+// User Options
+import { UsuariosOptionsComponent } from './userOptions/usuariosoptions.component';
+import { AsignaOptionsComponent } from './userOptions/asignaOptions.component';
+// Listas
+import { ListasComponent } from './listas/listas.component';
+import { CreaListaComponent } from './listas/crealista.component';
 
 
 
@@ -69,6 +70,12 @@ const pagesRoutes: Routes = [
             { path: 'options', component: OptionsComponent, data: { titulo: 'Opciones' } },
             { path: 'options/creaoption', component: CreaOptionComponent, data: { titulo: 'Crear Opcion' } },
             { path: 'options/actualizaoption/:id', component: ActualizaOptionComponent, data: { titulo: 'Actualizar Opcion' } },
+            // User Options
+            { path: 'usuariosoptions', component: UsuariosOptionsComponent, data: { titulo: 'Usuarios Opciones' } },
+            { path: 'usuariosoptions/asignaroptions/:id', component: AsignaOptionsComponent, data: { titulo: 'Asignar Opciones a Usuario' } },
+            // Listas
+            { path: 'listas', component: ListasComponent, data: { titulo: 'Listas' } },
+            { path: 'listas/crealista', component: CreaListaComponent, data: { titulo: 'Crear Lista' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     }

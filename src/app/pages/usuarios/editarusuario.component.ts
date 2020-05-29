@@ -3,7 +3,7 @@ import { UsuarioService } from '../../services/service.index';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Usuario, Usuario2, Usuario3 } from '../../models/usuario.model';
+import { Usuario3 } from '../../models/usuario.model';
 import { Router } from '@angular/router';
 import swal2 from 'sweetalert2';
 
@@ -38,7 +38,6 @@ export class EditarUsuarioComponent implements OnInit {
 
     this._usuarioService.getUsuario( id ).subscribe( resp => this.resp = resp );
 
-    console.log ( 'aqui esta el id?... ' + id );
 
   }
 
@@ -74,13 +73,6 @@ export class EditarUsuarioComponent implements OnInit {
       valorGenero,
       valorEstatus
     );
-
-   // console.log(usuario);
-
-    // tslint:disable-next-line: no-unused-expression
-   // this._usuarioService.actualizaUsuario(usuario).subscribe( resp => { resp;
-   //                                                                     console.log(resp);
-  //  } );
 
     swal2.fire({
       title: 'Desea Modificar al usuario',

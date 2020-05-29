@@ -62,7 +62,7 @@ export class OptionsComponent implements OnInit {
           }). then ( res => {
 
             if ( res.value ) {
-              window.location.reload();
+              this.ngOnInit();
             }
 
           } );

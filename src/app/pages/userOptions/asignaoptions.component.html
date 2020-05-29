@@ -1,9 +1,11 @@
 <body class="animated fadeIn">
+    <h3 style="font-weight: bold;">{{ nombreUsuaOp }}</h3>
     <div class="row">
+
         <div class="col-5">
             <div class="card">
                 <div class="card-body">
-                    <p-table id="opt" [columns]="cols" [value]="seleccionOptions" selectionMode="single" [(selection)]="seleccion">
+                    <p-table id="opt" [columns]="cols" [value]="options" selectionMode="single" [(selection)]="seleccion">
                         <ng-template pTemplate="header" let-columns>
                             <tr>
                                 <th *ngFor="let col of columns">
@@ -18,11 +20,11 @@
                                 </td>
                             </tr>
                         </ng-template>
-                        <ng-template pTemplate="summary">
+                        <!--   <ng-template pTemplate="summary">
                             <div style="text-align: left">
                                 Selecion: {{seleccion ? seleccion.id + ' - ' + seleccion.name + ' ' + ' ' + seleccion.color: 'none'}}
                             </div>
-                        </ng-template>
+                        </ng-template> -->
                     </p-table>
                 </div>
             </div>
@@ -55,14 +57,15 @@
                                 </td>
                             </tr>
                         </ng-template>
-                        <ng-template pTemplate="summary">
+                        <!--  <ng-template pTemplate="summary">
                             <div style="text-align: left">
                                 Selecion: {{seleccion ? seleccion.id + ' - ' + seleccion.name + ' ' + ' ' + seleccion.color: 'none'}}
                             </div>
-                        </ng-template>
+                        </ng-template> -->
                     </p-table>
                 </div>
             </div>
         </div>
+        <button title="Regresar" [routerLink]="['/usuariosoptions']" class="btn btn-outline-success ml-4 mb-4"><i class="mdi mdi-keyboard-backspace" style="font-size: x-large;"></i></button>
     </div>
 </body>

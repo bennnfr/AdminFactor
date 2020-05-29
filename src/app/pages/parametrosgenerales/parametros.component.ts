@@ -65,7 +65,7 @@ export class ParametrosComponent implements OnInit {
           }). then ( res => {
 
             if ( res.value ) {
-              window.location.reload();
+              this.ngOnInit();
             }
 
           } );

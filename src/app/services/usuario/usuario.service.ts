@@ -125,10 +125,6 @@ export class UsuarioService {
     return this.http.get( url )
                 .map( (resp: any) => {
 
-                  console.log(resp.data.attributes.id);
-                  console.log(resp.data.token);
-                  console.log(resp.data.attributes.email);
-
                   this.guardarStoragelogin( resp.data.attributes.id,
                                             resp.data.token,
                                             resp.data.attributes.name,
@@ -207,6 +203,35 @@ crearArregloUsuario( usuariosObj: any) {
   // tslint:disable-next-line: forin
 //  console.log( usuarios[0][prop].attributes );
   resul.push( usuariosObj.data.attributes );
+
+ // console.log(resul);
+
+  return resul;
+
+}
+
+getUsuarioOptions( id: string ) {
+
+  const url = `${URL_SERVICIOS}/users/${id}?secret_key=${SECRET_KEY}&token=${this.token}`;
+
+  return this.http.get( url ).pipe(
+    map ( (resp: any) => { return this.crearArregloUsuarioOptions(resp);
+    } ));
+
+}
+
+crearArregloUsuarioOptions( usuariosObj: any) {
+
+  const usuarios: any[] = [];
+  const resul: any[] = [];
+ // console.log(usuariosObj);
+  if ( usuariosObj === null ) { return []; }
+
+  // tslint:disable-next-line: forin
+  for (const prop in usuariosObj.data.relations.user_options) {
+  //    por el ID de la opcion
+      resul.push( usuariosObj.data.relations.user_options[prop].attributes );
+      }
 
  // console.log(resul);
 

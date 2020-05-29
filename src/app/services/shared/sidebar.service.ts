@@ -8,14 +8,15 @@ export class SidebarService {
       titulo: 'Catalogos',
       icono: 'mdi mdi-file-document',
       submenu: [
-      //  { titulo: 'Crear Usuario', url: '/crearusuario' },
+
         { titulo : 'Usuarios', url: '/verusuarios' },
         { titulo : 'Privilegios Usuarios', url: '/privilegiosusuarios' },
         { titulo : 'Roles', url: '/roles' },
         { titulo : 'Parametros Generales', url: '/parametros'  },
-        { titulo : 'Opciones', url: '/options' }
-      //  { titulo: 'Promesas', url: '/promesas' },
-      //  { titulo: 'RxJs', url: '/rxjs' }
+        { titulo : 'Opciones', url: '/options' },
+        { titulo : 'Listas', url: '/listas' },
+        { titulo : 'Opciones Usuarios', url: '/usuariosoptions' }
+
       ]
     }
   ];

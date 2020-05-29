@@ -1,4 +1,5 @@
 
+
 export { LoginGuardGuard } from './guards/login-guard.guard';
 
 export { UsuarioService } from './usuario/usuario.service';
@@ -9,3 +10,5 @@ export { PrivilegiosUsuariosService } from './usuario/privilegiosusuarios.servic
 export { RolesService } from './roles/roles.service';
 export { ParametrosGeneralesService } from './parametrosgenerales/parametrosgenerales.service';
 export { OptionsService } from './options/options.service';
+export { UserOptionsService } from './options/userOptions.service';
+export { ListasService } from './listas/listas.service';

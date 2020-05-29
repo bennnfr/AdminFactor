@@ -84,7 +84,7 @@ export class VerUsuariosComponent implements OnInit {
           }). then ( res => {
 
             if ( res.value ) {
-              window.location.reload();
+              this.ngOnInit();
             }
 
           } );
@@ -115,13 +115,13 @@ export class VerUsuariosComponent implements OnInit {
    // doc.autoTable({ html: document.getElementById('tablausuarios') });
    // doc.save('ListaDeUsuarios.pdf');
 
-   import('jspdf').then(jsPDF => {
+   import('jspdf').then( jsPDF => {
     import('jspdf-autotable').then(x => {
         const doc = new jsPDF.default(0, 0);
         doc.autoTable(this.exportColumns, this.usuarios);
         doc.save('ListaUsuarios.pdf');
-    })
-})
+    });
+});
 
   }
 

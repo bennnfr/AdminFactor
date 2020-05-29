@@ -3,22 +3,32 @@
 
     <div class="col-6">
         <div class="card">
-            <div class="card-body">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Título del panel con estilo h3</h3>
+            <div class="card-body" style="min-height: 450px;">
+                <h2>Catalogos</h2>
+
+                <div class="container">
+                    <div class="row mt-5">
+                        <div class="col-6"><button [routerLink]="['/verusuarios']" type="button" class="btn btn-info btn-lg btn-block">Usuarios</button></div>
+                        <div class="col-6"><button [routerLink]="['/privilegiosusuarios']" type="button" class="btn btn-info btn-lg btn-block">Privilegios Usuarios</button></div>
                     </div>
-                    <div class="panel-body">
-                        Contenido del panel
+                    <div class="row mt-5">
+                        <div class="col-6"><button [routerLink]="['/roles']" type="button" class="btn btn-info btn-lg btn-block">Roles</button></div>
+                        <div class="col-6"><button [routerLink]="['/parametros']" type="button" class="btn btn-info btn-lg btn-block">Parametros Generales</button></div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-6"><button [routerLink]="['/options']" type="button" class="btn btn-info btn-lg btn-block">Options</button></div>
+
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>
 
     <div class="col-6">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" style="min-height: 450px;">
                 <h4 class="card-title">{{ graficos.grafico2.leyenda }} </h4>
 
                 <app-grafico-dona [chartLabels]="graficos.grafico2.labels" [chartData]="graficos.grafico2.data" chartType="doughnut"></app-grafico-dona>

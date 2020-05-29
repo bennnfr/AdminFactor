@@ -11,7 +11,9 @@ import {
   RolesService,
   ParametrosGeneralesService,
   LoginGuardGuard,
-  OptionsService
+  OptionsService,
+  UserOptionsService,
+  ListasService
  } from './service.index';
 
 
@@ -29,7 +31,9 @@ import {
     RolesService,
     ParametrosGeneralesService,
     LoginGuardGuard,
-    OptionsService
+    OptionsService,
+    UserOptionsService,
+    ListasService
   ],
   declarations: []
 })
