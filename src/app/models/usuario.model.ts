@@ -50,3 +50,11 @@ export class Privilegio {
     ) { }
 
 }
+
+export class Idd {
+
+    constructor(
+
+        public id: string
+    ) {}
+}

@@ -8,6 +8,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {TableModule} from 'primeng/table';
 
+import {BreadcrumbModule} from 'primeng/breadcrumb';
+import {MenuItem} from 'primeng/api';
+
 
 // ng2-charts
 import { ChartsModule } from 'ng2-charts';
@@ -44,10 +47,13 @@ import { ActualizaParametroComponent } from './parametrosgenerales/actualizapara
 import { OptionsComponent } from './options/options.component';
 import { CreaOptionComponent } from './options/creaoption.component';
 import { ActualizaOptionComponent } from './options/actualizaoption.component';
-import { AsignaOptionsComponent } from './userOptions/asignaOptions.component';
+import { AsignaOptionsComponent } from './userOptions/asignaoptions.component';
 import { UsuariosOptionsComponent } from './userOptions/usuariosoptions.component';
 import { ListasComponent } from './listas/listas.component';
 import { CreaListaComponent } from './listas/crealista.component';
+import { RolesOptionsComponent } from './roleOptions/rolesoptions.component';
+import { AsignaOptionsRolesComponent } from './roleOptions/asignaoptionsroles.component';
+import { ActualizaListaComponent } from './listas/actualizalista.component';
 
 
 @NgModule({
@@ -79,7 +85,10 @@ import { CreaListaComponent } from './listas/crealista.component';
         AsignaOptionsComponent,
         UsuariosOptionsComponent,
         ListasComponent,
-        CreaListaComponent
+        CreaListaComponent,
+        RolesOptionsComponent,
+        AsignaOptionsRolesComponent,
+        ActualizaListaComponent
     ],
     exports: [
         DashboardComponent,
@@ -98,7 +107,8 @@ import { CreaListaComponent } from './listas/crealista.component';
         BrowserAnimationsModule,
         DataTablesModule,
         InputSwitchModule,
-        PickListModule
+        PickListModule,
+        BreadcrumbModule
     ]
 })
 export class PagesModule { }

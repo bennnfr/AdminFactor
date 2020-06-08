@@ -30,10 +30,15 @@ import { CreaOptionComponent } from './options/creaoption.component';
 import { ActualizaOptionComponent } from './options/actualizaoption.component';
 // User Options
 import { UsuariosOptionsComponent } from './userOptions/usuariosoptions.component';
-import { AsignaOptionsComponent } from './userOptions/asignaOptions.component';
+import { AsignaOptionsComponent } from './userOptions/asignaoptions.component';
 // Listas
 import { ListasComponent } from './listas/listas.component';
 import { CreaListaComponent } from './listas/crealista.component';
+import { ActualizaListaComponent } from './listas/actualizalista.component';
+// Role Options
+import { RolesOptionsComponent } from './roleOptions/rolesoptions.component';
+import { AsignaOptionsRolesComponent } from './roleOptions/asignaoptionsroles.component';
+
 
 
 
@@ -76,6 +81,10 @@ const pagesRoutes: Routes = [
             // Listas
             { path: 'listas', component: ListasComponent, data: { titulo: 'Listas' } },
             { path: 'listas/crealista', component: CreaListaComponent, data: { titulo: 'Crear Lista' } },
+            { path: 'listas/actualizalista/:id', component: ActualizaListaComponent, data: { titulo: 'Actualizar Lista' } },
+            // role Options
+            { path: 'rolesoptions', component: RolesOptionsComponent, data: { titulo: 'Roles Opciones' } },
+            { path: 'rolesoptions/asignaoptionsroles/:id', component: AsignaOptionsRolesComponent, data: { titulo: 'Asigna Opciones Rol' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     }

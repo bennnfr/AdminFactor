@@ -34,9 +34,8 @@
                 <div class="form-group">
                     <label style="font-weight: bold;" for="estatus">Estatus</label>
                     <select class="form-control" id="estatus">
-                      <option>ACTIVO</option>
-                      <option>INACTIVO</option>
-                      <option>SUSPENDIDO</option>
+                      <option *ngFor="let item of listaEstatus">{{item}}</option>
+                      
                     </select>
                 </div>
 

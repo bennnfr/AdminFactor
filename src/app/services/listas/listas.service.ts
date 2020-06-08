@@ -77,6 +77,33 @@ export class ListasService {
 
 }
 
+getLista( id: string ) {
+
+  const url = `${URL_SERVICIOS}/lists/${id}?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+  return this.http.get( url ).pipe(
+  map( (resp: any) => {return this.crearArregloLista(resp);
+  }));
+
+  }
+crearArregloLista( listasObj: any) {
+
+  const listas: any[] = [];
+  const resul: any[] = [];
+  console.log( listasObj );
+  if ( listasObj === null ) { return []; }
+  // tslint:disable-next-line: forin
+
+//  console.log( usuarios[0][prop].attributes );
+  resul.push( listasObj.data.attributes );
+
+
+  console.log(resul);
+
+  return resul;
+
+}
+
 borrarLista(id: string) {
 
   const url = `${URL_SERVICIOS}/lists/${id}?token=${this.token}&secret_key=${SECRET_KEY}`;
@@ -86,5 +113,49 @@ borrarLista(id: string) {
      } ));
 
 }
+
+
+actualizaLista(idl: string, valor: string, desc: string, domain: string, key: string) {
+
+  const url = `${URL_SERVICIOS}/lists/${idl}?token=${this.token}&secret_key=${SECRET_KEY}&list[description]=${desc}&list[value]=${valor}&list[domain]=${domain}&list[key]=${key}`;
+
+  return this.http.patch( url, null ).pipe(
+    map( (resp: any) => { return resp;
+    } ));
+  }
+
+  getListaDominio() {
+
+    const url = `${URL_SERVICIOS}/lists/domain/usuario_estatus?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+    return this.http.get( url ).pipe(
+      map( (resp: any) => { return this.crearArregloListaDominio(resp);
+      } ));
+
+  }
+
+  crearArregloListaDominio( listasObj: any) {
+
+    const listas: any[] = [];
+    const resul: any[] = [];
+
+
+    if ( listasObj === null ) { return []; }
+    Object.keys ( listasObj ).forEach( key => {
+      const rol: any = listasObj[key];
+      listas.push( rol );
+    });
+
+    console.log(listas[0]);
+    // tslint:disable-next-line: forin
+    for (const prop in listas[0]) {
+  //  console.log( usuarios[0][prop].attributes );
+    resul.push( listas[0][prop].attributes.value );
+    }
+
+    return resul;
+
+  }
+
 
 }

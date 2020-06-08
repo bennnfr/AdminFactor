@@ -15,7 +15,8 @@ export class SidebarService {
         { titulo : 'Parametros Generales', url: '/parametros'  },
         { titulo : 'Opciones', url: '/options' },
         { titulo : 'Listas', url: '/listas' },
-        { titulo : 'Opciones Usuarios', url: '/usuariosoptions' }
+        { titulo : 'Opciones Usuarios', url: '/usuariosoptions' },
+        { titulo : 'Roles opciones', url: '/rolesoptions' }
 
       ]
     }

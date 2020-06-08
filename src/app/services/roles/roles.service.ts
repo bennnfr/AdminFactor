@@ -126,4 +126,12 @@ borrarRol(id: string) {
 
 }
 
+prueba() {
+  const url = `${URL_SERVICIOS}/lists/domain/usuario.estatus?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+  return this.http.get( url ).pipe(
+    map ( (resp: any) => { return resp;
+    } ));
+}
+
 }

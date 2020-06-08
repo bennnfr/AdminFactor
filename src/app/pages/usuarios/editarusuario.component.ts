@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from '../../services/service.index';
+import { UsuarioService, ListasService } from '../../services/service.index';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -16,10 +16,12 @@ export class EditarUsuarioComponent implements OnInit {
 
   forma: FormGroup;
   resp: any;
+  listaEstatus: any;
 
   constructor( public _usuarioService: UsuarioService,
                public http: HttpClient,
                private route: ActivatedRoute,
+               private lista: ListasService,
                public router: Router ) { }
 
   ngOnInit() {
@@ -37,6 +39,8 @@ export class EditarUsuarioComponent implements OnInit {
     });
 
     this._usuarioService.getUsuario( id ).subscribe( resp => this.resp = resp );
+
+    this.lista.getListaDominio().subscribe( resp => {this.listaEstatus = resp; console.log(this.listaEstatus) } );
 
 
   }

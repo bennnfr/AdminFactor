@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { UserOptionsService, UsuarioService } from '../../services/service.index';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { UserOptionsService, RolesOptionsService } from '../../services/service.index';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -8,17 +8,17 @@ import { Idd } from '../../models/usuario.model';
 declare var $;
 
 @Component({
-  selector: 'app-asignaoptions',
-  templateUrl: './asignaoptions.component.html',
+  selector: 'app-asignaoptionsroles',
+  templateUrl: './asignaoptionsroles.component.html',
   styles: []
 })
-export class AsignaOptionsComponent implements OnInit {
+export class AsignaOptionsRolesComponent implements OnInit, OnDestroy {
 
   optionsfiltradas: any[] = [];
   options: any[] = [];
   datosTabla: Observable<any[]> = new Observable();
   sourceCars: any[];
-  usuarioOptions: any[] = [];
+  rolOptions: any[] = [];
   cols: any[];
   selectedColumns: any[];
   seleccion: Idd;
@@ -31,42 +31,41 @@ export class AsignaOptionsComponent implements OnInit {
   subscription: Subscription;
 
   constructor( public _optionsservice: UserOptionsService,
-               public _usuariosservice: UsuarioService,
+               public _rolesoptionsservice: RolesOptionsService,
                public router: Router,
                public http: HttpClient,
                private route: ActivatedRoute ) {
 
                 }
-                
+
   ngOnInit() {
 
-    this.usuarioOptions = [];
+    this.rolOptions = [];
     this.options = [];
     this.seleccionOptions = [];
 
     this.idu = this.route.snapshot.paramMap.get('id');
 
-    this.nombreUsuaOp = localStorage.getItem('usuarioOpcion');
+   // this.nombreUsuaOp = localStorage.getItem('usuarioOpcion');
 
-   this.subscription = this._optionsservice.getOptions()
+    this.subscription = this._optionsservice.getOptions()
     .subscribe( resp => { this.options = resp;
-                          this._usuariosservice.getUsuarioOptions(this.idu)
-                          .subscribe( resp2 => {this.usuarioOptions = resp2;
-                                                if (this.usuarioOptions.length === 0) {
+                          this._rolesoptionsservice.getRolesOptions(this.idu)
+                          .subscribe( resp2 => {this.rolOptions = resp2;
+                                                if (this.rolOptions.length === 0) {
                                                   this.seleccionOptions = this.options;
                                                 } else {
                                                 // tslint:disable-next-line: forin
                                                 for (const i in this.options) {
                                                   // tslint:disable-next-line: forin
-                                                for (const j in this.usuarioOptions) {
+                                                for (const j in this.rolOptions) {
 
-                                                  if ( parseInt(this.options[i].id, 10) === parseInt(this.usuarioOptions[j].option_id, 10) ) {                              
+                                                  if ( parseInt(this.options[i].id, 10) === parseInt(this.rolOptions[j].option_id, 10) ) {
                                                     this.agregar = false;
                                                     break;
-                                                  } else {                                      
+                                                  } else {
                                                     this.agregar = true;
-                                                    
-                                                    
+
                                                   }
                                                                                      }
                                                 if (this.agregar) {
@@ -77,12 +76,11 @@ export class AsignaOptionsComponent implements OnInit {
                                                         }
                                                       //  console.log(this.usuarioOptions);
                                                     });
-                                    
-                          } ); 
 
-                       
-   // this._optionsservice.getOptions().subscribe( resp => { this.options = resp; } );
-   // this._usuariosservice.getUsuarioOptions(this.idu).subscribe(resp => {this.usuarioOptions = resp; } );
+                          } );
+
+  //  this._optionsservice.getOptions().subscribe( resp => { this.options = resp; console.log(this.options) } );
+  //  this._rolesoptionsservice.getRolesOptions(this.idu).subscribe(resp => {this.rolOptions = resp; console.log(this.rolOptions) } );
 
     this.cols = [
 
@@ -91,27 +89,27 @@ export class AsignaOptionsComponent implements OnInit {
 
     this.colso = [
 
-    { field: 'option_id', header: 'Opciones Asignadas al Usuario' }
+    { field: 'option_id', header: 'Opciones Asignadas al Rol' }
 ];
 
   }
 
-  regreso() {
-    this._optionsservice.getOptions().subscribe( resp => { this.options = resp; return this} );
+  ngOnDestroy() {
+
   }
 
-  agregaOption( ido: string ) {
-    this._optionsservice.agregaOption( this.idu, ido ).subscribe();
+  agregaRol( ido: string ) {
+    this._rolesoptionsservice.agregaRol( this.idu, ido ).subscribe();
     setTimeout(() => {
       this.refresh();
     }, 100);
-    
+
 
   }
 
-  quitarOption( idq: string ) {
-    this._optionsservice.quitarOption(idq).subscribe();
-    
+  quitarRol( idq: string ) {
+    this._rolesoptionsservice.quitarRol(idq).subscribe();
+
     setTimeout(() => {
       this.refresh();
     }, 100);
@@ -119,8 +117,7 @@ export class AsignaOptionsComponent implements OnInit {
   }
 
   refresh() {
-    
-    this.ngOnInit();   
+    this.ngOnInit();
   // window.location.reload();
   }
 

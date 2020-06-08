@@ -12,3 +12,4 @@ export { ParametrosGeneralesService } from './parametrosgenerales/parametrosgene
 export { OptionsService } from './options/options.service';
 export { UserOptionsService } from './options/userOptions.service';
 export { ListasService } from './listas/listas.service';
+export { RolesOptionsService } from './roles/rolesOptions.service';

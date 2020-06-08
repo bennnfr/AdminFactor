@@ -13,7 +13,8 @@ import {
   LoginGuardGuard,
   OptionsService,
   UserOptionsService,
-  ListasService
+  ListasService,
+  RolesOptionsService
  } from './service.index';
 
 
@@ -33,7 +34,8 @@ import {
     LoginGuardGuard,
     OptionsService,
     UserOptionsService,
-    ListasService
+    ListasService,
+    RolesOptionsService
   ],
   declarations: []
 })
