@@ -135,4 +135,34 @@ export class PrivilegiosUsuariosService {
       } ));
     }
 
+    getUsuario( id: string ) {
+
+      const url = `${URL_SERVICIOS}/users/${id}?secret_key=${SECRET_KEY}&token=${this.token}`;
+    
+      return this.http.get( url ).pipe(
+        map ( (resp: any) => { return this.crearArregloUsuario(resp);
+        } ));
+    
+    }
+    
+    crearArregloUsuario( usuariosObj: any) {
+    
+      const usuarios: any[] = [];
+      let resul: string;
+     // console.log(usuariosObj);
+      if ( usuariosObj === null ) { return []; }
+      Object.keys ( usuariosObj ).forEach( key => {
+        const usuario: any = usuariosObj[key];
+        usuarios.push( usuario );
+      });
+      // tslint:disable-next-line: forin
+    //  console.log( usuarios[0][prop].attributes );
+      resul =  usuariosObj.data.attributes.name;
+    
+     // console.log(resul);
+    
+      return resul;
+    
+    }
+
 }

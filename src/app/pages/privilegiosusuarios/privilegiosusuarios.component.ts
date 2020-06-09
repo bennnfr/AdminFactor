@@ -36,10 +36,5 @@ export class PrivilegiosUsuariosComponent implements OnInit {
 
   }
 
-  guardanombrepriv( name: string ) {
-
-  localStorage.setItem( 'usuarioPrivilegio', name );
-
-  }
 
 }

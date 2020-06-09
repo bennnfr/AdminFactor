@@ -62,7 +62,35 @@ export class RolesOptionsService {
     console.log(resul);
 
     return resul;
+}
 
+getRol( id: string ) {
+
+  const url = `${ URL_SERVICIOS }/roles/${ id }?token=${ this.token }&secret_key=${ SECRET_KEY }`;
+
+  return this.http.get( url ).pipe(
+    map ( (resp: string) => { return this.crearArregloRol(resp);
+    } ));
+
+}
+
+crearArregloRol( rolObj: any) {
+
+  const rol: any[] = [];
+  let resul: string;
+ // console.log(usuariosObj);
+  if ( rolObj === null ) { return []; }
+  Object.keys ( rolObj ).forEach( key => {
+    const r: any = rolObj[key];
+    rol.push( r );
+  });
+  // tslint:disable-next-line: forin
+  console.log( rolObj.data.attributes.name );
+ // resul.push( rolObj.data.attributes.name );
+  resul = rolObj.data.attributes.name;
+ // console.log(resul);
+
+  return resul;
 
 }
 

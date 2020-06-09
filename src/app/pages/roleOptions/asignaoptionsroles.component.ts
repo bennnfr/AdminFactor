@@ -46,7 +46,7 @@ export class AsignaOptionsRolesComponent implements OnInit, OnDestroy {
 
     this.idu = this.route.snapshot.paramMap.get('id');
 
-   // this.nombreUsuaOp = localStorage.getItem('usuarioOpcion');
+    this._rolesoptionsservice.getRol(this.idu).subscribe((resp: string) => { this.nombreUsuaOp = resp; } );
 
     this.subscription = this._optionsservice.getOptions()
     .subscribe( resp => { this.options = resp;

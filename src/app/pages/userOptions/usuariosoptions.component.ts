@@ -36,11 +36,5 @@ export class UsuariosOptionsComponent implements OnInit {
 
   }
 
-  guardanombrepriv( name: string ) {
-
-  localStorage.setItem( 'usuarioOpcion', name );
-  localStorage.setItem( 'oninit', 'muestra' );
-
-  }
 
 }

@@ -46,9 +46,9 @@ export class AsignaOptionsComponent implements OnInit {
 
     this.idu = this.route.snapshot.paramMap.get('id');
 
-    this.nombreUsuaOp = localStorage.getItem('usuarioOpcion');
+    this._optionsservice.getUsuario(this.idu).subscribe( (resp: string) =>  this.nombreUsuaOp = resp  );
 
-   this.subscription = this._optionsservice.getOptions()
+    this.subscription = this._optionsservice.getOptions()
     .subscribe( resp => { this.options = resp;
                           this._usuariosservice.getUsuarioOptions(this.idu)
                           .subscribe( resp2 => {this.usuarioOptions = resp2;
@@ -60,13 +60,12 @@ export class AsignaOptionsComponent implements OnInit {
                                                   // tslint:disable-next-line: forin
                                                 for (const j in this.usuarioOptions) {
 
-                                                  if ( parseInt(this.options[i].id, 10) === parseInt(this.usuarioOptions[j].option_id, 10) ) {                              
+                                                  if ( parseInt(this.options[i].id, 10) === parseInt(this.usuarioOptions[j].option_id, 10) ) {
                                                     this.agregar = false;
                                                     break;
-                                                  } else {                                      
+                                                  } else {
                                                     this.agregar = true;
-                                                    
-                                                    
+
                                                   }
                                                                                      }
                                                 if (this.agregar) {
@@ -77,10 +76,9 @@ export class AsignaOptionsComponent implements OnInit {
                                                         }
                                                       //  console.log(this.usuarioOptions);
                                                     });
-                                    
-                          } ); 
 
-                       
+                          } );
+
    // this._optionsservice.getOptions().subscribe( resp => { this.options = resp; } );
    // this._usuariosservice.getUsuarioOptions(this.idu).subscribe(resp => {this.usuarioOptions = resp; } );
 
@@ -105,13 +103,13 @@ export class AsignaOptionsComponent implements OnInit {
     setTimeout(() => {
       this.refresh();
     }, 100);
-    
+
 
   }
 
   quitarOption( idq: string ) {
     this._optionsservice.quitarOption(idq).subscribe();
-    
+
     setTimeout(() => {
       this.refresh();
     }, 100);
@@ -119,8 +117,8 @@ export class AsignaOptionsComponent implements OnInit {
   }
 
   refresh() {
-    
-    this.ngOnInit();   
+
+    this.ngOnInit();
   // window.location.reload();
   }
 

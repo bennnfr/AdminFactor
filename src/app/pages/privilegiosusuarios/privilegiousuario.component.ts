@@ -38,9 +38,9 @@ export class PrivilegioUsuarioComponent implements OnInit {
 
     this.id = this.route.snapshot.paramMap.get('id');
 
-    this.nombrepriv = localStorage.getItem('usuarioPrivilegio');
+    this._privilegiosusuarios.getUsuario( this.id ).subscribe( (resp: string) => this.nombrepriv = resp );
 
-    this._privilegiosusuarios.getPrivilegiosUsuario( this.id ).subscribe( resp => { this.privilegios = resp;} );
+    this._privilegiosusuarios.getPrivilegiosUsuario( this.id ).subscribe( resp => { this.privilegios = resp; } );
 
     this.cols = [
 
