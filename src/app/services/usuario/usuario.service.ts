@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Usuario, Usuario2, Usuario3 } from '../../models/usuario.model';
+import { Usuario, Usuario2, Usuario3, UserOptions } from '../../models/usuario.model';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS, SECRET_KEY } from '../../config/config';
 import Swal from 'sweetalert2';
@@ -223,25 +223,48 @@ getUsuarioOptions( id: string ) {
 crearArregloUsuarioOptions( usuariosObj: any) {
 
   const usuarios: any[] = [];
-  const resul: any[] = [];
- // console.log(usuariosObj);
+  const resul1: any[] = [];
+  const resul2: any[] = [];
   if ( usuariosObj === null ) { return []; }
 
   // tslint:disable-next-line: forin
-  for (const prop in usuariosObj.data.relations.user_options) {
+  for (const prop in usuariosObj.data.relations.options) {
   //    por el ID de la opcion
-      resul.push( usuariosObj.data.relations.user_options[prop].attributes );
+    //  resul.push( usuariosObj.data.relations.options[prop].attributes );
+    resul1.push (usuariosObj.data.relations.options[prop].attributes);
+    resul2.push (usuariosObj.data.relations.user_options[prop].attributes);
+
+      }
+ // console.log(resul2);
+ // console.log(resul1);
+  // tslint:disable-next-line: forin
+  for (const prop in resul2) {
+
+    const iduo = resul2[prop].option_id;
+
+      // tslint:disable-next-line: forin
+    for (const prap in resul1) {
+
+      const ido = resul1[prap].id;
+
+      if ( iduo === ido ) {
+
+        resul2[prop].name = resul1[prap].name;
+
       }
 
- // console.log(resul);
 
-  return resul;
+      }
+
+  }
+ // console.log(resul2);
+  return resul2;
 
 }
 
 actualizaUsuario(usuario: Usuario3) {
 
-const url = `${URL_SERVICIOS}/users/${usuario.id}?token=${this.token}&secret_key=${SECRET_KEY}&auth[job]=${usuario.puesto}&auth[status]=${usuario.estatus}&auth[password]=123456789&auth[gender]=${usuario.genero}&auth[email]=${usuario.email}&auth[name]=${usuario.nombre}`;
+const url = `${URL_SERVICIOS}/users/${usuario.id}?token=${this.token}&secret_key=${SECRET_KEY}&auth[job]=${usuario.puesto}&auth[status]=${usuario.estatus}&auth[gender]=${usuario.genero}&auth[email]=${usuario.email}&auth[name]=${usuario.nombre}`;
 
 return this.http.patch( url, null ).pipe(
   map( (resp: any) => { return resp;

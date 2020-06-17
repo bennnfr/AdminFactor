@@ -22,6 +22,7 @@ export class AsignaOptionsComponent implements OnInit {
   cols: any[];
   selectedColumns: any[];
   seleccion: Idd;
+  selecciona: Idd;
   colso: any[];
   resul: any[] = [];
   agregar = false;
@@ -77,19 +78,19 @@ export class AsignaOptionsComponent implements OnInit {
                                                       //  console.log(this.usuarioOptions);
                                                     });
 
-                          } );
+                          } ); 
 
-   // this._optionsservice.getOptions().subscribe( resp => { this.options = resp; } );
-   // this._usuariosservice.getUsuarioOptions(this.idu).subscribe(resp => {this.usuarioOptions = resp; } );
+  //  this._optionsservice.getOptions().subscribe( resp => { console.log(resp) } );
+  //  this._usuariosservice.getUsuarioOptions(this.idu).subscribe(resp => { console.log(resp) } );
 
     this.cols = [
 
-      { field: 'id', header: 'Opciones Disponibles' }
+      { field: 'name', header: 'Opciones Disponibles' }
   ];
 
     this.colso = [
 
-    { field: 'option_id', header: 'Opciones Asignadas al Usuario' }
+    { field: 'name', header: 'Opciones Asignadas al Usuario' }
 ];
 
   }

@@ -10,6 +10,9 @@ import {TableModule} from 'primeng/table';
 
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {MenuItem} from 'primeng/api';
+import { MatSliderModule } from '@angular/material/slider';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatFormFieldModule} from '@angular/material/form-field'
 
 
 // ng2-charts
@@ -108,7 +111,10 @@ import { ActualizaListaComponent } from './listas/actualizalista.component';
         DataTablesModule,
         InputSwitchModule,
         PickListModule,
-        BreadcrumbModule
+        BreadcrumbModule,
+        MatSliderModule,
+        MatStepperModule,
+        MatFormFieldModule
     ]
 })
 export class PagesModule { }

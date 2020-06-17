@@ -58,3 +58,11 @@ export class Idd {
         public id: string
     ) {}
 }
+
+export class UserOptions {
+
+    public idoption: string;
+    public name: string;
+    public id: string;
+
+}

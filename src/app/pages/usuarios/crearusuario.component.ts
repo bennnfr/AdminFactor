@@ -42,7 +42,7 @@ export class CrearUsuarioComponent implements OnInit {
 
   }
 
-  validar_email( email ) 
+  validar_email( email )
   {
       const regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
       return regex.test(email) ? true : false;

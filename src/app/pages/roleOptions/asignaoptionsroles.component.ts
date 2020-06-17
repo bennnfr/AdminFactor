@@ -84,12 +84,12 @@ export class AsignaOptionsRolesComponent implements OnInit, OnDestroy {
 
     this.cols = [
 
-      { field: 'id', header: 'Opciones Disponibles' }
+      { field: 'name', header: 'Opciones Disponibles' }
   ];
 
     this.colso = [
 
-    { field: 'option_id', header: 'Opciones Asignadas al Rol' }
+    { field: 'name', header: 'Opciones Asignadas al Rol' }
 ];
 
   }

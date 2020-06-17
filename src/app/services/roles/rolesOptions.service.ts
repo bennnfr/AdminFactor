@@ -47,20 +47,43 @@ export class RolesOptionsService {
 
     const roles: any[] = [];
     const resul: any[] = [];
+    const resul2: any[] = [];
 
     if ( optionsObj === null ) { return []; }
     Object.keys ( optionsObj ).forEach( key => {
       const rol: any = optionsObj[key];
       roles.push( rol );
     });
-    console.log(roles[0].relations.role_options);
+  //  console.log(roles[0].relations);
     // tslint:disable-next-line: forin
     for (const prop in roles[0].relations.role_options) {
    // console.log( roles[0].relations.role_options[prop].attributes );
     resul.push( roles[0].relations.role_options[prop].attributes );
+    resul2.push(roles[0].relations.options[prop].attributes );
     }
-    console.log(resul);
+  //  console.log(resul);
+  //  console.log(resul2);
 
+    // tslint:disable-next-line: forin
+    for ( const prop in resul ) {
+
+    const idro = resul[prop].option_id;
+
+    // tslint:disable-next-line: forin
+    for ( const prep in resul2 ) {
+
+    const id = resul2[prep].id;
+
+    if ( idro === id ) {
+
+    resul[prop].name = resul2[prep].name;
+
+    }
+
+    }
+
+    }
+// console.log(resul);
     return resul;
 }
 
@@ -85,7 +108,7 @@ crearArregloRol( rolObj: any) {
     rol.push( r );
   });
   // tslint:disable-next-line: forin
-  console.log( rolObj.data.attributes.name );
+ // console.log( rolObj.data.attributes.name );
  // resul.push( rolObj.data.attributes.name );
   resul = rolObj.data.attributes.name;
  // console.log(resul);

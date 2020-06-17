@@ -8,7 +8,7 @@
             <form ngNativeValidate [formGroup]="forma" (ngSubmit)="registrarLista()" class="form-horizontal form-material" action="index.html">
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <input formControlName="dominio" name="dominio" class="form-control" type="text" required placeholder="Dominio">
+                        <input formControlName="dominio" name="dominio" class="form-control" type="text" required placeholder="Dominio (solo se permite el caracter especial ' _ ', numeros y letras minusculas)" pattern="[a-z0-9_]{2,254}">
                     </div>
                 </div>
                 <div class="form-group m-t-20">
