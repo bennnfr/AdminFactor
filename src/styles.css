@@ -15,3 +15,10 @@ body {
     margin: 0;
     /* font-family: Roboto, "Helvetica Neue", sans-serif; */
 }
+
+
+/* para que el stepper no permita clic en los encabezados*/
+
+.mat-horizontal-stepper-header {
+    pointer-events: none !important;
+}

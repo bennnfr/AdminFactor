@@ -57,6 +57,8 @@ import { CreaListaComponent } from './listas/crealista.component';
 import { RolesOptionsComponent } from './roleOptions/rolesoptions.component';
 import { AsignaOptionsRolesComponent } from './roleOptions/asignaoptionsroles.component';
 import { ActualizaListaComponent } from './listas/actualizalista.component';
+import { AltacontribuyentesComponent } from './altacontribuyentes/altacontribuyentes.component';
+import { MantcontribuyentesComponent } from './mantenimientocontribuyentes/mantcontribuyentes.component';
 
 
 @NgModule({
@@ -91,7 +93,9 @@ import { ActualizaListaComponent } from './listas/actualizalista.component';
         CreaListaComponent,
         RolesOptionsComponent,
         AsignaOptionsRolesComponent,
-        ActualizaListaComponent
+        ActualizaListaComponent,
+        AltacontribuyentesComponent,
+        MantcontribuyentesComponent
     ],
     exports: [
         DashboardComponent,

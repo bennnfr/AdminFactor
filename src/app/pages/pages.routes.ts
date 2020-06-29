@@ -38,6 +38,10 @@ import { ActualizaListaComponent } from './listas/actualizalista.component';
 // Role Options
 import { RolesOptionsComponent } from './roleOptions/rolesoptions.component';
 import { AsignaOptionsRolesComponent } from './roleOptions/asignaoptionsroles.component';
+// Alta contribuyentes
+import { AltacontribuyentesComponent } from './altacontribuyentes/altacontribuyentes.component';
+// Mantenimiento Contribuyentes
+import { MantcontribuyentesComponent } from './mantenimientocontribuyentes/mantcontribuyentes.component';
 
 
 
@@ -85,6 +89,10 @@ const pagesRoutes: Routes = [
             // role Options
             { path: 'rolesoptions', component: RolesOptionsComponent, data: { titulo: 'Roles Opciones' } },
             { path: 'rolesoptions/asignaoptionsroles/:id', component: AsignaOptionsRolesComponent, data: { titulo: 'Asigna Opciones Rol' } },
+            // Alta contribuyentes
+            { path: 'altacontribuyentes', component: AltacontribuyentesComponent, data: { titulo: 'Alta de contribuyentes' } },
+            // Mantenimiento Contribuyentes
+            { path: 'mantenimientocontribuyentes', component: MantcontribuyentesComponent, data: { titulo: 'Mantenimiento Contribuyentes' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     }

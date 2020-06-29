@@ -26,12 +26,6 @@ export class ProgressComponent implements OnInit {
     });
   }
 
-  guardaform() {
-
-  console.log('hola');
-
-  }
-
 }
 
 

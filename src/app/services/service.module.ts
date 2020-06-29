@@ -14,7 +14,8 @@ import {
   OptionsService,
   UserOptionsService,
   ListasService,
-  RolesOptionsService
+  RolesOptionsService,
+  ContribuyentesService
  } from './service.index';
 
 
@@ -35,7 +36,8 @@ import {
     OptionsService,
     UserOptionsService,
     ListasService,
-    RolesOptionsService
+    RolesOptionsService,
+    ContribuyentesService,
   ],
   declarations: []
 })

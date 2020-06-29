@@ -19,6 +19,16 @@ export class SidebarService {
         { titulo : 'Roles opciones', url: '/rolesoptions' }
 
       ]
+    },
+    {
+      titulo: 'Contribu',
+      icono: 'mdi mdi-file-document',
+      submenu: [
+
+        { titulo : 'Alta', url: '/altacontribuyentes' },
+        { titulo : 'Mantenimiento', url: '/mantenimientocontribuyentes' }
+
+      ]
     }
   ];
 
