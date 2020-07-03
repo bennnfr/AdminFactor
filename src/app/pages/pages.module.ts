@@ -8,11 +8,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {TableModule} from 'primeng/table';
 
+import {MultiSelectModule} from 'primeng/multiselect';
+
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {MenuItem} from 'primeng/api';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatStepperModule} from '@angular/material/stepper';
-import {MatFormFieldModule} from '@angular/material/form-field'
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 // ng2-charts
@@ -62,6 +64,7 @@ import { MantcontribuyentesComponent } from './mantenimientocontribuyentes/mantc
 import { AltaSolicitudesComponent } from './alta solicitudes/altasolicitudes.component';
 import { EstatusSolicitudesComponent } from './estatussolicitudes/estatussolicitudes.component';
 import { FacturasComponent } from './reportes/facturas.component';
+import { DailyoperationsComponent } from './reportes/dailyoperations.component';
 
 
 @NgModule({
@@ -101,7 +104,8 @@ import { FacturasComponent } from './reportes/facturas.component';
         MantcontribuyentesComponent,
         AltaSolicitudesComponent,
         EstatusSolicitudesComponent,
-        FacturasComponent
+        FacturasComponent,
+        DailyoperationsComponent
     ],
     exports: [
         DashboardComponent,
@@ -124,7 +128,8 @@ import { FacturasComponent } from './reportes/facturas.component';
         BreadcrumbModule,
         MatSliderModule,
         MatStepperModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        MultiSelectModule
     ]
 })
 export class PagesModule { }

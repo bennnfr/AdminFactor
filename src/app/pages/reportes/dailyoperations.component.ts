@@ -10,11 +10,11 @@ declare var $;
 
 
 @Component({
-  selector: 'app-facturas',
-  templateUrl: './facturas.component.html',
+  selector: 'app-dailyoperations',
+  templateUrl: './dailyoperations.component.html',
   styles: []
 })
-export class FacturasComponent implements OnInit {
+export class DailyoperationsComponent implements OnInit {
 
   constructor( public _reportesservice: ReportesService,
                public http: HttpClient) { }
@@ -36,29 +36,27 @@ export class FacturasComponent implements OnInit {
 
   ngOnInit() {
 
-    this._reportesservice.getReporteFacturas().subscribe(resp => {this.facturas = resp; console.log(this.facturas)} );
+    this._reportesservice.getReporteDaily().subscribe(resp => {this.facturas = resp; console.log(this.facturas); } );
 
     this.cols = [
 
     //  { field:  'id_factura', header: 'ID'},
       { field:  'folio_solicitud', header: 'Folio Solicitud'},
-      { field:  'uuid_factura_descontada', header: 'UUID'},
-      { field:  'emisor', header: 'Emisor'},
-      { field:  'receptor', header: 'Receptor'},
-      { field:  'moneda', header: 'Moeda'},
+      { field:  'folio_factura', header: 'Folio Factura'},
+      { field:  'proveedor', header: 'Proveedor'},
+      { field:  'deudor', header: 'Deudor'},
       { field:  'fecha_operacion', header: 'Fecha Operacion'},
-      { field:  'porcentaje_operado', header: 'Porcentaje Operado'},
-      { field:  'monto_operado', header: 'Monto Operado'},
-      { field:  'disponible', header: 'Disponible'},
       { field:  'fecha_vencimiento', header: 'Fecha Vencimiento'},
-      { field:  'fecha_emision', header: 'Fecha Emision'},
-      { field:  'fecha_carga', header: 'Fecha Carga'},
-      { field:  'estatus', header: 'Estatus'},
-      { field:  'intereses', header: 'Intereses'},
-      { field:  'comision_cadena', header: 'Comision Cadena'},
-      { field:  'dia_pago_cadena', header: 'Dia Pago Cadena'},
-      { field:  'amount', header: 'Amount'},
-      { field:  'dias_al_vencimiento', header: 'Dias al Vencimiento'}
+      { field:  'dias', header: 'Dias'},
+      { field:  'importe', header: 'Importe'},
+      { field:  'moneda', header: 'Moneda'},
+      { field:  'tasa_interbancaria', header: 'Tasa Interbancaria'},
+      { field:  'sobre_tasa', header: 'Sobre Tasa'},
+      { field:  'tasa_factor', header: 'Tasa Factor'},
+      { field:  'intereses_factor', header: 'Intereses Factor'},
+      { field:  'importe_sin_intereses', header: 'Importe sin Intereses'},
+      { field:  'por_disposicion_solicitud', header: 'Por Dispocision Solicitud'},
+      { field:  'id_solicitud', header: 'Id Solicitud'}
   ];
 
     this._selectedColumns = this.cols;

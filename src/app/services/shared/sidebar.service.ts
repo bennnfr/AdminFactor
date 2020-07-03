@@ -44,7 +44,8 @@ export class SidebarService {
       icono: 'mdi mdi-file-document',
       submenu: [
 
-        { titulo : 'Facturas', url: '/reportefacturas' }
+        { titulo : 'Facturas', url: '/reportefacturas' },
+        { titulo : 'Reporte Diario', url: '/reportediario' }
       ]
     }
   ];

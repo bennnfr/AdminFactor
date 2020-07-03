@@ -48,6 +48,7 @@ import { AltaSolicitudesComponent } from './alta solicitudes/altasolicitudes.com
 import { EstatusSolicitudesComponent } from './estatussolicitudes/estatussolicitudes.component';
 // Reportes
 import { FacturasComponent } from './reportes/facturas.component';
+import { DailyoperationsComponent } from './reportes/dailyoperations.component';
 
 
 
@@ -105,6 +106,7 @@ const pagesRoutes: Routes = [
             { path: 'estatussolicitudes', component: EstatusSolicitudesComponent, data: { titulo: 'Estatus Solicitudes' } },
             // Reportes
             { path: 'reportefacturas', component: FacturasComponent, data: { titulo: 'Reporte General de Facturas' } },
+            { path: 'reportediario', component: DailyoperationsComponent, data: { titulo: 'Reporte Diario' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     }

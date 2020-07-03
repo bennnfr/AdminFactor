@@ -49,4 +49,16 @@ export class ReportesService {
 
   }
 
+  getReporteDaily() {
+
+    const url = `${URL_SERVICIOS}/reports/used_date/2020-06-17/daily_operations?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+    return this.http.get(url).pipe(
+      map( (resp: any) => {
+        return resp;
+      } )
+    );
+
+  }
+
 }
