@@ -42,6 +42,12 @@ import { AsignaOptionsRolesComponent } from './roleOptions/asignaoptionsroles.co
 import { AltacontribuyentesComponent } from './altacontribuyentes/altacontribuyentes.component';
 // Mantenimiento Contribuyentes
 import { MantcontribuyentesComponent } from './mantenimientocontribuyentes/mantcontribuyentes.component';
+// Alta Solicitudes
+import { AltaSolicitudesComponent } from './alta solicitudes/altasolicitudes.component';
+// Estatus Solicitudes
+import { EstatusSolicitudesComponent } from './estatussolicitudes/estatussolicitudes.component';
+// Reportes
+import { FacturasComponent } from './reportes/facturas.component';
 
 
 
@@ -93,6 +99,12 @@ const pagesRoutes: Routes = [
             { path: 'altacontribuyentes', component: AltacontribuyentesComponent, data: { titulo: 'Alta de contribuyentes' } },
             // Mantenimiento Contribuyentes
             { path: 'mantenimientocontribuyentes', component: MantcontribuyentesComponent, data: { titulo: 'Mantenimiento Contribuyentes' } },
+            // Alta solicitudes
+            { path: 'altasolicitudes', component: AltaSolicitudesComponent, data: { titulo: 'Alta Solicitudes' } },
+            // Estatus Solicitudes
+            { path: 'estatussolicitudes', component: EstatusSolicitudesComponent, data: { titulo: 'Estatus Solicitudes' } },
+            // Reportes
+            { path: 'reportefacturas', component: FacturasComponent, data: { titulo: 'Reporte General de Facturas' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     }

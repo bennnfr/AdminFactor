@@ -59,6 +59,9 @@ import { AsignaOptionsRolesComponent } from './roleOptions/asignaoptionsroles.co
 import { ActualizaListaComponent } from './listas/actualizalista.component';
 import { AltacontribuyentesComponent } from './altacontribuyentes/altacontribuyentes.component';
 import { MantcontribuyentesComponent } from './mantenimientocontribuyentes/mantcontribuyentes.component';
+import { AltaSolicitudesComponent } from './alta solicitudes/altasolicitudes.component';
+import { EstatusSolicitudesComponent } from './estatussolicitudes/estatussolicitudes.component';
+import { FacturasComponent } from './reportes/facturas.component';
 
 
 @NgModule({
@@ -95,7 +98,10 @@ import { MantcontribuyentesComponent } from './mantenimientocontribuyentes/mantc
         AsignaOptionsRolesComponent,
         ActualizaListaComponent,
         AltacontribuyentesComponent,
-        MantcontribuyentesComponent
+        MantcontribuyentesComponent,
+        AltaSolicitudesComponent,
+        EstatusSolicitudesComponent,
+        FacturasComponent
     ],
     exports: [
         DashboardComponent,

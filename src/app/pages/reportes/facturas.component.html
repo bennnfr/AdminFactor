@@ -1,0 +1,52 @@
+<body class="animated fadeIn">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive m-t-40">
+                        <a style="cursor: pointer">
+                            <button (click)="exportexcel()" class="btn btn-outline-success mb-2"><i class="mdi mdi-file-excel" style="font-size: x-large;"></i> XLSX</button>
+                            <button (click)="exportpdf()" class="btn btn-outline-danger ml-2 mb-2"> <i class="mdi mdi-file-pdf" style="font-size: x-large;"></i> PDF</button>
+                            <!-- <input class="mt-2" style="float: right;" type="text" id="NombreUsuarios" (keyup)="buscarNombre()" placeholder="Buscar por Nombre"><i style="float: right; font-size: xx-large;" class="mdi mdi-magnify mt-0"></i> -->
+                        </a>
+                        <table id="tablaFacturas">
+                            <p-table [columns]="cols" [value]="facturas" [(selection)]="selectedFac" [paginator]="true" [rows]="10">
+                                <ng-template pTemplate="header" let-columns>
+                                    <tr>
+                                        <th style="width: 3em">
+                                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                        </th>
+                                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                            {{col.header}}
+                                            <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                                        </th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                                    <tr>
+                                        <td>
+                                            <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                                        </td>
+
+                                        <td *ngFor="let col of columns">
+                                            {{rowData[col.field]}}
+                                        </td>
+
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="summary">
+                                    <ul>
+                                        <li *ngFor="let car of selectedFac" style="text-align: left">
+                                            {{car.id_factura + ' - ' + car.folio + ' - ' + car.total}}
+                                        </li>
+                                    </ul>
+                                </ng-template>
+                            </p-table>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

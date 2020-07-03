@@ -66,3 +66,11 @@ export class UserOptions {
     public id: string;
 
 }
+
+export interface Car {
+    vin?: any;
+}
+
+export interface Facturas {
+    invoice_folio?: any;
+}

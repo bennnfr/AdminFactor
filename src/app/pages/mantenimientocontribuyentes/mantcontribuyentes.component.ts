@@ -26,10 +26,11 @@ export class MantcontribuyentesComponent implements OnInit {
 
     this._contribuyentesService.getContribuyentes().subscribe( resp => { this.parametros = resp; console.log(this.parametros);
 
+                                                                         // tslint:disable-next-line: forin
                                                                          for ( const prop in this.parametros ) {
                                                                            console.log(this.parametros[prop]);
 
-                                                                         if (this.parametros[prop].person_id !== null) {
+                                                                           if (this.parametros[prop].contributor_type === 'PERSONA FISICA' ) {
 
                                                                           this._contribuyentesService.getPersonaFisica(this.parametros[prop].person_id).subscribe( (resp2) => { this.personasfisicas = resp2; console.log(this.personasfisicas);
                                                                                                                                                                                 this.parametros[prop].regimenfiscal = this.personasfisicas[0].fiscal_regime;
@@ -41,10 +42,10 @@ export class MantcontribuyentesComponent implements OnInit {
                                                                                                                                                                                 this.parametros[prop].nidenti = this.personasfisicas[0].identification;
                                                                           } );
                                                                           } else {
-                                                                            this.parametros.splice(parseInt(prop, 10) , 1);
+                                                                            this.parametros.splice(parseInt(prop) , 1);
                                                                           }
                                                                         }
-console.log(this.parametros);
+                                                                         console.log(this.parametros);
                                                                         } );
 
     this.cols = [

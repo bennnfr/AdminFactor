@@ -29,6 +29,23 @@ export class SidebarService {
         { titulo : 'Mantenimiento', url: '/mantenimientocontribuyentes' }
 
       ]
+    },
+    {
+      titulo: 'Solicitudes',
+      icono: 'mdi mdi-file-document',
+      submenu: [
+
+        { titulo : 'Alta', url: '/altasolicitudes' },
+        { titulo : 'Estatus', url: '/estatussolicitudes' }
+      ]
+    },
+    {
+      titulo: 'Reportes',
+      icono: 'mdi mdi-file-document',
+      submenu: [
+
+        { titulo : 'Facturas', url: '/reportefacturas' }
+      ]
     }
   ];
 

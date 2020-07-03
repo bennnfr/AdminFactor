@@ -1,0 +1,67 @@
+<div class="col-12 animated fadeIn">
+    <div class="card">
+        <div class="card-body animated fadeIn">
+            <div class="row col-12">
+                <div class="form-group">
+                    <label style="font-weight: bold;" for="usuario">Usuario</label>
+                    <select class="form-control" id="usuario">
+                        <option selected></option>
+                        <option *ngFor="let item of usuarios">{{item.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group ml-4">
+                    <label style="font-weight: bold;" for="estatus">Estatus</label>
+                    <select class="form-control" id="estatus">
+                      <option selected></option>
+                      <option *ngFor="let item of estatussolicitudes">{{item.value}}</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="btn btn-outline-info" style="margin-top: 33px; margin-left: 2rem;" (click)="guardarCambios()">GUARDAR CAMBIOS</button>
+                </div>
+            </div>
+            <h3>Checkbox Selection</h3>
+            <p-table [columns]="cols" [value]="solicitudes" [(selection)]="selectedSol" [paginator]="true" [rows]="10">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th style="width: 3em">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th>Folio</th>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                        </td>
+                        <td pEditableColumn>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" [(ngModel)]="rowData.folio">
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{rowData.folio}}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td *ngFor="let col of columns">
+                            {{rowData[col.field]}}
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <ul>
+                        <li *ngFor="let car of selectedSol" style="text-align: left">
+                            {{car.id + ' - ' + car.folio + ' - ' + car.total}}
+                        </li>
+                    </ul>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
