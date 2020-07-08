@@ -49,6 +49,11 @@ import { EstatusSolicitudesComponent } from './estatussolicitudes/estatussolicit
 // Reportes
 import { FacturasComponent } from './reportes/facturas.component';
 import { DailyoperationsComponent } from './reportes/dailyoperations.component';
+import { LayoutBanorteComponent } from './reportes/layoutbanorte.component';
+import { PagosCompanyComponent } from './reportes/pagoscompany.component';
+// Pagos
+import { AproveedorComponent } from './pagos/aproveedor.component';
+import { DeCadenaComponent } from './pagos/decadena.component';
 
 
 
@@ -107,6 +112,11 @@ const pagesRoutes: Routes = [
             // Reportes
             { path: 'reportefacturas', component: FacturasComponent, data: { titulo: 'Reporte General de Facturas' } },
             { path: 'reportediario', component: DailyoperationsComponent, data: { titulo: 'Reporte Diario' } },
+            { path: 'banorte', component: LayoutBanorteComponent, data: { titulo: 'Layout Banorte' } },
+            { path: 'pagoscompany', component: PagosCompanyComponent, data: { titulo: 'Pagos Compañia' } },
+            // Pagos
+            { path : 'pagos/aproveedor', component: AproveedorComponent, data: { titulo: 'Pago a Proveedor' } },
+            { path : 'pagos/decadena', component: DeCadenaComponent, data: { titulo: 'Pago de Cadena' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     }

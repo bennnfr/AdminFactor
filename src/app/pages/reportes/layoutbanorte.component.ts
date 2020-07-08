@@ -11,11 +11,11 @@ declare var $;
 
 
 @Component({
-  selector: 'app-dailyoperations',
-  templateUrl: './dailyoperations.component.html',
+  selector: 'app-layoutbanorte',
+  templateUrl: './layoutbanorte.component.html',
   styles: []
 })
-export class DailyoperationsComponent implements OnInit {
+export class LayoutBanorteComponent implements OnInit {
 
   constructor( public _reportesservice: ReportesService,
                public http: HttpClient) { }
@@ -40,36 +40,36 @@ export class DailyoperationsComponent implements OnInit {
     this.cols = [
 
     //  { field:  'id_factura', header: 'ID'},
-      { field:  'folio_solicitud', header: 'Folio Solicitud'},
-      { field:  'folio_factura', header: 'Folio Factura'},
-      { field:  'proveedor', header: 'Proveedor'},
-      { field:  'deudor', header: 'Deudor'},
-      { field:  'fecha_operacion', header: 'Fecha Operacion'},
-      { field:  'fecha_vencimiento', header: 'Fecha Vencimiento'},
-      { field:  'dias', header: 'Dias'},
+      { field:  'id_factura', header: 'ID Factura'},
+      { field:  'oper', header: 'Operacion'},
+      { field:  'clave_id', header: 'Clave'},
+      { field:  'cuenta_origen', header: 'Cuenta Origen'},
+      { field:  'cuenta_destino', header: 'Cuenta Destino'},
       { field:  'importe', header: 'Importe'},
-      { field:  'moneda', header: 'Moneda'},
-      { field:  'tasa_interbancaria', header: 'Tasa Interbancaria'},
-      { field:  'sobre_tasa', header: 'Sobre Tasa'},
-      { field:  'tasa_factor', header: 'Tasa Factor'},
-      { field:  'intereses_factor', header: 'Intereses Factor'},
-      { field:  'importe_sin_intereses', header: 'Importe sin Intereses'},
-      { field:  'por_disposicion_solicitud', header: 'Por Dispocision Solicitud'},
-      { field:  'id_solicitud', header: 'Id Solicitud'}
+      { field:  'referencia', header: 'Referencia'},
+      { field:  'descripcion', header: 'Descripcion'},
+      { field:  'rfc_ordenante', header: 'RFC Ordenante'},
+      { field:  'iva', header: 'IVA'},
+      { field:  'fecha_aplicacion', header: 'Fecha Aplicacion'},
+      { field:  'instruccion_pago', header: 'Instruccion Pago'}
   ];
 
     this._selectedColumns = this.cols;
     this.colspdf = [
 
     //  { field:  'id_factura', header: 'ID'},
-      { field:  'folio_solicitud', header: 'Folio Solicitud'},
-      { field:  'uuid_factura_descontada', header: 'UUID'},
-      { field:  'emisor', header: 'Emisor'},
-      { field:  'receptor', header: 'Receptor'},
-      { field:  'moneda', header: 'Moeda'},
-      { field:  'fecha_operacion', header: 'Fecha Operacion'},
-      { field:  'porcentaje_operado', header: 'Porcentaje Operado'},
-      { field:  'monto_operado', header: 'Monto Operado'}
+    { field:  'id_factura', header: 'ID Factura'},
+    { field:  'oper', header: 'Operacion'},
+    { field:  'clave_id', header: 'Clave'},
+    { field:  'cuenta_origen', header: 'Cuenta Origen'},
+    { field:  'cuenta_destino', header: 'Cuenta Destino'},
+    { field:  'importe', header: 'Importe'},
+    { field:  'referencia', header: 'Referencia'},
+    { field:  'descripcion', header: 'Descripcion'},
+    { field:  'rfc_ordenante', header: 'RFC Ordenante'},
+    { field:  'iva', header: 'IVA'},
+    { field:  'fecha_aplicacion', header: 'Fecha Aplicacion'},
+    { field:  'instruccion_pago', header: 'Instruccion Pago'}
 ];
     this.selectedColumnsp = this.cols;
     this.exportColumns = this.colspdf.map(col => ({title: col.header, dataKey: col.field}));
@@ -102,9 +102,9 @@ generarReporte() {
 
   const fecharepor = [year, month, day].join('-');
 
-  this._reportesservice.getReporteDaily(fecharepor).subscribe(resp => {this.facturas = resp;
+  this._reportesservice.getBanorte(fecharepor).subscribe(resp => {this.facturas = resp;
 
-                                                                       if ( this.facturas.length === 0 ) {
+                                                                  if ( this.facturas.length === 0 ) {
 
                                                                         swal2.fire(
                                                                           'No se encontraron datos con la fecha:',
@@ -126,6 +126,11 @@ generarReporte() {
      const wb: XLSX.WorkBook = XLSX.utils.book_new();
      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
      /* save to file */
+     if ( this.facturas.length > 0 ) {
+
+      this.fileName = this.facturas[0].payment_report_folio + '.xlsx';
+
+     }
      XLSX.writeFile(wb, this.fileName);
   }
 

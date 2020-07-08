@@ -1,73 +1,6 @@
 <div class="col-12 animated fadeIn">
     <div class="card">
         <div class="card-body animated fadeIn">
-            <!-- <div class="row">
-                <div class="col">
-                    <div class="form-group m-t-20">
-                        <div class="col-xs-6">
-                            <span style="font-weight:bold">Cadena</span>
-                            <input id="cadena" name="cadena" class="form-control" type="text">
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group m-t-20">
-                        <div class="col-xs-6">
-                            <span style="font-weight:bold">Proveedor</span>
-                            <input id="proveedor" name="proveedor" class="form-control" type="text">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group m-t-20">
-                        <div class="col-xs-6">
-                            <span style="font-weight:bold">Folio</span>
-                            <input id="folio" name="folio" class="form-control" type="text">
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group m-t-20">
-                        <div class="col-xs-6">
-                            <span style="font-weight:bold">Moneda</span>
-                            <select class="form-control" id="moneda">
-                                <option>pesos</option>
-                                <option>DOLARES</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group m-t-20">
-                        <div class="col-xs-6">
-                            <span style="font-weight:bold">Fecha Factura</span>
-                            <input id="fechafactura" name="fechafactura" class="form-control" type="date">
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group m-t-20">
-                        <div class="col-xs-6">
-                            <span style="font-weight:bold">Fecha Operacion</span>
-                            <input id="fechaoperacion" name="fechaoperacion" class="form-control" type="date">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <div class="form-group m-t-20">
-                        <div class="col-xs-6">
-                            <span style="font-weight:bold">Porcentaje Operacion</span>
-                            <input id="porcentajeoperacion" name="porcentajeoperacion" class="form-control" type="number">
-                        </div>
-                    </div>
-                </div>
-           </div> -->
             <form #c="ngForm">
                 <div class="row">
                     <div class="col-6">
@@ -87,7 +20,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                         <div class="col-12">
                             <div class="form-group m-t-20">
@@ -134,7 +66,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button (click)="lipiarcampos()">LIMPIAR</button>
+                        <button class="btn btn-outline-info" (click)="lipiarcampos()">LIMPIAR</button>
                     </div>
 
                     <div class="col-4">
@@ -191,24 +123,6 @@
                                 </tbody>
                                 <button class="btn btn-info mt-2" (click)="prueba()">CONFIRMAR</button>
                             </table>
-                            <!--   <table class="table color-bordered-table info-bordered-table">
-                            <thead>
-                                <tr style="background-color: #030720;">
-                                    <th style="color: whitesmoke;">Simulador Costo Financiero Cliente</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>Fecha de Operación:</th>
-                                    <th>Aqui va una Fecha</th>
-                                </tr>
-                                <tr>
-                                    <th>Fecha de Operación:</th>
-                                    <th>Aqui va otro dato</th>
-                                </tr>
-                            </tbody>
-                        </table> -->
                         </div>
                     </div>
 
@@ -250,13 +164,6 @@
                                     {{rowData[col.field]}}
                                 </td>
                             </tr>
-                        </ng-template>
-                        <ng-template pTemplate="summary">
-                            <ul>
-                                <li *ngFor="let car of selectedCars1" style="text-align: left">
-                                    {{car.id + ' - ' + car.invoice_folio + ' - ' + car.total}}
-                                </li>
-                            </ul>
                         </ng-template>
                     </p-table>
                     <button class="btn btn-outline-info mt-2" (click)="recalcula()" [disabled]="c.invalid">Simular</button>

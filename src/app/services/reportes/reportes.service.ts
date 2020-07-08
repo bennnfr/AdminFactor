@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Usuario, Usuario2, Usuario3, UserOptions } from '../../models/usuario.model';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Usuario, Usuario2 } from '../../models/usuario.model';
+import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS, SECRET_KEY } from '../../config/config';
-import Swal from 'sweetalert2';
 import { map } from 'rxjs/operators';
-import { Perfisica, PerMoral, ContribuyenteFisica, ContribuyenteMoral, DocumentoPropiedad } from '../../models/personas.model';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
-import { FacturaSimulacion } from 'src/app/models/facturas.model';
 
 
 @Injectable()
@@ -49,9 +46,46 @@ export class ReportesService {
 
   }
 
-  getReporteDaily() {
+  getReporteDaily( date ) {
 
-    const url = `${URL_SERVICIOS}/reports/used_date/2020-06-17/daily_operations?token=${this.token}&secret_key=${SECRET_KEY}`;
+    const url = `${URL_SERVICIOS}/reports/used_date/${date}/daily_operations?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+    return this.http.get(url).pipe(
+      map( (resp: any) => {
+        return resp;
+      } )
+    );
+
+  }
+
+  getBanorte( date ) {
+
+    const url = `${URL_SERVICIOS}/reports/used_date/${date}/layout_banorte?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+    return this.http.get(url).pipe(
+      map( (resp: any) => {
+        return resp;
+      } )
+    );
+
+  }
+
+  getCompanyPayments( date, idc ) {
+
+    const url = `${URL_SERVICIOS}/reports/report_date/${date}/company_id/${idc}/company_payments?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+    return this.http.get( url ).pipe(
+      map ( (resp: any) => {
+        return resp;
+      }
+      )
+    );
+
+  }
+
+  getCompapanyes() {
+
+    const url = `${URL_SERVICIOS}/reports/payment_companies?token=${this.token}&secret_key=${SECRET_KEY}`;
 
     return this.http.get(url).pipe(
       map( (resp: any) => {

@@ -124,7 +124,7 @@ export class AltaSolicitudesService {
    // console.log(data);
     console.log(datos);
 
-    const url = `http://ec2-18-223-248-58.us-east-2.compute.amazonaws.com/api/v1/requests`;
+    const url = `${URL_SERVICIOS}/requests`;
 
     return this.http.post(url, datos);
 

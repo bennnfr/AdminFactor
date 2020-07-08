@@ -6,7 +6,7 @@ export class SidebarService {
   menu: any = [
     {
       titulo: 'Catalogos',
-      icono: 'mdi mdi-file-document',
+      icono: 'fa fa-file',
       submenu: [
 
         { titulo : 'Usuarios', url: '/verusuarios' },
@@ -22,7 +22,7 @@ export class SidebarService {
     },
     {
       titulo: 'Contribu',
-      icono: 'mdi mdi-file-document',
+      icono: 'fa fa-user-o',
       submenu: [
 
         { titulo : 'Alta', url: '/altacontribuyentes' },
@@ -32,7 +32,7 @@ export class SidebarService {
     },
     {
       titulo: 'Solicitudes',
-      icono: 'mdi mdi-file-document',
+      icono: 'fa fa-file-text',
       submenu: [
 
         { titulo : 'Alta', url: '/altasolicitudes' },
@@ -41,22 +41,33 @@ export class SidebarService {
     },
     {
       titulo: 'Reportes',
-      icono: 'mdi mdi-file-document',
+      icono: 'fa fa-folder',
       submenu: [
 
         { titulo : 'Facturas', url: '/reportefacturas' },
-        { titulo : 'Reporte Diario', url: '/reportediario' }
+        { titulo : 'Reporte Diario', url: '/reportediario' },
+        { titulo : 'Banorte', url: '/banorte' },
+        { titulo : 'Pagos Compañia', url: '/pagoscompany' }
+      ]
+    },
+    {
+      titulo: 'Pagos',
+      icono: 'fa fa-dollar',
+      submenu: [
+
+        { titulo : 'A proveedor', url: '/pagos/aproveedor' },
+        { titulo : 'De Cadena', url: '/pagos/decadena' }
       ]
     }
   ];
 
-  menu2: any = [
-    {
-      titulo: 'Dashboard',
-      icono: 'mdi mdi-view-dashboard',
-      url: '/dashboard'
-    }
-  ];
+  // menu2: any = [
+  //  {
+  //    titulo: 'Dashboard',
+  //    icono: 'mdi mdi-view-dashboard',
+  //    url: '/dashboard'
+  //  }
+  //  ];
 
   constructor() { }
 

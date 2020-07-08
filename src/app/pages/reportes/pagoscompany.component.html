@@ -5,11 +5,30 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive m-t-40">
+                        <form #c="ngForm" class="mb-4">
+                            <div class="row">
+                                <div class="col">
+                                    <span style="font-weight:bold">Fecha a consultar *</span>
+                                    <input id="fechaconsulta" name="fechaconsulta" class="form-control" type="date" ngModel required>
+                                </div>
+                                <div class="col">
+                                    <span style="font-weight: bold;" for="cadena">Cadena</span>
+                                    <select class="form-control" id="cadena">
+                                          <option selected></option>
+                                          <option *ngFor="let item of companyes">{{item.nombre_cadena}}</option>
+                                        </select>
+                                </div>
+                                <div class="col">
+                                    <button [disabled]="c.invalid" class="btn btn-outline-info" style="margin-top: 27px;" (click)="generarReporte()">GENERAR REPORTE</button>
+                                </div>
+                            </div>
+                        </form>
+
                         <a style="cursor: pointer">
                             <button (click)="exportexcel()" class="btn btn-outline-success mb-2"><i class="mdi mdi-file-excel" style="font-size: x-large;"></i> XLSX</button>
                             <button (click)="exportpdf()" class="btn btn-outline-danger ml-2 mb-2"> <i class="mdi mdi-file-pdf" style="font-size: x-large;"></i> PDF</button>
                         </a>
-                        <p-table #dt [columns]="selectedColumns" [value]="facturas" id="tablaFacturas" [scrollable]="true">
+                        <p-table #dt [columns]="selectedColumns" [value]="facturas" id="tablaFacturas" [scrollable]="false">
                             <ng-template pTemplate="colgroup" let-columns>
                                 <colgroup>
                                     <col *ngFor="let col of columns" style="width:250px">

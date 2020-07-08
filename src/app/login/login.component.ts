@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../services/service.index';
 import { Usuario } from '../models/usuario.model';
-// import swal2 from 'sweetalert2';
+import swal2 from 'sweetalert2';
 
 declare function init_plugins();
 declare const gapi: any;
@@ -77,7 +77,15 @@ export class LoginComponent implements OnInit {
     let usuario = new Usuario(null, forma.value.email, forma.value.password );
 
     this._usuarioService.login( usuario, forma.value.recuerdame )
-                  .subscribe( correcto => this.router.navigate(['/dashboard'])  );
+                  .subscribe( correcto => {this.router.navigate(['/dashboard']);
+
+                }, (err) => {
+                  swal2.fire(
+                       'Error al Acceder',
+                       'Revise su informacion',
+                       'error'
+                    );
+                 }  );
 
     // this.router.navigate([ '/dashboard' ]);
 

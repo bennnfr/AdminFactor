@@ -20,7 +20,6 @@
                     <button class="btn btn-outline-info" style="margin-top: 33px; margin-left: 2rem;" (click)="guardarCambios()">GUARDAR CAMBIOS</button>
                 </div>
             </div>
-            <h3>Checkbox Selection</h3>
             <p-table [columns]="cols" [value]="solicitudes" [(selection)]="selectedSol" [paginator]="true" [rows]="10">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
@@ -53,13 +52,6 @@
                             {{rowData[col.field]}}
                         </td>
                     </tr>
-                </ng-template>
-                <ng-template pTemplate="summary">
-                    <ul>
-                        <li *ngFor="let car of selectedSol" style="text-align: left">
-                            {{car.id + ' - ' + car.folio + ' - ' + car.total}}
-                        </li>
-                    </ul>
                 </ng-template>
             </p-table>
         </div>

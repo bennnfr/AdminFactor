@@ -17,7 +17,8 @@ import {
   RolesOptionsService,
   ContribuyentesService,
   AltaSolicitudesService,
-  ReportesService
+  ReportesService,
+  PagosService
  } from './service.index';
 
 
@@ -41,7 +42,8 @@ import {
     RolesOptionsService,
     ContribuyentesService,
     AltaSolicitudesService,
-    ReportesService
+    ReportesService,
+    PagosService
   ],
   declarations: []
 })

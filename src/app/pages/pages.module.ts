@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {TableModule} from 'primeng/table';
 
+import {InputTextareaModule} from 'primeng/inputtextarea';
+
 import {MultiSelectModule} from 'primeng/multiselect';
 
 import {BreadcrumbModule} from 'primeng/breadcrumb';
@@ -65,6 +67,10 @@ import { AltaSolicitudesComponent } from './alta solicitudes/altasolicitudes.com
 import { EstatusSolicitudesComponent } from './estatussolicitudes/estatussolicitudes.component';
 import { FacturasComponent } from './reportes/facturas.component';
 import { DailyoperationsComponent } from './reportes/dailyoperations.component';
+import { LayoutBanorteComponent } from './reportes/layoutbanorte.component';
+import { PagosCompanyComponent } from './reportes/pagoscompany.component';
+import { AproveedorComponent } from './pagos/aproveedor.component';
+import { DeCadenaComponent } from './pagos/decadena.component';
 
 
 @NgModule({
@@ -105,7 +111,11 @@ import { DailyoperationsComponent } from './reportes/dailyoperations.component';
         AltaSolicitudesComponent,
         EstatusSolicitudesComponent,
         FacturasComponent,
-        DailyoperationsComponent
+        DailyoperationsComponent,
+        LayoutBanorteComponent,
+        PagosCompanyComponent,
+        AproveedorComponent,
+        DeCadenaComponent
     ],
     exports: [
         DashboardComponent,
@@ -129,7 +139,8 @@ import { DailyoperationsComponent } from './reportes/dailyoperations.component';
         MatSliderModule,
         MatStepperModule,
         MatFormFieldModule,
-        MultiSelectModule
+        MultiSelectModule,
+        InputTextareaModule
     ]
 })
 export class PagesModule { }

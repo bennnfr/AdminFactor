@@ -3,8 +3,6 @@ import { AltaSolicitudesService, OptionsService } from '../../services/service.i
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import swal2 from 'sweetalert2';
-import { Car, Facturas } from 'src/app/models/usuario.model';
-import { FacturaSimulacion, Invoices } from 'src/app/models/facturas.model';
 
 declare var $;
 
@@ -33,19 +31,17 @@ export class EstatusSolicitudesComponent implements OnInit {
 
     const estatus: any = document.getElementById('estatus');
 
-    console.log(estatus);
-
     estatus.options[estatus.selectedIndex].value = 0;
 
     this.selectedSol = [];
 
     this.idu = localStorage.getItem('id');
 
-    this._solicitudesservice.getSolicitudesxusuario(this.idu).subscribe( resp => { console.log(resp); this.solicitudes = resp; } );
+    this._solicitudesservice.getSolicitudesxusuario(this.idu).subscribe( resp => { this.solicitudes = resp; } );
 
     this._solicitudesservice.getUsuariosFinanciero().subscribe( resp => { this.usuarios = resp; } );
 
-    this._solicitudesservice.getEstatusFacturas().subscribe( resp => { console.log(resp); this.estatussolicitudes = resp; } );
+    this._solicitudesservice.getEstatusFacturas().subscribe( resp => { this.estatussolicitudes = resp; } );
 
     this.cols = [
 
@@ -68,11 +64,6 @@ export class EstatusSolicitudesComponent implements OnInit {
     const valorusuario = usuario.options[usuario.selectedIndex].value;
     const valorestatus = estatus.options[estatus.selectedIndex].value;
 
-    console.log(valorusuario);
-    console.log(valorestatus);
-    console.log(this.selectedSol);
-    console.log(this.usuarios);
-
     if ( this.selectedSol.length === 0 ) {
 
       swal2.fire(
@@ -81,7 +72,7 @@ export class EstatusSolicitudesComponent implements OnInit {
         'error'
         );
 
-    } else if ( valorestatus === '' ) {
+    } else if ( valorestatus === '0' ) {
 
       swal2.fire(
         'Debe seleccionar un estatus',

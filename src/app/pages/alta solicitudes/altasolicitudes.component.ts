@@ -16,7 +16,6 @@ declare var $;
 export class AltaSolicitudesComponent implements OnInit {
 
   cols: any[];
-  selectedCars3: Car[];
   selectedCars1: any[] = [];
   selectedFac: Facturas[];
   options: any[] = [];
@@ -31,6 +30,7 @@ export class AltaSolicitudesComponent implements OnInit {
   companyid: string[];
   supplierid: string[];
   invoices: any[] = [];
+  load: boolean;
 
   muestratabla = true;
 
@@ -52,19 +52,13 @@ export class AltaSolicitudesComponent implements OnInit {
 
     this.idu = localStorage.getItem('id');
 
-    // console.log(this.idu);
-
     this._solicitudesservice.getCadenaProveedor(this.idu).subscribe( resp => {this.cadenaproveedor = resp;
                                                                               this.nombrecadena = this.cadenaproveedor[0].cadena;
                                                                               this.nombreproveedor = this.cadenaproveedor[0].proveedor;
                                                                               this.companyid = this.cadenaproveedor[0].company_id;
                                                                               this.supplierid = this.cadenaproveedor[0].supplier_id;
-                                                                              console.log(this.companyid);
-                                                                              console.log(this.supplierid);
-                                                                              this._solicitudesservice.getFacturas(this.companyid, this.supplierid).subscribe( resp2 => {this.facturas = resp2; console.log(this.facturas);
+                                                                              this._solicitudesservice.getFacturas(this.companyid, this.supplierid).subscribe( resp2 => {this.facturas = resp2;
                                                                             } );
-
-
 
 
     } );
@@ -112,7 +106,6 @@ export class AltaSolicitudesComponent implements OnInit {
                                                                                                 this.facturasfiltradas.push(this.facturass[prop]);
                                                                                                 }
                                                                                               }
-                                                               // console.log(this.facturasfiltradas);
     } );
 
   }
@@ -187,13 +180,12 @@ export class AltaSolicitudesComponent implements OnInit {
 
    // console.log(simulacion);
 
-    this._solicitudesservice.getSimulacion( simulacion ).subscribe( resp => {this.simulacion = resp; console.log(this.simulacion);
+    this._solicitudesservice.getSimulacion( simulacion ).subscribe( resp => {this.simulacion = resp;
                                                                              const fecha1 = new Date(this.simulacion[0].used_date);
                                                                              const fecha2 = new Date(this.simulacion[0].due_date);
                                                                              const milisegundosdia = 24 * 60 * 60 * 1000;
                                                                              const milisegundostranscurridos = Math.abs(fecha1.getTime() - fecha2.getTime());
                                                                              const diastranscurridos = Math.round(milisegundostranscurridos / milisegundosdia);
-                                                                             // console.log(diastranscurridos);
                                                                              this.simulacion[0].diastranscurridos = diastranscurridos;
                                                                             }, (err) => {
                                                                               console.log(err);
@@ -209,6 +201,7 @@ export class AltaSolicitudesComponent implements OnInit {
   }
 
   prueba() {
+    this.load = true;
     let total = 0 ;
     this.invoices = [];
     const moneda: any = document.getElementById('moneda');
@@ -253,7 +246,6 @@ export class AltaSolicitudesComponent implements OnInit {
 
     const fechaoperacion = [yeara, montha, daya].join('-');
 
-    console.log(this.invoices);
 
     const data = {
       token: '',
@@ -278,25 +270,30 @@ export class AltaSolicitudesComponent implements OnInit {
       data.invoices[prop] = {id: this.invoices[prop].toString() };
     }
 
-   // data.caca[0] = {id: 'algo'};
+    swal2.fire({
+      title: 'Cargando',
+      allowOutsideClick: false
+ });
+    swal2.showLoading();
 
-    console.log(data);
-
-    console.log(data.token);
-    this._solicitudesservice.confirmacion(data).subscribe( resp => {console.log(resp);
+    this._solicitudesservice.confirmacion(data).subscribe( resp => {
+                                                                    swal2.close();
                                                                     swal2.fire(
-                                                                   'Creacion de Usuario',
+                                                                   'Creacion de Solicitud',
                                                                    'Exitosa',
                                                                    'success'
                                                                    );
+                                                                    this.load = false;
                                                                     this.ngOnInit();
                                                                   }, (err) => {
+                                                                     swal2.close();
                                                                      console.log(err);
                                                                      swal2.fire(
                                                                           'Error al Confirmar los Datos',
                                                                           '',
                                                                           'error'
                                                                        );
+                                                                     this.load = false;
                                                                      this.ngOnInit();
                                                                     }
                                                                     );

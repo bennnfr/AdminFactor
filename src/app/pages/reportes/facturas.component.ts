@@ -36,7 +36,7 @@ export class FacturasComponent implements OnInit {
 
   ngOnInit() {
 
-    this._reportesservice.getReporteFacturas().subscribe(resp => {this.facturas = resp; console.log(this.facturas)} );
+    this._reportesservice.getReporteFacturas().subscribe(resp => {this.facturas = resp; } );
 
     this.cols = [
 
@@ -92,11 +92,9 @@ set selectedColumns(val: any[]) {
   exportexcel() {
      /* table id is passed over here */
      const element = document.getElementById('tablaFacturas');
-     console.log(element);
      const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
      /* generate workbook and add the worksheet */
      const wb: XLSX.WorkBook = XLSX.utils.book_new();
-     console.log(wb);
      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
      /* save to file */
      XLSX.writeFile(wb, this.fileName);
