@@ -39,7 +39,7 @@ export class PagosCompanyComponent implements OnInit {
 
   ngOnInit() {
 
-    this._reportesservice.getCompapanyes().subscribe( resp => { this.companyes = resp; } );
+    this._reportesservice.getCompapanyes().subscribe( resp => { this.companyes = resp; console.log(this.companyes); } );
 
     this.cols = [
 
@@ -119,8 +119,13 @@ generarReporte() {
 
   const fecharepor = [year, month, day].join('-');
 
+  swal2.fire({
+    title: 'Cargando',
+    allowOutsideClick: false
+});
+  swal2.showLoading();
 
-  this._reportesservice.getCompanyPayments(fecharepor, this.idc).subscribe(resp => {this.facturas = resp;
+  this._reportesservice.getCompanyPayments(fecharepor, this.idc).subscribe(resp => {swal2.close(); this.facturas = resp; console.log(this.facturas);
 
                                                                                     if (this.facturas.length === 0) {
                                                                                       swal2.fire(
@@ -131,7 +136,7 @@ generarReporte() {
                                                                                     }
 
                                                                                     }, (err) => {
-
+                                                                                    swal2.close();
                                                                                     swal2.fire(
                                                                                          'Ocurrio un error al procesar la informacion',
                                                                                          '',
@@ -154,7 +159,7 @@ generarReporte() {
      /* save to file */
      if ( this.facturas.length > 0 ) {
 
-      this.fileName = this.facturas[0].payment_report_folio + '.xlsx';
+      this.fileName = this.facturas[0].charge_report_folio + '.xlsx';
 
      }
      XLSX.writeFile(wb, this.fileName);

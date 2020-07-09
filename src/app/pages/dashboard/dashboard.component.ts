@@ -14,6 +14,8 @@ export class DashboardComponent implements OnInit {
   data3: any;
   options: any;
   options2: any;
+  adminInvoices: any[] = [];
+  adminRequests: any[] = [];
   datos: any[] = [];
   nombrecadena: string;
   totalintereses = '0';
@@ -104,9 +106,13 @@ export class DashboardComponent implements OnInit {
                                                                                       data: [this.datos[0].credito_disponible]
                                                                                       }
                                                                                     ]
-    };
+                                                                          };
 
-} );
+    } );
+
+    this._dashboardservice.getAdminInvoices().subscribe( resp => {this.adminInvoices = resp; console.log(this.adminInvoices); } );
+
+    this._dashboardservice.getAdminRequests().subscribe( resp => {this.adminRequests = resp; } );
 
   }
 

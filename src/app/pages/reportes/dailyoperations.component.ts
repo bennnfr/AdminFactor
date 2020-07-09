@@ -28,7 +28,7 @@ export class DailyoperationsComponent implements OnInit {
   colspdf: any[];
   selectedFac: any[];
   router: Router;
-  fileName = 'ListaDeFacturas.xlsx';
+  fileName = 'ReporteDiario.xlsx';
   selectedColumnsp: any[];
   selectedColumnspdf: any[];
   exportColumns: any[];
@@ -62,14 +62,22 @@ export class DailyoperationsComponent implements OnInit {
     this.colspdf = [
 
     //  { field:  'id_factura', header: 'ID'},
-      { field:  'folio_solicitud', header: 'Folio Solicitud'},
-      { field:  'uuid_factura_descontada', header: 'UUID'},
-      { field:  'emisor', header: 'Emisor'},
-      { field:  'receptor', header: 'Receptor'},
-      { field:  'moneda', header: 'Moeda'},
-      { field:  'fecha_operacion', header: 'Fecha Operacion'},
-      { field:  'porcentaje_operado', header: 'Porcentaje Operado'},
-      { field:  'monto_operado', header: 'Monto Operado'}
+    { field:  'folio_solicitud', header: 'Folio Solicitud'},
+    { field:  'folio_factura', header: 'Folio Factura'},
+    { field:  'proveedor', header: 'Proveedor'},
+    { field:  'deudor', header: 'Deudor'},
+    { field:  'fecha_operacion', header: 'Fecha Operacion'},
+    { field:  'fecha_vencimiento', header: 'Fecha Vencimiento'},
+    { field:  'dias', header: 'Dias'},
+    { field:  'importe', header: 'Importe'},
+    { field:  'moneda', header: 'Moneda'},
+    { field:  'tasa_interbancaria', header: 'Tasa Interbancaria'},
+    { field:  'sobre_tasa', header: 'Sobre Tasa'},
+    { field:  'tasa_factor', header: 'Tasa Factor'},
+    { field:  'intereses_factor', header: 'Intereses Factor'},
+    { field:  'importe_sin_intereses', header: 'Importe sin Intereses'},
+    { field:  'por_disposicion_solicitud', header: 'Por Dispocision Solicitud'},
+    { field:  'id_solicitud', header: 'Id Solicitud'}
 ];
     this.selectedColumnsp = this.cols;
     this.exportColumns = this.colspdf.map(col => ({title: col.header, dataKey: col.field}));
@@ -87,6 +95,12 @@ set selectedColumns(val: any[]) {
 
 generarReporte() {
 
+  swal2.fire({
+    title: 'Cargando',
+    allowOutsideClick: false
+});
+  swal2.showLoading();
+
   const d = new Date((document.getElementById('fechaconsulta')as HTMLInputElement).value);
   d.setMinutes( d.getMinutes() + d.getTimezoneOffset() );
   let month = '' + (d.getMonth() + 1);
@@ -103,7 +117,7 @@ generarReporte() {
   const fecharepor = [year, month, day].join('-');
 
   this._reportesservice.getReporteDaily(fecharepor).subscribe(resp => {this.facturas = resp;
-
+                                                                       swal2.close();
                                                                        if ( this.facturas.length === 0 ) {
 
                                                                         swal2.fire(
@@ -112,7 +126,17 @@ generarReporte() {
                                                                           'error'
                                                                           );
                                                                       }
-  } );
+
+  }, (err) => {
+    swal2.close();
+    console.log(err);
+    swal2.fire(
+         'Error al Confirmar los Datos',
+         '',
+         'error'
+      );
+    this.ngOnInit();
+   });
 
 
 }

@@ -153,7 +153,15 @@ export class AproveedorComponent implements OnInit {
 
     const valormoneda = moneda.options[moneda.selectedIndex].value;
 
-    this._pagosservice.getFacturasPagoProveedor( this.idp, valormoneda ).subscribe( resp => { this.facturas = resp;
+    swal2.fire({
+      title: 'Cargando',
+      allowOutsideClick: false
+ });
+    swal2.showLoading();
+
+    this._pagosservice.getFacturasPagoProveedor( this.idp, valormoneda ).subscribe( resp => { 
+                                                                                              swal2.close();
+                                                                                              this.facturas = resp;
 
                                                                                               if ( this.facturas.length === 0 ) {
                                                                                               swal2.fire(
@@ -163,7 +171,7 @@ export class AproveedorComponent implements OnInit {
                                                                                               );
                                                                                             }
     } , (err) => {
-
+      swal2.close();
       swal2.fire(
            'Ocurrio un error',
            '',
@@ -207,7 +215,14 @@ export class AproveedorComponent implements OnInit {
         contributor_to_id: this.idcontribuyente
       };
 
+      swal2.fire({
+        title: 'Cargando',
+        allowOutsideClick: false
+   });
+      swal2.showLoading();
+
       this._pagosservice.aplicarPago(params).subscribe( resp => {
+                                                                  swal2.close();
 
                                                                   // tslint:disable-next-line: forin
                                                                   for (const prop in this.selectedFac) {
@@ -223,6 +238,7 @@ export class AproveedorComponent implements OnInit {
                                                                   this.ngOnInit();
 
       } , (err) => {
+        swal2.close();
         swal2.fire(
              'Ocurrio un error',
              '',

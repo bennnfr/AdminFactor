@@ -87,6 +87,12 @@ set selectedColumns(val: any[]) {
 
 generarReporte() {
 
+  swal2.fire({
+    title: 'Cargando',
+    allowOutsideClick: false
+});
+  swal2.showLoading();
+
   const d = new Date((document.getElementById('fechaconsulta')as HTMLInputElement).value);
   d.setMinutes( d.getMinutes() + d.getTimezoneOffset() );
   let month = '' + (d.getMonth() + 1);
@@ -103,7 +109,7 @@ generarReporte() {
   const fecharepor = [year, month, day].join('-');
 
   this._reportesservice.getBanorte(fecharepor).subscribe(resp => {this.facturas = resp;
-
+                                                                  swal2.close();
                                                                   if ( this.facturas.length === 0 ) {
 
                                                                         swal2.fire(
@@ -112,7 +118,16 @@ generarReporte() {
                                                                           'error'
                                                                           );
                                                                       }
-  } );
+  }, (err) => {
+    swal2.close();
+    console.log(err);
+    swal2.fire(
+         'Error al Confirmar los Datos',
+         '',
+         'error'
+      );
+    this.ngOnInit();
+   } );
 
 
 }

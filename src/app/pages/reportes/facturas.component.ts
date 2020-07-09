@@ -6,6 +6,7 @@ import swal2 from 'sweetalert2';
 import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 declare var $;
 
 
@@ -36,7 +37,15 @@ export class FacturasComponent implements OnInit {
 
   ngOnInit() {
 
-    this._reportesservice.getReporteFacturas().subscribe(resp => {this.facturas = resp; } );
+    swal2.fire({
+      title: 'Cargando',
+      allowOutsideClick: false
+ });
+    swal2.showLoading();
+
+    this._reportesservice.getReporteFacturas().subscribe(resp => {this.facturas = resp;
+                                                                  swal2.close();
+    } );
 
     this.cols = [
 
@@ -65,20 +74,24 @@ export class FacturasComponent implements OnInit {
     this.colspdf = [
 
     //  { field:  'id_factura', header: 'ID'},
-    { field:  'uuid_factura_descontada', header: 'UUID'},
-    { field:  'emisor', header: 'Emisor'},
-    { field:  'receptor', header: 'Receptor'},
-    { field:  'moneda', header: 'Moeda'},
-    { field:  'fecha_operacion', header: 'Fecha Operacion'},
-    { field:  'porcentaje_operado', header: 'Porcentaje Operado'},
-    { field:  'monto_operado', header: 'Monto Operado'},
-    { field:  'disponible', header: 'Disponible'},
-    { field:  'fecha_vencimiento', header: 'Fecha Vencimiento'},
-    { field:  'fecha_emision', header: 'Fecha Emision'},
-    { field:  'fecha_carga', header: 'Fecha Carga'},
-    { field:  'estatus', header: 'Estatus'},
-    { field:  'intereses', header: 'Intereses'},
-    { field:  'comision_cadena', header: 'Comision Cadena'},
+      { field:  'folio_solicitud', header: 'Folio Solicitud'},
+      { field:  'uuid_factura_descontada', header: 'UUID'},
+      { field:  'emisor', header: 'Emisor'},
+      { field:  'receptor', header: 'Receptor'},
+      { field:  'moneda', header: 'Moeda'},
+      { field:  'fecha_operacion', header: 'Fecha Operacion'},
+      { field:  'porcentaje_operado', header: 'Porcentaje Operado'},
+      { field:  'monto_operado', header: 'Monto Operado'},
+      { field:  'disponible', header: 'Disponible'},
+      { field:  'fecha_vencimiento', header: 'Fecha Vencimiento'},
+      { field:  'fecha_emision', header: 'Fecha Emision'},
+      { field:  'fecha_carga', header: 'Fecha Carga'},
+      { field:  'estatus', header: 'Estatus'},
+      { field:  'intereses', header: 'Intereses'},
+      { field:  'comision_cadena', header: 'Comision Cadena'},
+      { field:  'dia_pago_cadena', header: 'Dia Pago Cadena'},
+      { field:  'amount', header: 'Amount'},
+      { field:  'dias_al_vencimiento', header: 'Dias al Vencimiento'}
 ];
     this.selectedColumnsp = this.cols;
     this.exportColumns = this.colspdf.map(col => ({title: col.header, dataKey: col.field}));
@@ -115,7 +128,7 @@ set selectedColumns(val: any[]) {
         doc.autoTable(this.exportColumns, this.facturas);
         doc.save('ListaFacturas.pdf');
     });
-});
+}); 
 
   }
 

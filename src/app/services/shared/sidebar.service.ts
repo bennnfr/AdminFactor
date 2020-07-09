@@ -21,7 +21,7 @@ export class SidebarService {
       ]
     },
     {
-      titulo: 'Contribu',
+      titulo: 'Contribuyente',
       icono: 'fa fa-user-o',
       submenu: [
 

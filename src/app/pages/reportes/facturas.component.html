@@ -9,6 +9,7 @@
                             <button (click)="exportexcel()" class="btn btn-outline-success mb-2"><i class="mdi mdi-file-excel" style="font-size: x-large;"></i> XLSX</button>
                             <button (click)="exportpdf()" class="btn btn-outline-danger ml-2 mb-2"> <i class="mdi mdi-file-pdf" style="font-size: x-large;"></i> PDF</button>
                         </a>
+
                         <p-table #dt [columns]="selectedColumns" [value]="facturas" id="tablaFacturas" [scrollable]="true">
                             <ng-template pTemplate="colgroup" let-columns>
                                 <colgroup>
@@ -43,6 +44,7 @@
                                 </tr>
                             </ng-template>
                         </p-table>
+
                     </div>
                 </div>
             </div>

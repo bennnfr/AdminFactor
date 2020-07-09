@@ -48,4 +48,28 @@ export class DashboardService {
 
   }
 
+  getAdminInvoices() {
+
+    const url = `${URL_SERVICIOS}/reports/dashboard_admin_invoices?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+    return this.http.get(url).pipe(
+      map( (resp: any) => {
+        return resp;
+      } )
+    );
+
+  }
+
+  getAdminRequests() {
+
+    const url = `${URL_SERVICIOS}/reports/dashboard_admin_requests?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+    return this.http.get(url).pipe(
+      map( (resp: any) => {
+        return resp;
+      } )
+    );
+
+  }
+
 }

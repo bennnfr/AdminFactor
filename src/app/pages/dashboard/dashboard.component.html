@@ -3,20 +3,30 @@
     <div class="card">
         <div class="card-body">
 
-            <!-- ============================================================== -->
-            <!-- Cajas -->
-            <!-- ============================================================== -->
             <h2>CADENA: {{ nombrecadena }}</h2>
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="card bg-info">
+                    <div class="card">
                         <div class="card-body">
                             <div class="d-flex no-block">
-                                <div class="m-r-20 align-self-center"><img src="../assets/images/icon/income-w.png" alt="Income" /></div>
-                                <div class="align-self-center">
-                                    <h6 class="text-white m-t-10 m-b-0">Total Intereses</h6>
-                                    <h2 class="m-t-0 text-white">$ {{ totalintereses }}</h2>
-                                </div>
+                                <table class="table color-bordered-table info-bordered-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Cadena</th>
+                                            <th>Proveedor</th>
+                                            <th>Estatus</th>
+                                            <th>Numero Facturas</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of adminInvoices">
+                                            <td>{{ item.cadena }}</td>
+                                            <td>{{ item.proveedor }}</td>
+                                            <td>{{ item.estatus }}</td>
+                                            <td>{{ item.numero_facturas }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -30,15 +40,57 @@
                                     <h6 class="text-white m-t-10 m-b-0">Promedio de Operacion a la Semana</h6>
                                     <h2 class="m-t-0 text-white">$ {{ posemana }}</h2>
                                 </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card bg-info">
+                        <div class="card-body">
+                            <div class="d-flex no-block">
+                                <div class="m-r-20 align-self-center"><img src="../assets/images/icon/income-w.png" alt="Income" /></div>
+                                <div class="align-self-center">
+                                    <h6 class="text-white m-t-10 m-b-0">Total Intereses</h6>
+                                    <h2 class="m-t-0 text-white">$ {{ totalintereses }}</h2>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- Graficas -->
-            <!-- ============================================================== -->
             <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex no-block">
+                                <table class="table color-bordered-table info-bordered-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Cadena</th>
+                                            <th>Proveedor</th>
+                                            <th>No Solicitudes</th>
+                                            <th>Suma</th>
+                                            <th>Importe Promedio</th>
+                                            <th>Total Intereses</th>
+                                            <th>Promedio Intereses</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of adminRequests">
+                                            <td>{{ item.cadena }}</td>
+                                            <td>{{ item.proveedor }}</td>
+                                            <td>{{ item.numero_solicitudes }}</td>
+                                            <td>{{ item.suma_importe_solicitudes }}</td>
+                                            <td>{{ item.importe_promedio }}</td>
+                                            <td>{{ item.total_intereses }}</td>
+                                            <td>{{ item.promedio_intereses }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-6 col-md-12">
                     <div class="card">
                         <div class="card-body">
