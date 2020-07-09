@@ -1,67 +1,68 @@
-<div class="row">
+<body class="animated fadeIn">
 
+    <div class="card">
+        <div class="card-body">
 
-    <div class="col-6">
-        <div class="card">
-            <div class="card-body" style="min-height: 450px;">
-                <h2>Catalogos</h2>
-
-                <div class="container">
-                    <div class="row mt-5">
-                        <div class="col-6"><button [routerLink]="['/verusuarios']" type="button" class="btn btn-info btn-lg btn-block">Usuarios</button></div>
-                        <div class="col-6"><button [routerLink]="['/privilegiosusuarios']" type="button" class="btn btn-info btn-lg btn-block">Privilegios Usuarios</button></div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col-6"><button [routerLink]="['/roles']" type="button" class="btn btn-info btn-lg btn-block">Roles</button></div>
-                        <div class="col-6"><button [routerLink]="['/parametros']" type="button" class="btn btn-info btn-lg btn-block">Parametros Generales</button></div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col-6"><button [routerLink]="['/options']" type="button" class="btn btn-info btn-lg btn-block">Options</button></div>
-
+            <!-- ============================================================== -->
+            <!-- Cajas -->
+            <!-- ============================================================== -->
+            <h2>CADENA: {{ nombrecadena }}</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card bg-info">
+                        <div class="card-body">
+                            <div class="d-flex no-block">
+                                <div class="m-r-20 align-self-center"><img src="../assets/images/icon/income-w.png" alt="Income" /></div>
+                                <div class="align-self-center">
+                                    <h6 class="text-white m-t-10 m-b-0">Total Intereses</h6>
+                                    <h2 class="m-t-0 text-white">$ {{ totalintereses }}</h2>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-
+                <div class="col-lg-6">
+                    <div class="card bg-success">
+                        <div class="card-body">
+                            <div class="d-flex no-block">
+                                <div class="m-r-20 align-self-center"><img src="../assets/images/icon/expense-w.png" alt="Income" /></div>
+                                <div class="align-self-center">
+                                    <h6 class="text-white m-t-10 m-b-0">Promedio de Operacion a la Semana</h6>
+                                    <h2 class="m-t-0 text-white">$ {{ posemana }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <!-- ============================================================== -->
+            <!-- Graficas -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <p-chart type="bar" [data]="data2" [options]="options"></p-chart>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <p-chart type="pie" [data]="data"></p-chart>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <p-chart type="bar" [data]="data3" [options]="options2"></p-chart>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <div class="col-6">
-        <div class="card">
-            <div class="card-body" style="min-height: 450px;">
-                <h4 class="card-title">{{ graficos.grafico2.leyenda }} </h4>
-
-                <app-grafico-dona [chartLabels]="graficos.grafico2.labels" [chartData]="graficos.grafico2.data" chartType="doughnut"></app-grafico-dona>
-
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<div class="row">
-
-
-    <div class="col-6">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">{{ graficos.grafico3.leyenda }} </h4>
-
-                <app-grafico-dona [chartLabels]="graficos.grafico3.labels" [chartData]="graficos.grafico3.data" chartType="doughnut"></app-grafico-dona>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="col-6">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">{{ graficos.grafico4.leyenda }} </h4>
-
-                <app-grafico-dona [chartLabels]="graficos.grafico4.labels" [chartData]="graficos.grafico4.data" chartType="doughnut"></app-grafico-dona>
-
-            </div>
-        </div>
-    </div>
-
-</div>
+</body>

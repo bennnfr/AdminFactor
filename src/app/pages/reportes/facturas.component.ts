@@ -65,14 +65,20 @@ export class FacturasComponent implements OnInit {
     this.colspdf = [
 
     //  { field:  'id_factura', header: 'ID'},
-      { field:  'folio_solicitud', header: 'Folio Solicitud'},
-      { field:  'uuid_factura_descontada', header: 'UUID'},
-      { field:  'emisor', header: 'Emisor'},
-      { field:  'receptor', header: 'Receptor'},
-      { field:  'moneda', header: 'Moeda'},
-      { field:  'fecha_operacion', header: 'Fecha Operacion'},
-      { field:  'porcentaje_operado', header: 'Porcentaje Operado'},
-      { field:  'monto_operado', header: 'Monto Operado'}
+    { field:  'uuid_factura_descontada', header: 'UUID'},
+    { field:  'emisor', header: 'Emisor'},
+    { field:  'receptor', header: 'Receptor'},
+    { field:  'moneda', header: 'Moeda'},
+    { field:  'fecha_operacion', header: 'Fecha Operacion'},
+    { field:  'porcentaje_operado', header: 'Porcentaje Operado'},
+    { field:  'monto_operado', header: 'Monto Operado'},
+    { field:  'disponible', header: 'Disponible'},
+    { field:  'fecha_vencimiento', header: 'Fecha Vencimiento'},
+    { field:  'fecha_emision', header: 'Fecha Emision'},
+    { field:  'fecha_carga', header: 'Fecha Carga'},
+    { field:  'estatus', header: 'Estatus'},
+    { field:  'intereses', header: 'Intereses'},
+    { field:  'comision_cadena', header: 'Comision Cadena'},
 ];
     this.selectedColumnsp = this.cols;
     this.exportColumns = this.colspdf.map(col => ({title: col.header, dataKey: col.field}));

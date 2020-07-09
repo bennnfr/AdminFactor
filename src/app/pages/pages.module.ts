@@ -21,6 +21,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 // ng2-charts
 import { ChartsModule } from 'ng2-charts';
+import {ChartModule} from 'primeng/chart';
 
 import { PagesComponent } from './pages.component';
 
@@ -140,7 +141,8 @@ import { DeCadenaComponent } from './pagos/decadena.component';
         MatStepperModule,
         MatFormFieldModule,
         MultiSelectModule,
-        InputTextareaModule
+        InputTextareaModule,
+        ChartModule
     ]
 })
 export class PagesModule { }

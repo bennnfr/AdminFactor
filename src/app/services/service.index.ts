@@ -16,3 +16,4 @@ export { ContribuyentesService } from './contribuyentes/contribuyentes.service';
 export { AltaSolicitudesService } from './altasolicitudes/altasolicitudes.service';
 export { ReportesService } from './reportes/reportes.service';
 export { PagosService } from './pagos/pagos.service';
+export { DashboardService } from './dashboard/dashboard.service';
