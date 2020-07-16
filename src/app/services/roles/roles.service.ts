@@ -109,7 +109,7 @@ crearArregloRol( rolObj: any) {
 
 actualizaRol(idr: string, nombre: string, desc: string) {
 
-const url = `${ URL_SERVICIOS }/roles/5?token=${ this.token }&secret_key=${ SECRET_KEY }&role[name]=${ nombre }&role[description]=${ desc }`;
+const url = `${ URL_SERVICIOS }/roles/${idr}?token=${ this.token }&secret_key=${ SECRET_KEY }&role[name]=${ nombre }&role[description]=${ desc }`;
 
 return this.http.patch( url, null ).pipe(
   map( (resp: any) => { return resp;

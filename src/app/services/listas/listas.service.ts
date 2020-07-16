@@ -126,7 +126,7 @@ actualizaLista(idl: string, valor: string, desc: string, domain: string, key: st
 
   getListaDominio() {
 
-    const url = `${URL_SERVICIOS}/lists/domain/usuario_estatus?token=${this.token}&secret_key=${SECRET_KEY}`;
+    const url = `${URL_SERVICIOS}/lists/domain/USER_STATUS?token=${this.token}&secret_key=${SECRET_KEY}`;
 
     return this.http.get( url ).pipe(
       map( (resp: any) => { return this.crearArregloListaDominio(resp);

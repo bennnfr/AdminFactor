@@ -215,4 +215,64 @@ return this.http.post( url, null ).pipe(
               }));
 }
 
+// LISTAS
+
+getFiscalRegime() {
+
+  const url = `${URL_SERVICIOS}/lists/domain/PERSON_FISCAL_REGIME?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+  return this.http.get(url).pipe(
+    map( (resp: any) => {
+      return this.crearArregloList(resp);
+    } )
+  );
+
+}
+
+getPersonGender() {
+
+  const url = `${URL_SERVICIOS}/lists/domain/PERSON_GENDER?token=${this.token}&secret_key=${SECRET_KEY};`;
+
+  return this.http.get(url).pipe(
+    map( (resp: any) => {
+      return this.crearArregloList(resp);
+    } )
+  );
+
+}
+
+crearArregloList( contribuObj: any) {
+
+  const rr: any[] = [];
+  const resul: any[] = [];
+
+  if ( contribuObj === null ) { return []; }
+  Object.keys ( contribuObj ).forEach( key => {
+    const rol: any = contribuObj[key];
+    rr.push( rol );
+  });
+  // tslint:disable-next-line: forin
+  for ( const prop in rr[0] ) {
+
+    resul.push( rr[0][prop].attributes.value );
+
+  }
+
+  return resul;
+
+}
+
+getContribuyentesMain() {
+
+  const url = `${URL_SERVICIOS}/reports/contributors_main?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+  return this.http.get(url).pipe(
+    map( (resp: any) => {
+      return resp;
+    } )
+  );
+
+}
+
+
 }

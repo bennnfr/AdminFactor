@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ContribuyentesService } from '../../services/service.index';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import * as XLSX from 'xlsx';
 import swal2 from 'sweetalert2';
 
 @Component({
@@ -15,84 +16,64 @@ export class MantcontribuyentesComponent implements OnInit {
                public _contribuyentesService: ContribuyentesService,
                public http: HttpClient ) { }
 
-  token = localStorage.getItem('token');
   parametros: any[] = [];
   cols: any[];
   selectedFac: any[];
   router: Router;
-  personasfisicas: any[];
+  contribuyentes: any[];
+  fileName = 'ReporteContribuyentes.xlsx';
+  _selectedColumns: any[];
 
   ngOnInit() {
 
-    this._contribuyentesService.getContribuyentes().subscribe( resp => { this.parametros = resp; console.log(this.parametros);
-
-                                                                         // tslint:disable-next-line: forin
-                                                                         for ( const prop in this.parametros ) {
-                                                                           console.log(this.parametros[prop]);
-
-                                                                           if (this.parametros[prop].contributor_type === 'PERSONA FISICA' ) {
-
-                                                                          this._contribuyentesService.getPersonaFisica(this.parametros[prop].person_id).subscribe( (resp2) => { this.personasfisicas = resp2; console.log(this.personasfisicas);
-                                                                                                                                                                                this.parametros[prop].regimenfiscal = this.personasfisicas[0].fiscal_regime;
-                                                                                                                                                                                this.parametros[prop].rfc = this.personasfisicas[0].rfc;
-                                                                                                                                                                                this.parametros[prop].nombre = this.personasfisicas[0].first_name;
-                                                                                                                                                                                this.parametros[prop].apellidop = this.personasfisicas[0].last_name;
-                                                                                                                                                                                this.parametros[prop].apellidom = this.personasfisicas[0].second_last_name;
-                                                                                                                                                                                this.parametros[prop].fnac = this.personasfisicas[0].birthdate;
-                                                                                                                                                                                this.parametros[prop].nidenti = this.personasfisicas[0].identification;
-                                                                          } );
-                                                                          } else {
-                                                                            this.parametros.splice(parseInt(prop) , 1);
-                                                                          }
-                                                                        }
-                                                                         console.log(this.parametros);
-                                                                        } );
+    this._contribuyentesService.getContribuyentesMain().subscribe( resp => {this.contribuyentes = resp; } );
 
     this.cols = [
 
+      { field: 'rfc_contribuyente', header: 'RFC' },
       { field: 'nombre', header: 'Nombre' },
-      { field: 'bank', header: 'Banco' },
-      { field: 'account_number', header: 'Numero de Cuenta' },
-      { field: 'clabe', header: 'CLABE' }
+      { field: 'correo', header: 'Correo' },
+      { field: 'tipo', header: 'Tipo' },
+      { field: 'banco', header: 'Banco' },
+      { field: 'numero_cuenta', header: 'No Cuenta' },
+      { field: 'clave_interbancaria', header: 'Clave Interbancaria' },
+      { field: 'clave_portal_banco', header: 'Clave Portal Banco' },
+      { field: 'limite_credito', header: 'Limite de Credito' },
+      { field: 'credito_disponible', header: 'Credito Disponible' },
+      { field: 'saldo', header: 'Saldo' },
+      { field: 'es_cadena', header: 'Cadena' },
+      { field: 'es_proveedor', header: 'Proveedor' },
+      { field: 'telefono', header: 'Tel Fijo' },
+      { field: 'celular', header: 'Tel Movil' },
+      { field: 'tasa', header: 'Tasa' },
+      { field: 'dias_espera', header: 'Dias Espera' },
+      { field: 'dia_semana_vencimiento', header: 'Dias Semana Vencimiento' }
 
   ];
 
+    this._selectedColumns = this.cols;
+
   }
 
- /* borraParametro( id: string ) {
+  @Input() get selectedColumns(): any[] {
+    return this._selectedColumns;
+}
 
-    swal2.fire({
-      title: 'Desea Eliminar el Parametro',
-      text: 'Seleccionado',
-      icon: 'question',
-      showConfirmButton: true,
-      showCancelButton: true,
-      allowOutsideClick: false
-    }). then ( resp => {
-      if ( resp.value) {
+set selectedColumns(val: any[]) {
+  // restore original order
+  this._selectedColumns = this.cols.filter(col => val.includes(col));
+}
 
-        this._parametrosService.borrarParametro( id ).subscribe( () => {
+exportexcel() {
+  /* table id is passed over here */
+  const element = document.getElementById('tablaFacturas');
+  const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+  /* generate workbook and add the worksheet */
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  /* save to file */
+  XLSX.writeFile(wb, this.fileName);
+}
 
-          swal2.fire({
-            title: 'El Parametro',
-            text: 'fue eliminado con exito',
-            icon: 'success',
-            showConfirmButton: true,
-            showCancelButton: false,
-            allowOutsideClick: false
-          }). then ( res => {
-
-            if ( res.value ) {
-              this.ngOnInit();
-            }
-
-          } );
-
-        } );
-
-      }
-    });
-
-  } */
 
 }

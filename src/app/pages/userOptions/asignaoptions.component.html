@@ -1,10 +1,12 @@
 <body class="animated fadeIn">
     <h3 class="ml-3 mt-3"> Opciones para el Usuario: {{ nombreUsuaOp }}</h3>
+    <button title="Regresar" [routerLink]="['/usuariosoptions']" class="btn btn-outline-success ml-4 mb-4"><i class="mdi mdi-keyboard-backspace" style="font-size: x-large;"></i></button>
     <div class="row">
 
         <div class="col-5">
             <div class="card">
                 <div class="card-body">
+
                     <p-table id="opt" [columns]="cols" [value]="seleccionOptions" selectionMode="single" [(selection)]="seleccion">
                         <ng-template pTemplate="header" let-columns>
                             <tr>
@@ -66,6 +68,6 @@
                 </div>
             </div>
         </div>
-        <button title="Regresar" [routerLink]="['/usuariosoptions']" class="btn btn-outline-success ml-4 mb-4"><i class="mdi mdi-keyboard-backspace" style="font-size: x-large;"></i></button>
+
     </div>
 </body>

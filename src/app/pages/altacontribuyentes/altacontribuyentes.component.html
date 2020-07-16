@@ -9,8 +9,7 @@
                             <label style="font-weight:bold" for="tipopersona">Tipo Persona</label>
                             <select class="form-control" id="tipopersona" (click)='render()' [disabled]="seleccionfom">
                               <option selected></option>
-                              <option>FISICA</option>
-                              <option>MORAL</option>
+                              <option *ngFor="let item of tpersona">{{item}}</option>
                             </select>
                         </div>
                         <div *ngIf="fisica">
@@ -85,8 +84,7 @@
                                             <span style="font-weight:bold">Genero</span>
                                             <select class="form-control" id="generofisica">
                                                 <option selected></option>
-                                                <option>MASCULINO</option>
-                                                <option>FEMENINO</option>
+                                                <option *ngFor="let item of tgenero" >{{item}}</option>
                                               </select>
                                         </div>
                                     </div>

@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
   };
    usuario = localStorage.getItem('usuario');
    email = localStorage.getItem('emailuser');
+   usuariof = '';
 
   constructor( public _usuarioService: UsuarioService,
                public _ajustes: SettingsService) { 
@@ -35,7 +36,8 @@ export class HeaderComponent implements OnInit {
                }
 
   ngOnInit() {
-  let  usuario = this.usuario;
+
+  this.usuariof = this.usuario.slice(1, -1);
   let  email = this.email;
   }
 

@@ -68,13 +68,14 @@ export class UsuarioService {
 
   }
 
-  guardarStoragelogin( id: string, token: string, usuario: Usuario, email: string, expiratoken: string ) {
+  guardarStoragelogin( id: string, token: string, usuario: Usuario, email: string, expiratoken: string, relations: any ) {
 
     localStorage.setItem('id', id );
     localStorage.setItem('token', token );
     localStorage.setItem('usuario', JSON.stringify(usuario) );
     localStorage.setItem('emailuser', email );
     localStorage.setItem('expiratoken', expiratoken);
+    localStorage.setItem('user_options', JSON.stringify(relations));
 
     this.usuario = usuario;
     this.token = token;
@@ -99,6 +100,7 @@ export class UsuarioService {
         localStorage.removeItem('emailuser');
         localStorage.removeItem('expiratoken');
         localStorage.removeItem('usuarioPrivilegio');
+        localStorage.removeItem('user_options');
         this.router.navigate(['/login']);
         Swal.fire(
     'Terminó la sesion',
@@ -124,12 +126,13 @@ export class UsuarioService {
 
     return this.http.get( url )
                 .map( (resp: any) => {
-
+                  console.log(resp);
                   this.guardarStoragelogin( resp.data.attributes.id,
                                             resp.data.token,
                                             resp.data.attributes.name,
                                             resp.data.attributes.email,
-                                            resp.data.expires_at );
+                                            resp.data.expires_at,
+                                            resp.data.relations.user_options );
 
                   return true;
                 });
@@ -278,6 +281,57 @@ borrarUsuario(usuario: any) {
   return this.http.delete( url ).pipe(
     map( (resp: any) => { return resp;
      } ));
+
+}
+
+// LISTAS
+
+getUserGender() {
+
+  const url = `${URL_SERVICIOS}/lists/domain/USER_GENDER?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+
+
+  return this.http.get(url).pipe(
+    map( (resp: any) => {
+      return this.crearArregloList(resp);
+    } )
+  );
+
+}
+
+getUserStatus() {
+
+  const url = `${URL_SERVICIOS}/lists/domain/USER_STATUS?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+
+
+  return this.http.get(url).pipe(
+    map( (resp: any) => {
+      return this.crearArregloList(resp);
+    } )
+  );
+
+}
+
+crearArregloList( contribuObj: any) {
+
+  const rr: any[] = [];
+  const resul: any[] = [];
+
+  if ( contribuObj === null ) { return []; }
+  Object.keys ( contribuObj ).forEach( key => {
+    const rol: any = contribuObj[key];
+    rr.push( rol );
+  });
+  // tslint:disable-next-line: forin
+  for ( const prop in rr[0] ) {
+
+    resul.push( rr[0][prop].attributes.value );
+
+  }
+
+  return resul;
 
 }
 

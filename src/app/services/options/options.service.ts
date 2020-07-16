@@ -126,4 +126,14 @@ borrarOption(id: string) {
 
 }
 
+getOptionsxUsuario( id ) {
+
+  const url = `${URL_SERVICIOS}/reports/user_id/${id}/user_options?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+  return this.http.get( url ).pipe(
+    map ( (resp: any) => { return resp;
+    } ));
+
+}
+
 }

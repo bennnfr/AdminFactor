@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy, ɵConsole } from '@angular/core';
 import { AltaSolicitudesService, OptionsService } from '../../services/service.index';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
@@ -34,6 +34,8 @@ export class AltaSolicitudesComponent implements OnInit {
 
   muestratabla = true;
 
+  currency: any[] = [];
+
   constructor(private _formBuilder: FormBuilder,
               public router: Router,
               private route: ActivatedRoute,
@@ -42,12 +44,16 @@ export class AltaSolicitudesComponent implements OnInit {
 
   ngOnInit() {
 
+    const valormoneda = 'PESOS';
+
+    this._solicitudesservice.getPaymentCurrency().subscribe( resp => this.currency = resp );
+
     this.muestratabla = true;
     this.selectedCars1 = [];
     (document.getElementById('porcentajeoperacion') as HTMLInputElement).value = '';
     (document.getElementById('fechafactura') as HTMLInputElement).value = '';
     (document.getElementById('fechaoperacion') as HTMLInputElement).value = '';
-    (document.getElementById('folio') as HTMLInputElement).value = '';
+   // (document.getElementById('folio') as HTMLInputElement).value = '';
     this.simulacion = [];
 
     this.idu = localStorage.getItem('id');
@@ -57,7 +63,7 @@ export class AltaSolicitudesComponent implements OnInit {
                                                                               this.nombreproveedor = this.cadenaproveedor[0].proveedor;
                                                                               this.companyid = this.cadenaproveedor[0].company_id;
                                                                               this.supplierid = this.cadenaproveedor[0].supplier_id;
-                                                                              this._solicitudesservice.getFacturas(this.companyid, this.supplierid).subscribe( resp2 => {this.facturas = resp2;
+                                                                              this._solicitudesservice.getFacturas(this.companyid, this.supplierid, valormoneda).subscribe( resp2 => {this.facturas = resp2;
                                                                             } );
 
 
@@ -74,11 +80,34 @@ export class AltaSolicitudesComponent implements OnInit {
 
   }
 
+  muestraxcurr(){
+
+    const moneda: any = document.getElementById('moneda');
+
+    const valormoneda = moneda.options[moneda.selectedIndex].value;
+
+    this._solicitudesservice.getCadenaProveedor(this.idu).subscribe( resp => {this.cadenaproveedor = resp;
+                                                                              this.nombrecadena = this.cadenaproveedor[0].cadena;
+                                                                              this.nombreproveedor = this.cadenaproveedor[0].proveedor;
+                                                                              this.companyid = this.cadenaproveedor[0].company_id;
+                                                                              this.supplierid = this.cadenaproveedor[0].supplier_id;
+                                                                              this._solicitudesservice.getFacturas(this.companyid, this.supplierid, valormoneda).subscribe( resp2 => {this.facturas = resp2;
+    } );
+
+
+} );
+
+  }
+
   lipiarcampos() {
     this.ngOnInit();
   }
 
   filtrafac() {
+
+    const moneda: any = document.getElementById('moneda');
+
+    const valormoneda = moneda.options[moneda.selectedIndex].value;
 
     this.muestratabla = false;
 
@@ -99,9 +128,9 @@ export class AltaSolicitudesComponent implements OnInit {
 
     const fechaoperacion = [yeara, montha, daya].join('-');
 
-    this._solicitudesservice.getFacturas(this.companyid, this.supplierid).subscribe( resp => { this.facturass = resp;
+    this._solicitudesservice.getFacturas(this.companyid, this.supplierid, valormoneda).subscribe( resp => { this.facturass = resp;
                                                                 // tslint:disable-next-line: forin
-                                                                                               for ( const prop in this.facturas ) {
+                                                                                                            for ( const prop in this.facturas ) {
                                                                                                 if ( this.facturass[prop].invoice_date === fechaoperacion ) {
                                                                                                 this.facturasfiltradas.push(this.facturass[prop]);
                                                                                                 }
@@ -175,7 +204,7 @@ export class AltaSolicitudesComponent implements OnInit {
     this.companyid.toString(),
     this.supplierid.toString(),
     this.idu,
-    (document.getElementById('folio') as HTMLInputElement).value,
+    // (document.getElementById('folio') as HTMLInputElement).value,
     );
 
    // console.log(simulacion);
@@ -251,7 +280,7 @@ export class AltaSolicitudesComponent implements OnInit {
       token: '',
       secret_key: '',
       invoices: [],
-      request: { folio: (document.getElementById('folio') as HTMLInputElement).value,
+      request: { // folio: (document.getElementById('folio') as HTMLInputElement).value,
                  company_id: this.companyid.toString(),
                  supplier_id: this.supplierid.toString(),
                  user_id: this.idu,

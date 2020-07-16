@@ -56,16 +56,14 @@
                 <!-- Profile -->
                 <!-- ============================================================== -->
                 <li class="nav-item dropdown">
-                    <a>
-                        <p-inputSwitch (click)="cambiarColor('')" [(ngModel)]="checked1" [ngModelOptions]="{standalone: true}"></p-inputSwitch>
-                    </a>
+                    <a class="mr-1" style="color: whitesmoke;">{{ usuariof }}</a>
                     <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-account" style="font-size: xx-large;"></i> </a>
                     <div class="dropdown-menu dropdown-menu-right animated fadeIn">
                         <ul class="dropdown-user">
                             <li>
                                 <div class="dw-user-box">
                                     <div class="u-text">
-                                        <h4>{{ usuario }}</h4>
+                                        <h4>{{ usuariof }}</h4>
                                         <p class="text-muted">{{ email }}</p>
                                     </div>
                                 </div>
@@ -76,6 +74,9 @@
                             <li><a (click)="_usuarioService.logout()" class="pointer"><i class="fa fa-power-off"></i> Salir</a></li>
                         </ul>
                     </div>
+                    <a>
+                        <p-inputSwitch (click)="cambiarColor('')" [(ngModel)]="checked1" [ngModelOptions]="{standalone: true}"></p-inputSwitch>
+                    </a>
                 </li>
             </ul>
         </div>

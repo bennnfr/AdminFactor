@@ -109,9 +109,9 @@
                 <div>
                     <p-table #dt [columns]="cols" [value]="facturas" [(selection)]="selectedFac">
                         <ng-template pTemplate="header" let-columns>
-                            <span style="font-weight:bold">Folio</span>
+                            <span style="font-weight:bold;">Folio</span>
                             <div *ngFor="let col of columns" [ngSwitch]="col.field">
-                                <input *ngSwitchCase="'folio_factura'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                                <input *ngSwitchCase="'folio_reporte'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
                             </div>
                             <tr>
                                 <th style="width: 3em">

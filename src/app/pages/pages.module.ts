@@ -72,6 +72,12 @@ import { LayoutBanorteComponent } from './reportes/layoutbanorte.component';
 import { PagosCompanyComponent } from './reportes/pagoscompany.component';
 import { AproveedorComponent } from './pagos/aproveedor.component';
 import { DeCadenaComponent } from './pagos/decadena.component';
+import { FacturasDetallesComponent } from './reportes/facturasdetalles.component';
+import { FacturaDetalleComponent } from './reportes/facturadetalle.component';
+import { ReporteSolicitudesComponent } from './reportes/reportesolicitudes.component';
+import { ReporteSolicitudesDetallesComponent } from './reportes/reportesolicitudesdetalles.component';
+import { ReporteSolicitudDetalleComponent } from './reportes/reportesolicituddetalle.component';
+
 
 
 @NgModule({
@@ -116,7 +122,12 @@ import { DeCadenaComponent } from './pagos/decadena.component';
         LayoutBanorteComponent,
         PagosCompanyComponent,
         AproveedorComponent,
-        DeCadenaComponent
+        DeCadenaComponent,
+        FacturasDetallesComponent,
+        FacturaDetalleComponent,
+        ReporteSolicitudesComponent,
+        ReporteSolicitudesDetallesComponent,
+        ReporteSolicitudDetalleComponent
     ],
     exports: [
         DashboardComponent,

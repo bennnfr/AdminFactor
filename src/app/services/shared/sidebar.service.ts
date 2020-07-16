@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
+import { OptionsService } from '../options/options.service';
 
 @Injectable()
 export class SidebarService {
+
+
+  useroptions = localStorage.getItem('user_options');
 
   menu: any = [
     {
@@ -12,11 +16,11 @@ export class SidebarService {
         { titulo : 'Usuarios', url: '/verusuarios' },
         { titulo : 'Privilegios Usuarios', url: '/privilegiosusuarios' },
         { titulo : 'Roles', url: '/roles' },
+        { titulo : 'Roles opciones', url: '/rolesoptions' },
         { titulo : 'Parametros Generales', url: '/parametros'  },
         { titulo : 'Opciones', url: '/options' },
         { titulo : 'Listas', url: '/listas' },
         { titulo : 'Opciones Usuarios', url: '/usuariosoptions' },
-        { titulo : 'Roles opciones', url: '/rolesoptions' }
 
       ]
     },
@@ -46,8 +50,8 @@ export class SidebarService {
 
         { titulo : 'Facturas', url: '/reportefacturas' },
         { titulo : 'Reporte Diario', url: '/reportediario' },
-        { titulo : 'Banorte', url: '/banorte' },
-        { titulo : 'Pagos Compañia', url: '/pagoscompany' }
+        { titulo : 'Layout Banorte', url: '/banorte' },
+        { titulo : 'Pagos Cadena', url: '/pagoscompany' }
       ]
     },
     {
@@ -69,6 +73,10 @@ export class SidebarService {
   //  }
   //  ];
 
-  constructor() { }
+  constructor( public _options: OptionsService ) {
+
+   }
+
+
 
 }

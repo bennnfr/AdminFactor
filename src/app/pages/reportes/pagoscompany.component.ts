@@ -45,16 +45,17 @@ export class PagosCompanyComponent implements OnInit {
 
     //  { field:  'id_factura', header: 'ID'},
       { field:  'id_factura', header: 'ID Factura'},
-      { field:  'cadena', header: 'Operacion'},
-      { field:  'no_factura', header: 'Clave'},
-      { field:  'proveedor', header: 'Cuenta Origen'},
-      { field:  'importe', header: 'Cuenta Destino'},
-      { field:  'moneda', header: 'Importe'},
-      { field:  'fecha_operacion', header: 'Referencia'},
-      { field:  'fecha_vencimiento', header: 'Descripcion'},
-      { field:  'fecha_carga', header: 'RFC Ordenante'},
-      { field:  'dias_transcurridos', header: 'IVA'},
-      { field:  'folio_solicitud', header: 'Fecha Aplicacion'}
+      { field:  'folio_solicitud', header: 'folio_solicitud'},
+      { field:  'cadena', header: 'Cadena'},
+      { field:  'no_factura', header: 'NoFactura'},
+      { field:  'proveedor', header: 'Proveedor'},
+      { field:  'importe', header: 'Importe'},
+      { field:  'moneda', header: 'Moneda'},
+      { field:  'fecha_operacion', header: 'Fecha Operacion'},
+      { field:  'fecha_vencimiento', header: 'Fecha Vencimiento'},
+      { field:  'fecha_carga', header: 'Fecha Carga'},
+      { field:  'dias_transcurridos', header: 'Dias Transcurridos'},
+
   ];
 
     this._selectedColumns = this.cols;
@@ -62,16 +63,16 @@ export class PagosCompanyComponent implements OnInit {
 
     //  { field:  'id_factura', header: 'ID'},
     { field:  'id_factura', header: 'ID Factura'},
-      { field:  'cadena', header: 'Operacion'},
-      { field:  'no_factura', header: 'Clave'},
-      { field:  'proveedor', header: 'Cuenta Origen'},
-      { field:  'importe', header: 'Cuenta Destino'},
-      { field:  'moneda', header: 'Importe'},
-      { field:  'fecha_operacion', header: 'Referencia'},
-      { field:  'fecha_vencimiento', header: 'Descripcion'},
-      { field:  'fecha_carga', header: 'RFC Ordenante'},
-      { field:  'dias_transcurridos', header: 'IVA'},
-      { field:  'folio_solicitud', header: 'Fecha Aplicacion'}
+      { field:  'folio_solicitud', header: 'folio_solicitud'},
+      { field:  'cadena', header: 'Cadena'},
+      { field:  'no_factura', header: 'NoFactura'},
+      { field:  'proveedor', header: 'Proveedor'},
+      { field:  'importe', header: 'Importe'},
+      { field:  'moneda', header: 'Moneda'},
+      { field:  'fecha_operacion', header: 'Fecha Operacion'},
+      { field:  'fecha_vencimiento', header: 'Fecha Vencimiento'},
+      { field:  'fecha_carga', header: 'Fecha Carga'},
+      { field:  'dias_transcurridos', header: 'Dias Transcurridos'},
 ];
     this.selectedColumnsp = this.cols;
     this.exportColumns = this.colspdf.map(col => ({title: col.header, dataKey: col.field}));

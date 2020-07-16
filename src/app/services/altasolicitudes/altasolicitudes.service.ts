@@ -48,9 +48,9 @@ export class AltaSolicitudesService {
     );
   }
 
-  getFacturas(companyid, supplierid) {
+  getFacturas(companyid, supplierid, currency) {
 
-    const url = `${URL_SERVICIOS}/reports/company_id/${companyid}/supplier_id/${supplierid}/supplier_invoices?token=${this.token}&secret_key=${SECRET_KEY}&currency=PESOS`;
+    const url = `${URL_SERVICIOS}/reports/company_id/${companyid}/supplier_id/${supplierid}/supplier_invoices?token=${this.token}&secret_key=${SECRET_KEY}&currency=${currency}`;
 
     return this.http.get(url).pipe(
       map( (resp: any) => {
@@ -66,23 +66,17 @@ export class AltaSolicitudesService {
     const resul: any[] = [];
 
     if ( contribuObj === null ) { return []; }
-    console.log(contribuObj);
+
     // tslint:disable-next-line: forin
     for ( const prop in contribuObj.data ) {
       resul.push( contribuObj.data[prop].attributes );
     }
-  //  console.log( usuarios[0][prop].attributes );
-
-
-    console.log(resul);
 
     return resul;
 
   }
 
   getSimulacion( simul: FacturaSimulacion ) {
-
-    console.log(simul);
 
     const url = `${URL_SERVICIOS}/requests?request[folio]=${simul.folio}&request[total]=${simul.total}&request[capacity]=${simul.porcentaje}
                 &request[request_date]=${simul.requestdate}&request[used_date]=${simul.useddate}&request[due_date]=${simul.duedate}
@@ -102,15 +96,8 @@ export class AltaSolicitudesService {
     const resul: any[] = [];
 
     if ( contribuObj === null ) { return []; }
-   // console.log(contribuObj);
-    // tslint:disable-next-line: forin
 
     resul.push( contribuObj.data.attributes );
-
-  //  console.log( usuarios[0][prop].attributes );
-
-
-  //  console.log(resul);
 
     return resul;
 
@@ -120,9 +107,6 @@ export class AltaSolicitudesService {
 
     datos.token = this.token;
     datos.secret_key = SECRET_KEY;
-
-   // console.log(data);
-    console.log(datos);
 
     const url = `${URL_SERVICIOS}/requests`;
 
@@ -171,7 +155,7 @@ export class AltaSolicitudesService {
 
   getEstatusFacturas() {
 
-    const url = `${URL_SERVICIOS}/lists/domain/INVOICE_STATUS?token=${this.token}&secret_key=${SECRET_KEY}`;
+    const url = `${URL_SERVICIOS}/lists/domain/REQUEST_STATUS?token=${this.token}&secret_key=${SECRET_KEY}`;
 
     return this.http.get(url).pipe(
       map( (resp: any) => {
@@ -187,15 +171,47 @@ export class AltaSolicitudesService {
     const resul: any[] = [];
 
     if ( contribuObj === null ) { return []; }
-    console.log(contribuObj);
+
     // tslint:disable-next-line: forin
     for ( const prop in contribuObj.data ) {
       resul.push( contribuObj.data[prop].attributes );
     }
-  //  console.log( usuarios[0][prop].attributes );
+
+    return resul;
+
+  }
+
+  // LISTAS
+  getPaymentCurrency() {
+
+    const url = `${URL_SERVICIOS}/lists/domain/PAYMENT_CURRENCY?token=${this.token}&secret_key=${SECRET_KEY}`;
 
 
-    console.log(resul);
+
+    return this.http.get(url).pipe(
+      map( (resp: any) => {
+        return this.crearArregloList(resp);
+      } )
+    );
+
+  }
+
+  crearArregloList( contribuObj: any) {
+
+    const rr: any[] = [];
+    const resul: any[] = [];
+
+    if ( contribuObj === null ) { return []; }
+    Object.keys ( contribuObj ).forEach( key => {
+      const rol: any = contribuObj[key];
+      rr.push( rol );
+    });
+    // tslint:disable-next-line: forin
+    for ( const prop in rr[0] ) {
+
+      resul.push( rr[0][prop].attributes.value );
+
+    }
 
     return resul;
 

@@ -46,6 +46,80 @@ export class ReportesService {
 
   }
 
+  getReporteDetalleFactura( id ) {
+
+    const url = `${URL_SERVICIOS}/invoices/${id}/invoice_details?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+    return this.http.get(url).pipe(
+      map( (resp: any) => {return this.crearArregloDetalleFactura(resp);
+      } )
+    );
+
+  }
+
+  crearArregloDetalleFactura( optionsObj: any) {
+
+    const detalles: any[] = [];
+    const resul: any[] = [];
+
+    if ( optionsObj === null ) { return []; }
+    Object.keys ( optionsObj ).forEach( key => {
+      const detalle: any = optionsObj[key];
+      detalles.push( detalle );
+    });
+    console.log(detalles);
+    // tslint:disable-next-line: forin
+    for (const prop in detalles[0]) {
+  //  console.log( usuarios[0][prop].attributes );
+    resul.push( detalles[0][prop].attributes );
+    }
+
+    return resul;
+}
+
+  getReporteDetalleSolicitud( id ) {
+
+  const url = `${URL_SERVICIOS}/requests/${id}/request_details?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+  return this.http.get(url).pipe(
+    map( (resp: any) => {return this.crearArregloDetalleSolicitud(resp);
+    } )
+  );
+
+}
+
+  crearArregloDetalleSolicitud( optionsObj: any) {
+
+  const detalles: any[] = [];
+  const resul: any[] = [];
+
+  if ( optionsObj === null ) { return []; }
+  Object.keys ( optionsObj ).forEach( key => {
+    const detalle: any = optionsObj[key];
+    detalles.push( detalle );
+  });
+  console.log(detalles);
+  // tslint:disable-next-line: forin
+  for (const prop in detalles[0]) {
+//  console.log( usuarios[0][prop].attributes );
+  resul.push( detalles[0][prop].attributes );
+  }
+
+  return resul;
+}
+
+  getReporteSolicitudes() {
+
+    const url = `${URL_SERVICIOS}/reports/general_report_requests?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+    return this.http.get(url).pipe(
+      map( (resp: any) => {
+        return resp;
+      } )
+    );
+
+  }
+
   getReporteDaily( date ) {
 
     const url = `${URL_SERVICIOS}/reports/used_date/${date}/daily_operations?token=${this.token}&secret_key=${SECRET_KEY}`;

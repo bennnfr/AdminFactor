@@ -87,6 +87,7 @@ export class AproveedorComponent implements OnInit {
     this.fecha = [yeara, montha, daya].join('-');
 
     this.cols = [
+      { field: 'folio_reporte', header: 'Folio Reporte' },
       { field: 'folio_factura', header: 'Folio Factura' },
       { field: 'uuid', header: 'UUID' },
       { field: 'importe_neto', header: 'Importe Neto' },
@@ -162,7 +163,7 @@ export class AproveedorComponent implements OnInit {
     this._pagosservice.getFacturasPagoProveedor( this.idp, valormoneda ).subscribe( resp => { 
                                                                                               swal2.close();
                                                                                               this.facturas = resp;
-
+console.log(this.facturas);
                                                                                               if ( this.facturas.length === 0 ) {
                                                                                               swal2.fire(
                                                                                                 'No se encontraron Datos',

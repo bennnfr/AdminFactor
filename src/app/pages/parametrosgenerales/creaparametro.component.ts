@@ -30,10 +30,10 @@ export class CreaParametroComponent implements OnInit {
         Description: new FormControl( null , Validators.required ),
         Key: new FormControl( null , Validators.required ),
         Value: new FormControl( null , Validators.required ),
-        Table: new FormControl( null , Validators.required ),
-        Id_table: new FormControl( null , Validators.required ),
-        Used_values: new FormControl( null , Validators.required ),
-        Documentation: new FormControl( null , Validators.required )
+       // Table: new FormControl( null , Validators.required ),
+       // Id_table: new FormControl( null , Validators.required ),
+       // Used_values: new FormControl( null , Validators.required ),
+       // Documentation: new FormControl( null , Validators.required )
 
       } );
 
@@ -45,10 +45,10 @@ export class CreaParametroComponent implements OnInit {
     const valorDescripcion = this.forma.value.Description;
     const valorKey = this.forma.value.Key;
     const valorValue = this.forma.value.Value;
-    const valorTable = this.forma.value.Table;
-    const valorIdTable = this.forma.value.Id_table;
-    const valorUdesValues = this.forma.value.Used_values;
-    const valorDocumentation = this.forma.value.Documentation;
+    const valorTable =  (document.getElementById('Tabla') as HTMLInputElement).value;
+    const valorIdTable =  (document.getElementById('Id_tabla') as HTMLInputElement).value;
+    const valorUdesValues =  (document.getElementById('UsedValues') as HTMLInputElement).value;
+    const valorDocumentation =  (document.getElementById('Doc') as HTMLInputElement).value;
 
 
 

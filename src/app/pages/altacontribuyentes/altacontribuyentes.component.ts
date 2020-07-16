@@ -27,7 +27,7 @@ export class AltacontribuyentesComponent implements OnInit {
   RFCFisica = false;
   RFCMoral = false;
   CURP = false;
-  btncontribuyente = false;
+  btncontribuyente = true;
   noaguardado = true;
   seleccionfom = false;
   capturanuevofisica = true;
@@ -41,6 +41,9 @@ export class AltacontribuyentesComponent implements OnInit {
 
   idcontr = '';
 
+  tpersona: any[] = [];
+  tgenero: any[] = [];
+
   constructor(private _formBuilder: FormBuilder,
               public router: Router,
               public _contribuyentesservice: ContribuyentesService) {}
@@ -53,9 +56,20 @@ export class AltacontribuyentesComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
+
+    this._contribuyentesservice.getFiscalRegime().subscribe( resp => {this.tpersona = resp; } );
+
+    this._contribuyentesservice.getPersonGender().subscribe( resp => this.tgenero = resp );
+
   }
 
-  capturarnuevo(){
+  LimpiarFisica() {
+
+    (document.getElementById('rfiscalfisica') as HTMLInputElement).value = '';
+
+  }
+
+  capturarnuevo() {
     window.location.reload();
   }
 
@@ -67,10 +81,10 @@ export class AltacontribuyentesComponent implements OnInit {
     // Obtener el valor de la opción seleccionada
     const valorPersona = persona.options[persona.selectedIndex].value;
 
-    if (valorPersona === 'FISICA') {
+    if (valorPersona === 'PERSONA FÍSICA') {
     this.fisica = true;
     this.moral = false;
-    } else if (valorPersona === 'MORAL') {
+    } else if (valorPersona === 'PERSONA MORAL') {
       this.fisica = false;
       this.moral = true;
     } else {
@@ -277,7 +291,7 @@ export class AltacontribuyentesComponent implements OnInit {
     this.subscription = this._contribuyentesservice.crearPersonaFisica( personafisica ).subscribe( resp => { this.resppersonafisica = resp; console.log(this.resppersonafisica[0].id);
 
                                                                                                              this._contribuyentesservice.crearContribuyenteFisica( contribuyentefisica, this.resppersonafisica[0].id )
-                                                                                                             .subscribe( respm => {this.respcontribmoral = respm; console.log(this.respcontribmoral); this.idcontr = this.respcontribmoral;} );
+                                                                                                             .subscribe( respm => {this.respcontribmoral = respm; console.log(this.respcontribmoral); this.idcontr = this.respcontribmoral; } );
 
                                                                                                              swal2.fire(
                                                                                                               'El contribuyente se guardo con exito',

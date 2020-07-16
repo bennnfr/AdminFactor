@@ -86,6 +86,7 @@ export class DeCadenaComponent implements OnInit {
     this.fecha = [yeara, montha, daya].join('-');
 
     this.cols = [
+      { field: 'folio_reporte', header: 'Folio Reporte' },
       { field: 'folio_factura', header: 'Folio Factura' },
       { field: 'uuid', header: 'UUID' },
       { field: 'monto_total', header: 'Monto Total' },
@@ -159,10 +160,10 @@ export class DeCadenaComponent implements OnInit {
  });
     swal2.showLoading();
 
-    this._pagosservice.getFacturasPagoCadena( this.idp, valormoneda ).subscribe( resp => { 
+    this._pagosservice.getFacturasPagoCadena( this.idp, valormoneda ).subscribe( resp => {
                                                                                            swal2.close();
                                                                                            this.facturas = resp;
-
+                                                                                           console.log(this.facturas);
                                                                                            if ( this.facturas.length === 0 ) {
                                                                                               swal2.fire(
                                                                                                 'No se encontraron Datos',

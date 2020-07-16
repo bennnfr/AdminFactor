@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-import { SidebarService, UsuarioService } from '../../services/service.index';
+import { Subscription, Observable } from 'rxjs';
+import { SidebarService, UsuarioService, OptionsService } from '../../services/service.index';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,12 +9,198 @@ import { SidebarService, UsuarioService } from '../../services/service.index';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor( 
+  // PARA LOS MENUS
+  mennu: any[];
+  mennnu: any[] = [];
+  catalogos: any = [];
+  contribuyentes: any = [];
+  configuracion: any = [];
+  solicitudes: any = [];
+  reportes: any = [];
+  pagos: any = [];
+
+  menu: any[];
+  banderacontribuyentes = false;
+  idopciones: any[] = [];
+  contadores: any[] = [];
+  subscription: Subscription;
+
+  // CONTADORES DE SUBMENUS
+  contadorcatalogos = 0;
+  contadorcontribuyentes = 0;
+  contadorconfiguracion = 0;
+  contadorsolicitudes = 0;
+  contadorreportes = 0;
+  contadorpagos = 0;
+
+  np = 0;
+
+  constructor(
+
     public _sidebar: SidebarService,
-    public _usuarioService: UsuarioService
-  ) { }
+    public _usuarioService: UsuarioService,
+    public _options: OptionsService
+
+  ) {
+
+    // INICIALIZA CONTADORES
+    this.contadorcatalogos = 0;
+    this.contadorcontribuyentes = 0;
+    this.contadorconfiguracion = 0;
+    this.contadorsolicitudes = 0;
+    this.contadorreportes = 0;
+    this.contadorpagos = 0;
+
+    // INICIALIZA OBJETOS
+    this.catalogos = {
+    titulo: 'CatálogosNO',
+    icono: 'fa fa-file',
+    submenu: []
+  };
+    this.contribuyentes = {
+    titulo: 'ContribuyenteNO',
+    icono: 'fa fa-user-o',
+    submenu: []
+  };
+    this.configuracion = {
+    titulo: 'ConfiguraciónNO',
+    icono: 'fa fa-gears',
+    submenu: []
+  };
+    this.solicitudes = {
+    titulo: 'SolicitudesNO',
+    icono: 'fa fa-file-text',
+    submenu: []
+  };
+    this.reportes = {
+    titulo: 'ReportesNO',
+    icono: 'fa fa-folder',
+    submenu: []
+  };
+    this.pagos = {
+    titulo: 'PagosNO',
+    icono: 'fa fa-dollar',
+    submenu: []
+  };
+
+
+
+
+  }
 
   ngOnInit() {
+
+    // localStorage.getItem('id');
+
+    this.subscription =
+    this._options.getOptionsxUsuario(localStorage.getItem('id')).subscribe( resp => {
+                                                               // tslint:disable-next-line: forin
+                                                               for ( const prop in resp ) {
+                                                                if ( resp[prop].grupo === 'CATÁLOGOS' ) {
+                                                                  this.catalogos.titulo = 'Catálogos';
+                                                                  this.catalogos.submenu[this.contadorcatalogos] = { titulo: resp[prop].nombre, url: resp[prop].url };
+                                                                  this.contadorcatalogos = this.contadorcatalogos + 1;
+                                                                }
+                                                                if (resp[prop].grupo === 'CONTRIBUYENTES') {
+                                                                  this.contribuyentes.titulo = 'Contribuyente';
+                                                                  this.contribuyentes.submenu[this.contadorcontribuyentes] = { titulo: resp[prop].nombre, url: resp[prop].url };
+                                                                  this.contadorcontribuyentes = this.contadorcontribuyentes + 1;
+                                                                }
+                                                                if (resp[prop].grupo === 'CONFIGURACIÓN') {
+                                                                  this.configuracion.titulo = 'Configuración';
+                                                                  this.configuracion.submenu[this.contadorconfiguracion] = { titulo: resp[prop].nombre, url: resp[prop].url };
+                                                                  this.contadorconfiguracion = this.contadorconfiguracion + 1;
+                                                                }
+                                                                if (resp[prop].grupo === 'SOLICITUDES') {
+                                                                  this.solicitudes.titulo = 'Solicitudes';
+                                                                  this.solicitudes.submenu[this.contadorsolicitudes] = { titulo: resp[prop].nombre, url: resp[prop].url };
+                                                                  this.contadorsolicitudes = this.contadorsolicitudes + 1;
+                                                                }
+                                                                if (resp[prop].grupo === 'REPORTES') {
+                                                                  this.reportes.titulo = 'Reportes';
+                                                                  this.reportes.submenu[this.contadorreportes] = { titulo: resp[prop].nombre, url: resp[prop].url };
+                                                                  this.contadorreportes = this.contadorreportes + 1;
+                                                                }
+                                                                if (resp[prop].grupo === 'PAGOS') {
+                                                                  this.pagos.titulo = 'Pagos';
+                                                                  this.pagos.submenu[this.contadorpagos] = { titulo: resp[prop].nombre, url: resp[prop].url };
+                                                                  this.contadorpagos = this.contadorpagos + 1;
+                                                                }
+                                                              }
+
+                                                               if (this.mennu[0].titulo === 'CatálogosNO') {
+                                                                console.log('borra catalogos');
+                                                                this.mennnu.push(0);
+                                                              }
+                                                               if (this.mennu[1].titulo === 'ContribuyenteNO') {
+                                                                console.log('borra contribuyentes');
+                                                                this.mennnu.push(1);
+                                                              }
+                                                               if (this.mennu[2].titulo === 'ConfiguraciónNO') {
+                                                                console.log('borra configuracion');
+                                                                this.mennnu.push(2);
+                                                              }
+                                                               if (this.mennu[3].titulo === 'SolicitudesNO') {
+                                                                console.log('borra solicitudes');
+                                                                this.mennnu.push(3);
+                                                              }
+                                                               if (this.mennu[4].titulo === 'ReportesNO') {
+                                                                console.log('borra reportes');
+                                                                this.mennnu.push(4);
+                                                              }
+                                                               if (this.mennu[5].titulo === 'PagosNO') {
+                                                                console.log('borra pagos');
+                                                                this.mennnu.push(5);
+                                                              }
+                                                               this.mennnu.sort().reverse();
+
+                                                              // tslint:disable-next-line: forin
+                                                               for(const i in this.mennnu) {
+                                                                this.mennu.splice(this.mennnu[i], 1 );
+                                                            }
+
+    } );
+    this.mennu = [
+      this.catalogos,
+      this.contribuyentes,
+      this.configuracion,
+      this.solicitudes,
+      this.reportes,
+      this.pagos
+    ];
+
+  }
+
+  generaMenu() {
+
+    this.mennu = [
+      this.catalogos,
+      this.contribuyentes,
+      this.configuracion,
+      this.solicitudes,
+      this.reportes,
+      this.pagos
+    ];
+
+    if (this.mennu[0].titulo === 'CatálogosNO') {
+      console.log('borrar');
+    } else
+    if (this.mennu[1].titulo === 'ContribuyenteNO') {
+      console.log('borrar');
+    } else
+    if (this.mennu[2].titulo === 'ConfiguraciónNO') {
+      console.log('borrar');
+    } else
+    if (this.mennu[3].titulo === 'SolicitudesNO') {
+      console.log('borrar');
+    } else
+    if (this.mennu[4].titulo === 'ReportesNO') {
+      console.log('borrar');
+    } else
+    if (this.mennu[5].titulo === 'PagosNO') {
+      console.log('borrar');
+    }
+
   }
 
 }

@@ -17,6 +17,7 @@ export class EditarUsuarioComponent implements OnInit {
   forma: FormGroup;
   resp: any;
   listaEstatus: any;
+  genero: any[];
 
   constructor( public _usuarioService: UsuarioService,
                public http: HttpClient,
@@ -40,7 +41,9 @@ export class EditarUsuarioComponent implements OnInit {
 
     this._usuarioService.getUsuario( id ).subscribe( resp => this.resp = resp );
 
-    this.lista.getListaDominio().subscribe( resp => {this.listaEstatus = resp; console.log(this.listaEstatus) } );
+    this._usuarioService.getUserGender().subscribe( resp => this.genero = resp );
+
+    this._usuarioService.getUserStatus().subscribe( resp => this.listaEstatus = resp );
 
 
   }

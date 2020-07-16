@@ -51,9 +51,18 @@ import { FacturasComponent } from './reportes/facturas.component';
 import { DailyoperationsComponent } from './reportes/dailyoperations.component';
 import { LayoutBanorteComponent } from './reportes/layoutbanorte.component';
 import { PagosCompanyComponent } from './reportes/pagoscompany.component';
+import { FacturasDetallesComponent } from './reportes/facturasdetalles.component';
+import { FacturaDetalleComponent } from './reportes/facturadetalle.component';
+import { ReporteSolicitudesComponent } from './reportes/reportesolicitudes.component';
+import { ReporteSolicitudesDetallesComponent } from './reportes/reportesolicitudesdetalles.component';
 // Pagos
 import { AproveedorComponent } from './pagos/aproveedor.component';
 import { DeCadenaComponent } from './pagos/decadena.component';
+import { ReporteSolicitudDetalleComponent } from './reportes/reportesolicituddetalle.component';
+
+
+
+
 
 
 
@@ -108,12 +117,17 @@ const pagesRoutes: Routes = [
             // Alta solicitudes
             { path: 'altasolicitudes', component: AltaSolicitudesComponent, data: { titulo: 'Alta Solicitudes' } },
             // Estatus Solicitudes
-            { path: 'estatussolicitudes', component: EstatusSolicitudesComponent, data: { titulo: 'Estatus Solicitudes' } },
+            { path: 'estatussolicitudes', component: EstatusSolicitudesComponent, data: { titulo: 'Flujo de solicitudes' } },
             // Reportes
             { path: 'reportefacturas', component: FacturasComponent, data: { titulo: 'Reporte General de Facturas' } },
             { path: 'reportediario', component: DailyoperationsComponent, data: { titulo: 'Reporte Diario' } },
             { path: 'banorte', component: LayoutBanorteComponent, data: { titulo: 'Layout Banorte' } },
-            { path: 'pagoscompany', component: PagosCompanyComponent, data: { titulo: 'Pagos Compañia' } },
+            { path: 'pagoscompany', component: PagosCompanyComponent, data: { titulo: 'Pagos Cadena' } },
+            { path: 'facturasdetalles', component: FacturasDetallesComponent, data: { titulo: 'Detalles de Facturas' } },
+            { path: 'facturasdetalles/facturadetalle/:id', component: FacturaDetalleComponent, data: { titulo: 'Detalles de Factura' } },
+            { path: 'reportesolicitudes', component: ReporteSolicitudesComponent, data: { titulo: 'Solicitudes' } },
+            { path: 'reportesolicitudesdetalles', component: ReporteSolicitudesDetallesComponent, data: { titulo: 'Detalles de Solicitudes' } },
+            { path: 'reportesolicitudesdetalles/reportesolicituddetalle/:id', component: ReporteSolicitudDetalleComponent, data: { titulo: 'Detalles de Solicitud' } },
             // Pagos
             { path : 'pagos/aproveedor', component: AproveedorComponent, data: { titulo: 'Pago a Proveedor' } },
             { path : 'pagos/decadena', component: DeCadenaComponent, data: { titulo: 'Pago de Cadena' } },

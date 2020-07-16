@@ -37,7 +37,7 @@ export class EstatusSolicitudesComponent implements OnInit {
 
     this.idu = localStorage.getItem('id');
 
-    this._solicitudesservice.getSolicitudesxusuario(this.idu).subscribe( resp => { this.solicitudes = resp; } );
+    this._solicitudesservice.getSolicitudesxusuario(this.idu).subscribe( resp => { this.solicitudes = resp; console.log(this.solicitudes)} );
 
     this._solicitudesservice.getUsuariosFinanciero().subscribe( resp => { this.usuarios = resp; } );
 
@@ -46,10 +46,13 @@ export class EstatusSolicitudesComponent implements OnInit {
     this.cols = [
 
     { field: 'fecha_factura', header: 'Fecha Factura' },
-    { field: 'fecha_operación', header: 'Fecha Operacion' },
+    { field: 'fecha_operacion', header: 'Fecha Operacion' },
     { field: 'fecha_vencimiento', header: 'Fecha Vencimiento' },
     { field: 'total', header: 'Total' },
-    { field: 'status', header: 'Estatus' }
+    { field: 'usuario', header: 'Usuario' },
+    { field: 'status', header: 'Estatus' },
+    { field: 'cadena', header: 'Cadena' },
+    { field: 'proovedor', header: 'Proveedor' }
   ];
 
   }

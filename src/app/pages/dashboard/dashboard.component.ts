@@ -97,13 +97,13 @@ export class DashboardComponent implements OnInit {
                                                                                       label: 'Limite Credito ' + this.datos[0].limite_credito,
                                                                                       backgroundColor: '#030720',
                                                                                       borderColor: '#1E88E5',
-                                                                                      data: [this.datos[0].limite_credito]
+                                                                                      data: [this.datos[0].limite_credito.replace(/,/g, '')]
                                                                                       },
                                                                                       {
                                                                                       label: 'Credito Disponible ' + this.datos[0].credito_disponible,
                                                                                       backgroundColor: '#434750',
                                                                                       borderColor: '#7CB342',
-                                                                                      data: [this.datos[0].credito_disponible]
+                                                                                      data: [this.datos[0].credito_disponible.replace(/,/g, '')]
                                                                                       }
                                                                                     ]
                                                                           };

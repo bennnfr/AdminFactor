@@ -17,6 +17,8 @@ declare function init_plugins();
 export class CrearUsuarioComponent implements OnInit {
 
   forma: FormGroup;
+  genero: any[];
+  estatus: any[];
 
   constructor(
     public _usuarioService: UsuarioService,
@@ -60,6 +62,12 @@ export class CrearUsuarioComponent implements OnInit {
         estatus: new FormControl( null )
 
       }, { validators: this.sonIguales( 'password', 'password2' )  } );
+
+      this._usuarioService.getUserGender().subscribe( resp => this.genero = resp );
+
+      this._usuarioService.getUserStatus().subscribe( resp => this.estatus = resp );
+
+
 
   }
 
