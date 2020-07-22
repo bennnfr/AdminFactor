@@ -59,6 +59,10 @@ import { ReporteSolicitudesDetallesComponent } from './reportes/reportesolicitud
 import { AproveedorComponent } from './pagos/aproveedor.component';
 import { DeCadenaComponent } from './pagos/decadena.component';
 import { ReporteSolicitudDetalleComponent } from './reportes/reportesolicituddetalle.component';
+import { TarifasComponent } from './tarifas/tarifas.component';
+import { ActualizaTarifaComponent } from './tarifas/actualizatarifa.component';
+import { CreaTarifaComponent } from './tarifas/creatarifa.component';
+// Tarifas
 
 
 
@@ -131,6 +135,10 @@ const pagesRoutes: Routes = [
             // Pagos
             { path : 'pagos/aproveedor', component: AproveedorComponent, data: { titulo: 'Pago a Proveedor' } },
             { path : 'pagos/decadena', component: DeCadenaComponent, data: { titulo: 'Pago de Cadena' } },
+            // Tarifas
+            { path : 'tarifas', component: TarifasComponent, data: { titulo: 'Tarifas' } },
+            { path : 'tarifas/actualizatarifa/:id', component: ActualizaTarifaComponent, data: { titulo: 'Actualiza Tarifa' } },
+            { path : 'tarifas/creatarifa', component: CreaTarifaComponent, data: { titulo: 'Crea Tarifa' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     }

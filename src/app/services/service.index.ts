@@ -17,3 +17,4 @@ export { AltaSolicitudesService } from './altasolicitudes/altasolicitudes.servic
 export { ReportesService } from './reportes/reportes.service';
 export { PagosService } from './pagos/pagos.service';
 export { DashboardService } from './dashboard/dashboard.service';
+export { TarifasService } from './tarifas/tarifas.service';

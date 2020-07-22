@@ -23,6 +23,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { ChartsModule } from 'ng2-charts';
 import {ChartModule} from 'primeng/chart';
 
+import {FileUploadModule} from 'primeng/fileupload';
+
 import { PagesComponent } from './pages.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -77,6 +79,9 @@ import { FacturaDetalleComponent } from './reportes/facturadetalle.component';
 import { ReporteSolicitudesComponent } from './reportes/reportesolicitudes.component';
 import { ReporteSolicitudesDetallesComponent } from './reportes/reportesolicitudesdetalles.component';
 import { ReporteSolicitudDetalleComponent } from './reportes/reportesolicituddetalle.component';
+import { TarifasComponent } from './tarifas/tarifas.component';
+import { ActualizaTarifaComponent } from './tarifas/actualizatarifa.component';
+import { CreaTarifaComponent } from './tarifas/creatarifa.component';
 
 
 
@@ -127,7 +132,10 @@ import { ReporteSolicitudDetalleComponent } from './reportes/reportesolicituddet
         FacturaDetalleComponent,
         ReporteSolicitudesComponent,
         ReporteSolicitudesDetallesComponent,
-        ReporteSolicitudDetalleComponent
+        ReporteSolicitudDetalleComponent,
+        TarifasComponent,
+        ActualizaTarifaComponent,
+        CreaTarifaComponent
     ],
     exports: [
         DashboardComponent,
@@ -153,7 +161,8 @@ import { ReporteSolicitudDetalleComponent } from './reportes/reportesolicituddet
         MatFormFieldModule,
         MultiSelectModule,
         InputTextareaModule,
-        ChartModule
+        ChartModule,
+        FileUploadModule
     ]
 })
 export class PagesModule { }

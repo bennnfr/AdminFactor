@@ -38,7 +38,7 @@ export class AsignaOptionsComponent implements OnInit {
                private route: ActivatedRoute ) {
 
                 }
-                
+
   ngOnInit() {
 
     this.usuarioOptions = [];
@@ -50,9 +50,9 @@ export class AsignaOptionsComponent implements OnInit {
     this._optionsservice.getUsuario(this.idu).subscribe( (resp: string) =>  this.nombreUsuaOp = resp  );
 
     this.subscription = this._optionsservice.getOptions()
-    .subscribe( resp => { this.options = resp;
+    .subscribe( resp => { this.options = resp; console.log(this.options);
                           this._usuariosservice.getUsuarioOptions(this.idu)
-                          .subscribe( resp2 => {this.usuarioOptions = resp2;
+                          .subscribe( resp2 => {this.usuarioOptions = resp2; console.log(this.usuarioOptions);
                                                 if (this.usuarioOptions.length === 0) {
                                                   this.seleccionOptions = this.options;
                                                 } else {

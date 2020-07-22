@@ -19,7 +19,8 @@ import {
   AltaSolicitudesService,
   ReportesService,
   PagosService,
-  DashboardService
+  DashboardService,
+  TarifasService
  } from './service.index';
 
 
@@ -45,7 +46,8 @@ import {
     AltaSolicitudesService,
     ReportesService,
     PagosService,
-    DashboardService
+    DashboardService,
+    TarifasService
   ],
   declarations: []
 })
