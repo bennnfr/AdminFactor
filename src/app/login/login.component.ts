@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
     const usuario = new Usuario(null, forma.value.email, forma.value.password );
 
     this._usuarioService.login( usuario, forma.value.recuerdame )
-                  .subscribe( correcto => {this.router.navigate(['/dashboard']); console.log(correcto);
+                  .subscribe( correcto => {this.router.navigate(['/dashboard'], { skipLocationChange: true }); console.log(correcto);
 
                 }, (err) => {
                   swal2.fire(

@@ -27,6 +27,8 @@ import {FileUploadModule} from 'primeng/fileupload';
 
 import { PagesComponent } from './pages.component';
 
+import {TabViewModule} from 'primeng/tabview';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
@@ -82,6 +84,14 @@ import { ReporteSolicitudDetalleComponent } from './reportes/reportesolicituddet
 import { TarifasComponent } from './tarifas/tarifas.component';
 import { ActualizaTarifaComponent } from './tarifas/actualizatarifa.component';
 import { CreaTarifaComponent } from './tarifas/creatarifa.component';
+import { AltaCyPComponent } from './altacyp/altacyp.component';
+import { ActualizaCadenaComponent } from './altacyp/actualizacadena.component';
+import { CreaCadenaComponent } from './altacyp/creacadena.component';
+import { CreaProveedorComponent } from './altacyp/creaproveedor.component';
+import { ActualizaProveedorComponent } from './altacyp/actualizaproveedor.component';
+import { AltaFacturasComponent } from './facturas/altafacturas.component';
+import { MantenimientoContComponent } from './mantenimientocontribuyentes/mantenimientocont.component';
+import { ContribuyenteMantComponent } from './mantenimientocontribuyentes/contribuyentemant.component';
 
 
 
@@ -135,7 +145,15 @@ import { CreaTarifaComponent } from './tarifas/creatarifa.component';
         ReporteSolicitudDetalleComponent,
         TarifasComponent,
         ActualizaTarifaComponent,
-        CreaTarifaComponent
+        CreaTarifaComponent,
+        AltaCyPComponent,
+        ActualizaCadenaComponent,
+        ActualizaProveedorComponent,
+        CreaCadenaComponent,
+        CreaProveedorComponent,
+        AltaFacturasComponent,
+        MantenimientoContComponent,
+        ContribuyenteMantComponent
     ],
     exports: [
         DashboardComponent,
@@ -162,7 +180,8 @@ import { CreaTarifaComponent } from './tarifas/creatarifa.component';
         MultiSelectModule,
         InputTextareaModule,
         ChartModule,
-        FileUploadModule
+        FileUploadModule,
+        TabViewModule
     ]
 })
 export class PagesModule { }

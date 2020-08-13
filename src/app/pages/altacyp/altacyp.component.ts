@@ -6,11 +6,11 @@ import * as XLSX from 'xlsx';
 import swal2 from 'sweetalert2';
 
 @Component({
-  selector: 'app-mantcontribuyentes',
-  templateUrl: './mantcontribuyentes.component.html',
+  selector: 'app-altacyp',
+  templateUrl: './altacyp.component.html',
   styles: []
 })
-export class MantcontribuyentesComponent implements OnInit {
+export class AltaCyPComponent implements OnInit {
 
   constructor(
                public _contribuyentesService: ContribuyentesService,
@@ -33,21 +33,8 @@ export class MantcontribuyentesComponent implements OnInit {
       { field: 'rfc_contribuyente', header: 'RFC' },
       { field: 'nombre', header: 'Nombre' },
       { field: 'correo', header: 'Correo' },
-      { field: 'tipo', header: 'Tipo' },
-      { field: 'banco', header: 'Banco' },
-      { field: 'numero_cuenta', header: 'No Cuenta' },
-      { field: 'clave_interbancaria', header: 'Clave Interbancaria' },
-      { field: 'clave_portal_banco', header: 'Clave Portal Banco' },
-      { field: 'limite_credito', header: 'Limite de Credito' },
-      { field: 'credito_disponible', header: 'Credito Disponible' },
-      { field: 'saldo', header: 'Saldo' },
       { field: 'es_cadena', header: 'Cadena' },
-      { field: 'es_proveedor', header: 'Proveedor' },
-      { field: 'telefono', header: 'Tel Fijo' },
-      { field: 'celular', header: 'Tel Movil' },
-      { field: 'tasa', header: 'Tasa' },
-      { field: 'dias_espera', header: 'Dias Espera' },
-      { field: 'dia_semana_vencimiento', header: 'Dias Semana Vencimiento' }
+      { field: 'es_proveedor', header: 'Proveedor' }
 
   ];
 

@@ -18,7 +18,7 @@ export class AltacontribuyentesComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-
+  
   fisica = false;
   moral = false;
   correoFisica = false;
@@ -27,7 +27,9 @@ export class AltacontribuyentesComponent implements OnInit {
   RFCFisica = false;
   RFCMoral = false;
   CURP = false;
-  btncontribuyente = true;
+  /************* */
+  btncontribuyente = false;
+  /****************** */
   noaguardado = true;
   seleccionfom = false;
   capturanuevofisica = true;
@@ -40,9 +42,20 @@ export class AltacontribuyentesComponent implements OnInit {
   respcontribmoral: string;
 
   idcontr = '';
+  iddp = '';
 
   tpersona: any[] = [];
   tgenero: any[] = [];
+
+  estados: any[] = [];
+  municipios: any[] = [];
+  addresstype: any[] = [];
+  suburbtype: any[] = [];
+  suburb: any[] = [];
+  contribuyenteslist: any[] = [];
+  idestado = '';
+  ide = '';
+  idm = '';
 
   constructor(private _formBuilder: FormBuilder,
               public router: Router,
@@ -60,6 +73,13 @@ export class AltacontribuyentesComponent implements OnInit {
     this._contribuyentesservice.getFiscalRegime().subscribe( resp => {this.tpersona = resp; } );
 
     this._contribuyentesservice.getPersonGender().subscribe( resp => this.tgenero = resp );
+
+
+    this._contribuyentesservice.getStates().subscribe( resp => { this.estados = resp; } );
+    this._contribuyentesservice.getAdresstype().subscribe( resp => { this.addresstype = resp; } );
+    this._contribuyentesservice.getAsentamientotype().subscribe( resp => { this.suburbtype = resp; } );
+
+   // this._contribuyentesservice.getContribuyentesMain().subscribe( resp => {this.contribuyenteslist = resp; console.log(this.contribuyenteslist)} );
 
   }
 
@@ -211,9 +231,7 @@ export class AltacontribuyentesComponent implements OnInit {
   }
 
   registrarcontribuyentefisica() {
-    console.log('hola persona fisica');
 
-    if (this.noaguardado) {
     // Obtener el elemento por el id
     const fielfisica: any = document.getElementById('fielfisica');
     const generofisica: any = document.getElementById('generofisica');
@@ -268,7 +286,6 @@ export class AltacontribuyentesComponent implements OnInit {
      valorfielfisica,
 
     );
-    console.log(personafisica);
 
     const contribuyentefisica = new ContribuyenteFisica(
 
@@ -278,15 +295,6 @@ export class AltacontribuyentesComponent implements OnInit {
       (document.getElementById('CLABEfisica')as HTMLInputElement).value,
       (document.getElementById('clavelineafisica')as HTMLInputElement).value,
     );
-    console.log( contribuyentefisica );
-
-    if ( document.getElementById('btnguardafisica').click ) {
-      console.log('hola');
-      this.noaguardado = false;
-      this.btncontribuyente = false;
-      this.seleccionfom = true;
-      this.capturanuevofisica = false;
-    }
 
     this.subscription = this._contribuyentesservice.crearPersonaFisica( personafisica ).subscribe( resp => { this.resppersonafisica = resp; console.log(this.resppersonafisica[0].id);
 
@@ -298,21 +306,14 @@ export class AltacontribuyentesComponent implements OnInit {
                                                                                                               '',
                                                                                                               'success'
                                                                                                            );
+                                                                                                             window.location.reload();
     } );
-
-  } else {
-    swal2.fire(
-      'Los Datos ya fueron guardados',
-      '',
-      'error'
-   ); }
 
   }
 
   registrarcontribuyentemoral() {
-    console.log('hola persona moral');
 
-    if (this.noaguardado) {
+   // if (this.noaguardado) {
     // Obtener el elemento por el id
     const fielmoral: any = document.getElementById('fielmoral');
 
@@ -353,13 +354,13 @@ export class AltacontribuyentesComponent implements OnInit {
     );
     console.log(document.getElementById('btnguardamoral') as HTMLInputElement);
 
-    if ( document.getElementById('btnguardamoral').click ) {
+  /*  if ( document.getElementById('btnguardamoral').click ) {
       console.log('hola');
       this.noaguardado = false;
       this.btncontribuyente = false;
       this.seleccionfom = true;
       this.capturanuevomoral = false;
-    }
+    } */
 
     this._contribuyentesservice.crearPersonaMoral(personamoral).subscribe( resp => {this.resppersonamoral = resp; console.log(this.resppersonamoral);
                                                                                     this._contribuyentesservice.crearContribuyenteMoral( contribuyentemoral, this.resppersonamoral[0].id )
@@ -369,25 +370,25 @@ export class AltacontribuyentesComponent implements OnInit {
                                                                                       '',
                                                                                       'success'
                                                                                    );
+                                                                                    window.location.reload();
 
 
 
 
     } );
-  } else {
+/*  } else {
     swal2.fire(
       'Los Datos ya fueron guardados',
       '',
       'error'
-   ); }
+   ); } */
   }
 
   /***************************************************************************************************************************************************/
 
   registrardp() {
-    console.log('hola');
-    console.log(this.idcontr);
-    const d = new Date((document.getElementById('dpfescritura')as HTMLInputElement).value);
+
+    const d = new Date((document.getElementById('dppd_date')as HTMLInputElement).value);
     d.setMinutes( d.getMinutes() + d.getTimezoneOffset() );
     let month = '' + (d.getMonth() + 1);
     let day = '' + d.getDate();
@@ -401,30 +402,167 @@ export class AltacontribuyentesComponent implements OnInit {
     }
 
     const fechaesc = [year, month, day].join('-');
-    const dpmoral = new DocumentoPropiedad(
-      this.idcontr,
-     (document.getElementById('dptescritura')as HTMLInputElement).value,
-     (document.getElementById('dpdescritura')as HTMLInputElement).value,
-     (document.getElementById('dpnescritura')as HTMLInputElement).value,
-     (document.getElementById('dplescritura')as HTMLInputElement).value,
-     fechaesc,
-     (document.getElementById('dprug')as HTMLInputElement).value,
-     (document.getElementById('dpaescritura')as HTMLInputElement).value,
 
-    );
+    const params = {
 
-    console.log(dpmoral);
+    document_type: (document.getElementById('dpdocument_type')as HTMLInputElement).value,
+    description: (document.getElementById('dpdescription')as HTMLInputElement).value,
+    pd_number: (document.getElementById('dppd_number')as HTMLInputElement).value,
+    pd_book: (document.getElementById('dppd_book')as HTMLInputElement).value,
+    pd_date: fechaesc,
+    rug: (document.getElementById('dprug')as HTMLInputElement).value,
+    document: (document.getElementById('dpdocument')as HTMLInputElement).value,
+    token: '',
+    secret_key: ''
 
-    this._contribuyentesservice.crearDP(dpmoral).subscribe( resp => {console.log(resp);
-                                                                     swal2.fire(
+    };
+
+    console.log(params);
+
+    this._contribuyentesservice.crearDP(this.idcontr, params).subscribe( resp => { console.log(resp);
+                                                                                   this.iddp = resp;
+                                                                                   swal2.fire(
                                                                     'Los datos se guardaron con exito',
                                                                     '',
                                                                     'success'
                                                                      );
-    } );
+    }, (err) => {
+      console.log(err);
+      swal2.fire(
+           'Error al guardar los datos',
+           '',
+           'error'
+        );
+     });
+  }
+
+  /***************************************************************************************************************************************************************************** */
+
+  registraSignatory() {
+
+    console.log(this.idcontr);
+    console.log(this.iddp);
+
+    const params = {
+    token: '',
+    secret_key: '',
+    contributor_signatory_id: this.idcontr,
+    property_document_id: this.iddp,
+    partnership: (document.getElementById('fpartnership')as HTMLInputElement).value
+  };
+
+    console.log(params);
+
+    this._contribuyentesservice.creaFirmantexContribuyente(this.idcontr, params).subscribe( resp => { console.log(resp);
+                                                                                                      swal2.fire(
+'Los datos se guardaron con exito',
+'',
+'success'
+);
+}, (err) => {
+console.log(err);
+swal2.fire(
+'Error al guardar los datos',
+'',
+'error'
+);
+});
+
+  }
+  /**************************************************************************************************************************************** */
+
+  filtramunicipios() {
+
+    const estado: any = document.getElementById('estado');
+
+    const valorestado = estado.options[estado.selectedIndex].value;
+
+    for (const prop in this.estados) {
+      if ( this.estados[prop].name === valorestado ) {
+        this.idestado = this.estados[prop].id;
+        break;
+      }
+    }
+
+    this._contribuyentesservice.getMunicipios( this.idestado ).subscribe(resp => {this.municipios = resp; });
+
+  }
+
+  buscacp() {
+
+    const cp = (document.getElementById('postal_code') as HTMLInputElement).value;
+
+    this._contribuyentesservice.getColoniasxcp( cp ).subscribe( resp => { this.suburb = resp; } );
+
+  }
+
+  registrardireccion() {
+
+    const estado: any = document.getElementById('estado');
+    const municipio: any = document.getElementById('municipio');
+    const adresstype: any = document.getElementById('adress_type');
+    const suburbtype: any = document.getElementById('suburb_type');
+    const suburbb: any = document.getElementById('suburb');
+
+    const valorestado = estado.options[estado.selectedIndex].value;
+    const valormunicipio = municipio.options[municipio.selectedIndex].value;
+    const valoradresstype = adresstype.options[adresstype.selectedIndex].value;
+    const valorsuburbtype = suburbtype.options[suburbtype.selectedIndex].value;
+    const valorsuburb = suburbb.options[suburbb.selectedIndex].value;
+
+    for (const prop in this.estados) {
+      if ( this.estados[prop].name === valorestado ) {
+        this.ide = this.estados[prop].id;
+        break;
+      }
+    }
+
+    for (const prop in this.municipios) {
+      if ( this.municipios[prop].name === valormunicipio ) {
+        this.idm = this.municipios[prop].id;
+        break;
+      }
+    }
+
+    const params = {
+
+      token: '',
+      secret_key: '',
+      municipality_id: this.idm,
+      state_id: this.ide,
+      address_type: valoradresstype,
+      street: (document.getElementById('street')as HTMLInputElement).value,
+      external_number: (document.getElementById('external_number')as HTMLInputElement).value,
+      apartment_number: (document.getElementById('apartment_number')as HTMLInputElement).value,
+      suburb_type: valorsuburbtype,
+      suburb: valorsuburb,
+      postal_code: (document.getElementById('postal_code')as HTMLInputElement).value,
+      address_reference: (document.getElementById('address_reference')as HTMLInputElement).value
+
+    };
+
+    console.log(params);
+
+    this._contribuyentesservice.creaDireccionxContribuyente(this.idcontr, params).subscribe( resp => { console.log(resp);
+                                                                                                       swal2.fire(
+'Los datos se guardaron con exito',
+'',
+'success'
+);
+}, (err) => {
+console.log(err);
+swal2.fire(
+'Error al guardar los datos',
+'',
+'error'
+);
+});
+
   }
 
 }
+
+
 
 
 

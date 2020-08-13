@@ -42,6 +42,8 @@ import { AsignaOptionsRolesComponent } from './roleOptions/asignaoptionsroles.co
 import { AltacontribuyentesComponent } from './altacontribuyentes/altacontribuyentes.component';
 // Mantenimiento Contribuyentes
 import { MantcontribuyentesComponent } from './mantenimientocontribuyentes/mantcontribuyentes.component';
+import { MantenimientoContComponent } from './mantenimientocontribuyentes/mantenimientocont.component';
+import { ContribuyenteMantComponent } from './mantenimientocontribuyentes/contribuyentemant.component';
 // Alta Solicitudes
 import { AltaSolicitudesComponent } from './alta solicitudes/altasolicitudes.component';
 // Estatus Solicitudes
@@ -59,10 +61,18 @@ import { ReporteSolicitudesDetallesComponent } from './reportes/reportesolicitud
 import { AproveedorComponent } from './pagos/aproveedor.component';
 import { DeCadenaComponent } from './pagos/decadena.component';
 import { ReporteSolicitudDetalleComponent } from './reportes/reportesolicituddetalle.component';
+// Tarifas
 import { TarifasComponent } from './tarifas/tarifas.component';
 import { ActualizaTarifaComponent } from './tarifas/actualizatarifa.component';
 import { CreaTarifaComponent } from './tarifas/creatarifa.component';
-// Tarifas
+ // Alta cadenas y proveedores
+import { AltaCyPComponent } from './altacyp/altacyp.component';
+import { ActualizaCadenaComponent } from './altacyp/actualizacadena.component';
+import { CreaCadenaComponent } from './altacyp/creacadena.component';
+import { CreaProveedorComponent } from './altacyp/creaproveedor.component';
+import { ActualizaProveedorComponent } from './altacyp/actualizaproveedor.component';
+// Facturas
+import { AltaFacturasComponent } from './facturas/altafacturas.component';
 
 
 
@@ -117,7 +127,8 @@ const pagesRoutes: Routes = [
             // Alta contribuyentes
             { path: 'altacontribuyentes', component: AltacontribuyentesComponent, data: { titulo: 'Alta de contribuyentes' } },
             // Mantenimiento Contribuyentes
-            { path: 'mantenimientocontribuyentes', component: MantcontribuyentesComponent, data: { titulo: 'Mantenimiento Contribuyentes' } },
+            { path: 'mantenimientocontribuyentes', component: MantenimientoContComponent, data: { titulo: 'Mantenimiento Contribuyentes' } },
+            { path: 'mantenimientocontribuyentes/contribuyentemant/:id', component: ContribuyenteMantComponent, data: { titulo: 'Mantenimiento Contribuyentes' } },
             // Alta solicitudes
             { path: 'altasolicitudes', component: AltaSolicitudesComponent, data: { titulo: 'Alta Solicitudes' } },
             // Estatus Solicitudes
@@ -139,6 +150,14 @@ const pagesRoutes: Routes = [
             { path : 'tarifas', component: TarifasComponent, data: { titulo: 'Tarifas' } },
             { path : 'tarifas/actualizatarifa/:id', component: ActualizaTarifaComponent, data: { titulo: 'Actualiza Tarifa' } },
             { path : 'tarifas/creatarifa', component: CreaTarifaComponent, data: { titulo: 'Crea Tarifa' } },
+            // Alta cadenas y proveedores
+            { path : 'altacyp', component: AltaCyPComponent, data: { titulo: 'Alta Cadenas y proveedores' } },
+            { path : 'altacyp/actualizacadena/:id', component: ActualizaCadenaComponent, data: { titulo: 'Actualiza Cadena' } },
+            { path : 'altacyp/actualizaproveedor/:id', component: ActualizaProveedorComponent, data: { titulo: 'Actualiza Proveedor' } },
+            { path : 'altacyp/creacadena/:id', component: CreaCadenaComponent, data: { titulo: 'Crea Cadena' } },
+            { path : 'altacyp/creaproveedor/:id', component: CreaProveedorComponent, data: { titulo: 'Crea Proveedor' } },
+            // Facturas
+            { path : 'altafacturas', component: AltaFacturasComponent, data: { titulo: 'Alta Facturas' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     }

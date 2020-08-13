@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 
 
 @Injectable()
-export class ContribuyentesService {
+export class MantenimientoContribuyentesService {
 
   usuario: Usuario;
   token: string;
@@ -37,103 +37,6 @@ export class ContribuyentesService {
   }
 
 
-  crearPersonaFisica( perfisica: Perfisica ) {
-
-    const url = `${URL_SERVICIOS}/people?person[fiscal_regime]=${perfisica.rfiscalfisica}&person[rfc]=${perfisica.rfcfisica}&person[curp]=${perfisica.CURP}
-                &person[imss]=${perfisica.IMSS}&person[first_name]=${perfisica.nombrefisica}&person[last_name]=${perfisica.apellidop}
-                &person[second_last_name]=${perfisica.apellidom}&person[gender]=${perfisica.genero}&person[nationality]=${perfisica.nacionalidad}
-                &person[birth_country]=${perfisica.pnacimiento}&person[birthplace]=${perfisica.lnacimiento}&person[birthdate]=${perfisica.fnacimiento}
-                &person[martial_status]=${perfisica.estadocivil}&person[id_type]=${perfisica.tidentificacion}&person[identification]=${perfisica.nidentificacion}
-                &person[phone]=${perfisica.telfijofisica}&person[mobile]=${perfisica.telmovilfisica}&person[email]=${perfisica.correofisica}
-                &person[fiel]=${perfisica.FIELfisica}&token=${this.token}&secret_key=${SECRET_KEY}`;
-
-
-    return this.http.post( url, null ).pipe(
-              map( (resp: any) => {
-                return this.crearArregloPersonaFisica(resp);
-              }));
-  }
-
-  crearArregloPersonaFisica( usuariosObj: any) {
-
-    const usuarios: any[] = [];
-    const resul: any[] = [];
-
-    if ( usuariosObj === null ) { return []; }
-    Object.keys ( usuariosObj ).forEach( key => {
-      const usuario: any = usuariosObj[key];
-      usuarios.push( usuario );
-    });
-    // tslint:disable-next-line: forin
-    console.log(usuarios);
-  //  console.log( usuarios[0][prop].attributes );
-    resul.push( usuarios[0].attributes );
-    console.log(resul);
-
-    return resul;
-
-}
-
-  crearContribuyenteFisica( contribuyentefisica: ContribuyenteFisica, idf: any ) {
-
-    const url = `${URL_SERVICIOS}/contributors?contributor[contributor_type]=${contribuyentefisica.tipo}&contributor[bank]=${contribuyentefisica.banco}
-                &contributor[account_number]=${contribuyentefisica.ncuentafisica}&contributor[clabe]=${contribuyentefisica.clabefisica}
-                &contributor[extra1]=${contribuyentefisica.cbfisica}&contributor[person_id]=${idf}&token=${this.token}&secret_key=${SECRET_KEY}`;
-
-
-    return this.http.post( url, null ).pipe(
-              map( (resp: any) => {
-                return resp.data.attributes.id;
-              }));
-  }
-
-  crearPersonaMoral( perMoral: PerMoral ) {
-
-    const url = `${URL_SERVICIOS}/legal_entities/?legal_entity[fiscal_regime]=${perMoral.rfiscalmoral}&legal_entity[rfc]=${perMoral.rfcmoral}
-                &legal_entity[rug]=${perMoral.rug}&legal_entity[business_name]=${perMoral.nombremoral}&legal_entity[phone]=${perMoral.telfijomoral}
-                &legal_entity[mobile]=${perMoral.telmovilmoral}&legal_entity[email]=${perMoral.correomoral}&legal_entity[business_email]=${perMoral.correoempresamoral}
-                &legal_entity[fiel]=${perMoral.FIELmoral}&token=${this.token}&secret_key=${SECRET_KEY}`;
-
-
-    return this.http.post( url, null ).pipe(
-              map( (resp: any) => {
-                return this.crearArregloPersonaMoral(resp);
-              }));
-  }
-
-  crearArregloPersonaMoral( usuariosObj: any) {
-
-    const usuarios: any[] = [];
-    const resul: any[] = [];
-
-    if ( usuariosObj === null ) { return []; }
-    Object.keys ( usuariosObj ).forEach( key => {
-      const usuario: any = usuariosObj[key];
-      usuarios.push( usuario );
-    });
-    // tslint:disable-next-line: forin
-    console.log(usuarios);
-  //  console.log( usuarios[0][prop].attributes );
-    resul.push( usuarios[0].attributes );
-    console.log(resul);
-
-    return resul;
-
-}
-
-crearContribuyenteMoral( contribuyentemoral: ContribuyenteMoral, idm: any ) { 
-
-  const url = `${URL_SERVICIOS}/contributors?contributor[contributor_type]=${contribuyentemoral.tipo}&contributor[bank]=${contribuyentemoral.banco}
-              &contributor[account_number]=${contribuyentemoral.ncuentamoral}&contributor[clabe]=${contribuyentemoral.clabemoral}
-              &contributor[extra1]=${contribuyentemoral.cbmoral}&contributor[legal_entity_id]=${idm}&token=${this.token}&secret_key=${SECRET_KEY}`;
-
-
-  return this.http.post( url, null ).pipe(
-            map( (resp: any) => {
-              return resp.data.attributes.id;
-            }));
-}
-
 getContribuyentes() {
 
   const url = `${URL_SERVICIOS}/contributors?token=${this.token}&secret_key=${SECRET_KEY}`;
@@ -146,24 +49,52 @@ getContribuyentes() {
 
 }
 
+getContribuyente( id ) {
+
+  const url = `${URL_SERVICIOS}/contributors/${id}?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+  return this.http.get(url).pipe(
+    map( (resp: any) => {
+      return this.crearArregloContribuyentemant(resp);
+    } )
+  );
+
+}
+
 crearArregloContribuyente( contribuObj: any) {
 
   const contribuyentes: any[] = [];
   const resul: any[] = [];
-  console.log(contribuObj.data);
   if ( contribuObj === null ) { return []; }
  /* Object.keys ( contribuObj ).forEach( key => {
     const rol: any = contribuObj[key];
     contribuyentes.push( rol );
   }); */
-  console.log(contribuyentes[0]);
+  
   // tslint:disable-next-line: forin
   for (const prop in contribuObj.data) {
-  console.log(contribuObj.data[prop].attributes);
+  
   resul.push( contribuObj.data[prop].attributes );
   }
 
-  console.log(resul);
+ 
+
+  return resul;
+
+}
+
+crearArregloContribuyentemant( contribuObj: any) {
+
+  const contribuyentes: any[] = [];
+  const resul: any[] = [];
+ // console.log(contribuObj.data);
+  if ( contribuObj === null ) { return []; }
+
+  
+  resul.push( contribuObj.data.attributes );
+
+
+ 
 
   return resul;
 
@@ -172,6 +103,18 @@ crearArregloContribuyente( contribuObj: any) {
 getPersonaFisica( idf: string ) {
 
   const url = `${URL_SERVICIOS}/people/${idf}?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+  return this.http.get(url).pipe(
+    map( (resp: any) => {
+      return this.crearArreglopf(resp);
+    } )
+  );
+
+}
+
+getPersonaMoral( idf: string ) {
+
+  const url = `${URL_SERVICIOS}/legal_entities/${idf}?token=${this.token}&secret_key=${SECRET_KEY}`;
 
   return this.http.get(url).pipe(
     map( (resp: any) => {
@@ -203,17 +146,34 @@ crearArreglopf( contribuObj: any) {
 
 }
 
-crearDP( id, params ) {
+actualizaLegalEntity(idm, params) {
+  params.token = this.token;
+  params.secret_key = SECRET_KEY;
+  const url = `${URL_SERVICIOS}/legal_entities/${idm}`;
+  return this.http.patch(url, params).pipe(
+    map( (resp: any) => {
+      return (resp);
+    } ));
+}
 
-params.token = this.token;
-params.secret_key = SECRET_KEY;
+actualizaPerson(idf, params) {
+  params.token = this.token;
+  params.secret_key = SECRET_KEY;
+  const url = `${URL_SERVICIOS}/people/${idf}`;
+  return this.http.patch(url, params).pipe(
+    map( (resp: any) => {
+      return (resp);
+    } ));
+}
 
-const url = `${URL_SERVICIOS}/contributors/${id}/property_documents`;
-
-return this.http.post( url, params ).pipe(
-              map( (resp: any) => {
-                return resp.data.attributes.id;
-              }));
+actualizaContribuyente(idc, params) {
+  params.token = this.token;
+  params.secret_key = SECRET_KEY;
+  const url = `${URL_SERVICIOS}/contributors/${idc}`;
+  return this.http.patch(url, params).pipe(
+    map( (resp: any) => {
+      return (resp);
+    } ));
 }
 
 // LISTAS
@@ -299,7 +259,7 @@ getContribuyentesMain() {
 
 }
 
-// CYP
+// CYP /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 getCadenaxcontribuyente(id) {
 
@@ -317,13 +277,13 @@ crearArregloCadena( contribuObj: any) {
 
   const rr: any[] = [];
   const resul: any[] = [];
-  console.log(contribuObj);
+ // console.log(contribuObj);
   if ( contribuObj === null ) { return []; }
   Object.keys ( contribuObj ).forEach( key => {
     const rol: any = contribuObj[key];
     rr.push( rol );
   });
-  console.log(rr);
+ // console.log(rr);
   // tslint:disable-next-line: forin
   for ( const prop in rr[0] ) {
 
@@ -393,13 +353,13 @@ crearArregloProveedor( contribuObj: any) {
 
   const rr: any[] = [];
   const resul: any[] = [];
-  console.log(contribuObj);
+//  console.log(contribuObj);
   if ( contribuObj === null ) { return []; }
   Object.keys ( contribuObj ).forEach( key => {
     const rol: any = contribuObj[key];
     rr.push( rol );
   });
-  console.log(rr);
+ // console.log(rr);
   // tslint:disable-next-line: forin
   for ( const prop in rr[0] ) {
 
@@ -424,7 +384,7 @@ actualizaProveedorxContributente( idcont, idcompany, params ) {
 
 }
 
-// DIRECCIONES
+// DIRECCIONES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 getStates() {
 
@@ -466,11 +426,13 @@ crearArregloStates( contribuObj: any) {
 
   const rr: any[] = [];
   const resul: any[] = [];
+//  console.log(contribuObj);
   if ( contribuObj === null ) { return []; }
   Object.keys ( contribuObj ).forEach( key => {
     const rol: any = contribuObj[key];
     rr.push( rol );
   });
+ // console.log(rr);
   // tslint:disable-next-line: forin
   for ( const prop in rr[0] ) {
 
@@ -509,6 +471,195 @@ creaDireccionxContribuyente( idc , params ) {
     }));
 
 }
+
+getDireccion(){
+
+  const url = `${URL_SERVICIOS}/contributors/76/contributor_addresses/3?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+  return this.http.get(url).pipe(
+    map( (resp: any) => {
+      return this.crearArregloEscritura(resp);
+    } )
+  );
+
+}
+
+getDirecciones( idc ) {
+  const url = `${URL_SERVICIOS}/contributors/${idc}/contributor_addresses?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+  return this.http.get(url).pipe(
+    map( (resp: any) => {
+      return this.crearArregloEscrituras(resp);
+    } )
+  );
+}
+
+getNombreState ( ids ) {
+  const url = `${URL_SERVICIOS}/countries/1/states/${ids}?token=${this.token}&secret_key=${SECRET_KEY}`;
+  return this.http.get(url).pipe(
+    map( (resp: any) => {
+      return this.crearArregloNombre(resp);
+    } )
+  );
+}
+
+getNombreMunicipality( idm ) {
+  const url = `${URL_SERVICIOS}/states/1/municipalities/${idm}?token=${this.token}&secret_key=${SECRET_KEY}`;
+  return this.http.get(url).pipe(
+    map( (resp: any) => {
+      return this.crearArregloNombre(resp);
+    } )
+  );
+}
+
+crearArregloNombre( contribuObj: any) {
+  const resul: any[] = [];
+  if ( contribuObj === null ) { return []; }
+  resul.push( contribuObj.data.attributes );
+  return resul;
+}
+
+borraDireccion( idc, idd ) {
+  const url = `${URL_SERVICIOS}/contributors/${idc}/contributor_addresses/${idd}?token=${this.token}&secret_key=${SECRET_KEY}`;
+  return this.http.delete(url).pipe(
+    map( (resp: any) => {
+      return (resp);
+    } ));
+}
+
+modificaDireccion( idc, idd, params ) {
+
+  params.token = this.token;
+  params.secret_key = SECRET_KEY;
+
+  const url = `${URL_SERVICIOS}/contributors/${idc}/contributor_addresses/${idd}`;
+
+  return this.http.patch(url, params).pipe(
+    map( (resp: any) => {
+      return resp;
+    } )
+  );
+
+}
+// DIRECCIONES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ESCRITURAS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+getEscrituras( idc ) {
+
+  const url = `${URL_SERVICIOS}/contributors/${idc}/property_documents?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+  return this.http.get(url).pipe(
+    map( (resp: any) => {
+      return this.crearArregloEscrituras(resp);
+    } )
+  );
+
+}
+
+crearArregloEscrituras( contribuObj: any) {
+
+  const contribuyentes: any[] = [];
+  const resul: any[] = [];
+  if ( contribuObj === null ) { return []; }
+ /* Object.keys ( contribuObj ).forEach( key => {
+    const rol: any = contribuObj[key];
+    contribuyentes.push( rol );
+  }); */
+  
+  // tslint:disable-next-line: forin
+  for (const prop in contribuObj.data) {
+  
+  resul.push( contribuObj.data[prop].attributes );
+  }
+
+ 
+
+  return resul;
+
+}
+
+getEscritura( idc, ide ) {
+
+  const url = `${URL_SERVICIOS}/contributors/${idc}/property_documents/${ide}?secret_key=${SECRET_KEY}&token=${this.token}`;
+
+  return this.http.get(url).pipe(
+    map( (resp: any) => {
+      return this.crearArregloEscritura(resp);
+    } )
+  );
+
+}
+
+crearArregloEscritura( contribuObj: any) {
+  const resul: any[] = [];
+  if ( contribuObj === null ) { return []; }
+  resul.push( contribuObj.data.attributes );
+  return resul;
+}
+
+borraEscritura( idc, ide ) {
+
+  const url = `${URL_SERVICIOS}/contributors/${idc}/property_documents/${ide}?secret_key=${SECRET_KEY}&token=${this.token}`;
+
+  return this.http.delete(url).pipe(
+    map( (resp: any) => {
+      return resp;
+    } )
+  );
+
+}
+
+modificaEscritura( idc, ide, params ) {
+
+  params.token = this.token;
+  params.secret_key = SECRET_KEY;
+
+  const url = `${URL_SERVICIOS}/contributors/${idc}/property_documents/${ide}`;
+
+  return this.http.patch(url, params).pipe(
+    map( (resp: any) => {
+      return resp;
+    } )
+  );
+
+}
+
+// ESCRITURAS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// FIRMANTES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+getFirmantes( idc ) {
+  const url = `${URL_SERVICIOS}/contributors/${idc}/signatories?token=${this.token}&secret_key=${SECRET_KEY}`;
+
+  return this.http.get(url).pipe(
+    map( (resp: any) => {
+      return this.crearArregloEscrituras(resp);
+    } )
+  );
+}
+
+actualizaFirmante( idc, idf, params ) {
+  params.token = this.token;
+  params.secret_key = SECRET_KEY;
+  const url = `${URL_SERVICIOS}/contributors/${idc}/signatories/${idf}`;
+  return this.http.patch(url, params).pipe(
+    map( (resp: any) => {
+      return resp;
+    } )
+  );
+}
+
+borraFirmante( idc, idf ) {
+  const url = `${URL_SERVICIOS}/contributors/${idc}/signatories/${idf}?token=${this.token}&secret_key=${SECRET_KEY}`;
+  return this.http.delete(url).pipe(
+    map( (resp: any) => {
+      return resp;
+    } )
+  );
+}
+
+// FIRMANTES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 }

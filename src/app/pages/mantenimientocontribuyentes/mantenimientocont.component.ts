@@ -1,16 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ContribuyentesService } from '../../services/service.index';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import * as XLSX from 'xlsx';
 import swal2 from 'sweetalert2';
 
 @Component({
-  selector: 'app-mantcontribuyentes',
-  templateUrl: './mantcontribuyentes.component.html',
+  selector: 'app-mantenimientocont',
+  templateUrl: './mantenimientocont.component.html',
   styles: []
 })
-export class MantcontribuyentesComponent implements OnInit {
+export class MantenimientoContComponent implements OnInit {
 
   constructor(
                public _contribuyentesService: ContribuyentesService,
@@ -23,31 +23,18 @@ export class MantcontribuyentesComponent implements OnInit {
   contribuyentes: any[];
   fileName = 'ReporteContribuyentes.xlsx';
   _selectedColumns: any[];
+  idc: string;
 
   ngOnInit() {
 
-    this._contribuyentesService.getContribuyentesMain().subscribe( resp => {this.contribuyentes = resp; console.log(this.contribuyentes)} );
+    this._contribuyentesService.getContribuyentesMain().subscribe( resp => {this.contribuyentes = resp;} );
 
     this.cols = [
 
       { field: 'rfc_contribuyente', header: 'RFC' },
       { field: 'nombre', header: 'Nombre' },
       { field: 'correo', header: 'Correo' },
-      { field: 'tipo', header: 'Tipo' },
-      { field: 'banco', header: 'Banco' },
-      { field: 'numero_cuenta', header: 'No Cuenta' },
-      { field: 'clave_interbancaria', header: 'Clave Interbancaria' },
-      { field: 'clave_portal_banco', header: 'Clave Portal Banco' },
-      { field: 'limite_credito', header: 'Limite de Credito' },
-      { field: 'credito_disponible', header: 'Credito Disponible' },
-      { field: 'saldo', header: 'Saldo' },
-      { field: 'es_cadena', header: 'Cadena' },
-      { field: 'es_proveedor', header: 'Proveedor' },
-      { field: 'telefono', header: 'Tel Fijo' },
-      { field: 'celular', header: 'Tel Movil' },
-      { field: 'tasa', header: 'Tasa' },
-      { field: 'dias_espera', header: 'Dias Espera' },
-      { field: 'dia_semana_vencimiento', header: 'Dias Semana Vencimiento' }
+      { field: 'ver', header: 'Ver' }
 
   ];
 

@@ -18,6 +18,7 @@ export class SidebarComponent implements OnInit {
   solicitudes: any = [];
   reportes: any = [];
   pagos: any = [];
+  facturas: any = [];
 
   menu: any[];
   banderacontribuyentes = false;
@@ -32,6 +33,7 @@ export class SidebarComponent implements OnInit {
   contadorsolicitudes = 0;
   contadorreportes = 0;
   contadorpagos = 0;
+  contadorfacturas = 0;
 
   np = 0;
 
@@ -50,6 +52,7 @@ export class SidebarComponent implements OnInit {
     this.contadorsolicitudes = 0;
     this.contadorreportes = 0;
     this.contadorpagos = 0;
+    this.contadorfacturas = 0;
 
     // INICIALIZA OBJETOS
     this.catalogos = {
@@ -80,6 +83,11 @@ export class SidebarComponent implements OnInit {
     this.pagos = {
     titulo: 'PagosNO',
     icono: 'fa fa-dollar',
+    submenu: []
+  };
+    this.facturas = {
+    titulo: 'FacturasNO',
+    icono: 'fa fa-file',
     submenu: []
   };
 
@@ -126,36 +134,38 @@ export class SidebarComponent implements OnInit {
                                                                   this.pagos.submenu[this.contadorpagos] = { titulo: resp[prop].nombre, url: resp[prop].url };
                                                                   this.contadorpagos = this.contadorpagos + 1;
                                                                 }
+                                                                if (resp[prop].grupo === 'FACTURAS') {
+                                                                  this.facturas.titulo = 'Facturas';
+                                                                  this.facturas.submenu[this.contadorfacturas] = { titulo: resp[prop].nombre, url: resp[prop].url };
+                                                                  this.contadorfacturas = this.contadorfacturas + 1;
+                                                                }
                                                               }
 
                                                                if (this.mennu[0].titulo === 'CatálogosNO') {
-                                                                console.log('borra catalogos');
                                                                 this.mennnu.push(0);
                                                               }
                                                                if (this.mennu[1].titulo === 'ContribuyenteNO') {
-                                                                console.log('borra contribuyentes');
                                                                 this.mennnu.push(1);
                                                               }
                                                                if (this.mennu[2].titulo === 'ConfiguraciónNO') {
-                                                                console.log('borra configuracion');
                                                                 this.mennnu.push(2);
                                                               }
                                                                if (this.mennu[3].titulo === 'SolicitudesNO') {
-                                                                console.log('borra solicitudes');
                                                                 this.mennnu.push(3);
                                                               }
                                                                if (this.mennu[4].titulo === 'ReportesNO') {
-                                                                console.log('borra reportes');
                                                                 this.mennnu.push(4);
                                                               }
                                                                if (this.mennu[5].titulo === 'PagosNO') {
-                                                                console.log('borra pagos');
                                                                 this.mennnu.push(5);
+                                                              }
+                                                               if (this.mennu[6].titulo === 'FacturasNO') {
+                                                                this.mennnu.push(6);
                                                               }
                                                                this.mennnu.sort().reverse();
 
                                                               // tslint:disable-next-line: forin
-                                                               for(const i in this.mennnu) {
+                                                               for (const i in this.mennnu) {
                                                                 this.mennu.splice(this.mennnu[i], 1 );
                                                             }
 
@@ -166,7 +176,8 @@ export class SidebarComponent implements OnInit {
       this.configuracion,
       this.solicitudes,
       this.reportes,
-      this.pagos
+      this.pagos,
+      this.facturas
     ];
 
   }
@@ -179,10 +190,11 @@ export class SidebarComponent implements OnInit {
       this.configuracion,
       this.solicitudes,
       this.reportes,
-      this.pagos
+      this.pagos,
+      this.facturas
     ];
 
-    if (this.mennu[0].titulo === 'CatálogosNO') {
+  /*  if (this.mennu[0].titulo === 'CatálogosNO') {
       console.log('borrar');
     } else
     if (this.mennu[1].titulo === 'ContribuyenteNO') {
@@ -199,7 +211,7 @@ export class SidebarComponent implements OnInit {
     } else
     if (this.mennu[5].titulo === 'PagosNO') {
       console.log('borrar');
-    }
+    } */
 
   }
 

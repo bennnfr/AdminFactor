@@ -18,3 +18,5 @@ export { ReportesService } from './reportes/reportes.service';
 export { PagosService } from './pagos/pagos.service';
 export { DashboardService } from './dashboard/dashboard.service';
 export { TarifasService } from './tarifas/tarifas.service';
+export { FacturasService } from './facturas/facturas.service';
+export { MantenimientoContribuyentesService } from './mantenimientocontribuyentes/mantenimientocontribuyentes.service';
