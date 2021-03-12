@@ -27,7 +27,7 @@
         "datatables.net": "^1.10.20",
         "datatables.net-dt": "^1.10.20",
         "file-saver": "^2.0.2",
-        "jspdf": "^1.5.3",
+        "jspdf": "^2.3.1",
         "jspdf-autotable": "^3.5.6",
         "ng2-charts": "^2.3.0",
         "primeflex": "^1.1.0",
